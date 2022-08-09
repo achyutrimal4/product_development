@@ -1,0 +1,34 @@
+{% extends 'main.html'%}
+
+
+
+{% block content%}
+
+    <div class="container">
+        <form class="form" id="form" method="POST" novalidate>
+            <h2>Login with email and password</h2>
+            <div class="input-fields ">
+                <input type="email" id="email" name="email" placeholder="Email" >
+                <small>Message</small>
+            </div>
+
+            <div class="input-fields">
+                <input type="password" id="signin_password" name="signin_password" placeholder=" Password">
+                <span class="eye-signin" >
+                    <i id="eye-signin" class="fas fa-eye"></i>
+                    <i id="eye-signin2" class="fas fa-eye-slash"></i>
+                </span>
+            </div>
+            <input type="submit" value="Login" id="default-button" name="btnSignin">
+
+        </form>
+        <p>Or</p>
+        <span class="button-block">
+            <a href="{% url 'signup' %}"><input type="submit" value="Signup with email" id="default-button" name="signup-button"></a>
+            <input type="submit" value="Signup with Google" id="default-button" name="signup-button">      
+                  
+        </span>
+    </div>
+  
+
+{%  endblock content %}
