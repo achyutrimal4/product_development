@@ -14,7 +14,25 @@
     <form id="signup-form"  method="POST" novalidate>
 
         <h2>Signup with email</h2>
-        <div class="input-fields ">
+        {% csrf_token %}
+
+        {% for field in registration_form %}
+        <p>{{field.label_tag}}
+            {{field}}
+
+            {% if field.help_text %}
+                <small style="color: grey;">{{field.help_text}}</small>
+            {% endif %}
+
+            {% for error in field.errors %}
+            <small style="color: red;">{{error}}</small>
+            {% endfor %}
+        </p>
+
+        {% endfor %}
+
+        
+        <!-- <div class="input-fields ">
             <input type="email" id="email" name="email" placeholder="Email" >
             <small>Message</small>
         </div>
@@ -35,7 +53,7 @@
             <select name="country" id="select-country" size="1">
                 <option value="" selected="selected">Select Your Country</option>
             </select>
-        </div>
+        </div> -->
         <input type="submit" value="Signup" id="default-button">
     </form>
 </div>
