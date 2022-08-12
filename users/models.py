@@ -1,5 +1,9 @@
+from django.utils import timezone
+
+from time import timezone
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django_countries.fields import CountryField
 # Create your models here.
 
 
@@ -9,6 +13,8 @@ class UserManager (BaseUserManager):
             raise ValueError("You must provide an email address")
         if not username:
             raise ValueError("You must provide a username")
+        
+        
         
         user = self.model(
             email=self.normalize_email(email),
@@ -34,7 +40,7 @@ class UserManager (BaseUserManager):
         
         
 class User (AbstractBaseUser):
-    email       =models.EmailField(verbose_name="email", max_length=60, unique=True)
+    email       =models.EmailField(verbose_name="email", max_length=60, unique=True)    
     username    = models.CharField (max_length=50, unique=True)
     password    = models.CharField(max_length=128)
     date_joined = models.DateTimeField(verbose_name="date joined", auto_now_add=True)
@@ -43,6 +49,8 @@ class User (AbstractBaseUser):
     is_active   = models.BooleanField(default=False)
     is_staff    = models.BooleanField(default=False)
     is_superuser= models.BooleanField(default=False)
+    full_name   = models.CharField(verbose_name="Full Name", max_length=60, null=True)
+    country     = CountryField(verbose_name="Country/Region of residence", blank_label="Select country", null=True, )
     # first_name = 
     #lastname
     #country

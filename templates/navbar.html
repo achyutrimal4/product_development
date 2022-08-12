@@ -1,2 +1,51 @@
-<h3>Logo</h3>
-<hr>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://kit.fontawesome.com/de23b03d2b.js" crossorigin="anonymous"></script>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles/navbar.css' %}">
+</head>
+<body>
+    <div class="top-bar">
+        <ul>
+            <li><a href="#"><i class="fa-solid fa-ranking-star"></i></a></li>
+            <li><a href="#"><i class="fa-solid fa-futbol"></i></a></li>
+            <li><a href="#"><i class='fa-solid fa-basketball'></i></a></li>
+            <li><a href="#"><i class='fas fa-golf-ball'></i></a></li>
+            <li><a href="#"><i class="fa-solid fa-person-swimming"></i></a></li>
+            <li><a href="#"><i class='fas fa-hockey-puck'></i></a></li>
+            <li><a href="#"><i class="fa-solid fa-table-tennis-paddle-ball"></i></a></li>
+            <li><a href="#"><i class='fas fa-running'></i></a></li>
+            <li><a href="#"><i class="fa-solid fa-person-biking"></i></a></li>
+            <li><a href="#"><i class='fas fa-skiing'></i></a></li>
+            <li><a href="#"><i class='fa-solid fa-volleyball'></i></a></li>
+            <li><a href="#"><i class="fa-solid fa-person-skating"></i></a></li>
+            <li><a href="#"><i class="fa-solid fa-person-snowboarding"></i></a></li>
+            <li><a href="#"><i class="fa-solid fa-dumbbell"></i></a></li>
+            <li><a href="#"><i class="fa-solid fa-uniform-martial-arts"></i></a></li>
+            <li><a href="#"><i class="fa-solid fa-award-simple"></i></a></li>
+           
+        </ul>
+    </div>
+
+    {% if request.user.is_authenticated %} 
+    <div class="nav-bar">
+            
+        <ul>
+            <li ><img src= "{% static 'images/olympic.png'%}" alt="" id="logo"></li>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Profile</a></li>
+
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+        </ul>    
+
+    </div>           
+    <p>Hello, {{request.user.username}}</p></p>
+    
+    {% endif %}
+</body>
+</html>
