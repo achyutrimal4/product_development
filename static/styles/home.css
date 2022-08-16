@@ -1,0 +1,69 @@
+@import url('./variables.css');
+
+* {
+    box-sizing: border-box;
+
+}
+
+body {
+    margin: auto;
+}
+
+.card-container {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    padding: 0 50px 0 50px;
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(300px, 1fr));
+    grid-gap: 10px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid grey;
+    margin: 8px;
+    border-radius: 8px;
+    align-content: center;
+    padding: 3px;
+    max-width: 320px;
+    height: 240px;
+    transition: transform .2s;
+    /* text-align: center; */
+}
+
+.card:hover {
+    transform: scale(1.02);
+}
+
+.card-details {
+    font-size: 12px;
+    font: weight 400px;
+    /* float: left; */
+    margin-left: 5px;
+    text-overflow: ellipsis;
+}
+.card-details a{
+    text-decoration: none;
+    color: black;
+}
+#ratio{
+    display: block;
+    margin-top: 10px;
+}
+.thumbnail {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.thumbnail img {
+    height: 150px;
+    width: 280px;
+}
+

@@ -17,21 +17,25 @@
 <body>
     {% include 'navbar.html' %}
 
-    {% if messages %}
-    <ul class="messages">
+    {%  if messages %}
+        
         {% for message in messages %}
-        <li
-            {% if message.tags %} class="{{message.tags}}"
-            {% endif %}>{{message}}
-        </li>
+        <div class="alert alert--{{message.tags}}">
+            <p  class="alert__message">{{message}}</p>
+            <button class="alert__close" style="color: rgb(30, 198, 254);">x</button>
+        </div>
+        
         {% endfor %}
-    </ul>    
+        
     {% endif %}
-    
+    <!--  -->
     {% block content %}
 
     {% endblock content %}
 
     {% include 'footer.html' %}
+
+    
 </body>
+<script src="{% static 'js/main.js' %}" ></script>
 </html>

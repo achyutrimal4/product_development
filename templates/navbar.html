@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,6 +10,7 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'styles/navbar.css' %}">
 </head>
+
 <body>
     <div class="top-bar">
         <ul>
@@ -28,24 +30,40 @@
             <li><a href="#"><i class="fa-solid fa-dumbbell"></i></a></li>
             <li><a href="#"><i class="fa-solid fa-uniform-martial-arts"></i></a></li>
             <li><a href="#"><i class="fa-solid fa-award-simple"></i></a></li>
-           
+
         </ul>
     </div>
 
-    {% if request.user.is_authenticated %} 
+    {% if request.user.is_authenticated %}
     <div class="nav-bar">
-            
         <ul>
-            <li ><img src= "{% static 'images/olympic.png'%}" alt="" id="logo"></li>
+            <li><img src="{% static 'images/olympic.png'%}" alt="" id="logo"></li>
             <li><a href="#">Home</a></li>
+            <li><a href="#">News</a></li>
+            <li><a href="#">Gallery</a></li>
+            <li><a href="#">Sports</a></li>
+            <li><a href="#">Fixtures</a></li>   
+            <li><a href="#">Contact</a></li>           
+                    
+            
+            {% if request.user.is_superuser %}
+                <li><a href="#">Visit Admin Site</a></li>
+            {% endif %}
+
             <li><a href="#">Profile</a></li>
-
-            <li><a href="{% url 'logout' %}">Logout</a></li>
-        </ul>    
-
-    </div>           
-    <p>Hello, {{request.user.username}}</p></p>
-    
+            <li><a href="{% url 'logout' %}">Logout</a></li>     
+        </ul>        
+    </div>
+    <div class="bottom-nav">
+        <form action="#">
+            <div class="search-fields">
+                <input type="text" placeholder="Search.." name="search" >
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </div>
+            
+        </form>
+    </div>
     {% endif %}
 </body>
+
 </html>

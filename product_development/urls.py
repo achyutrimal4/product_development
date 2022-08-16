@@ -22,7 +22,8 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('users.urls')),
-    path('funolympics/', include('mysite.urls'))
+    path('verification/', include('verify_email.urls')),
+    path('funolympics/', include('videos_app.urls')),
 ]
 
 

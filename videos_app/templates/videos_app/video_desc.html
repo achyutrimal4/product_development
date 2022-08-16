@@ -1,0 +1,16 @@
+{% extends 'main.html'%}
+
+{% load static %}
+
+{% block styles %}
+{% endblock %}
+
+{% block content %}
+    <h1>{{video.title}}</h1>
+    <br>
+    <p>{{video.description}}</p>
+    <br>
+    {% for tag in video.tags.all %}
+    <small>{{tag}}</small>
+    {% endfor %}
+{% endblock content %}

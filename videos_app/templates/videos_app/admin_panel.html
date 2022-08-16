@@ -1,0 +1,14 @@
+{% extends 'main.html'%}
+
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="">
+{% endblock %}
+
+{% block content %}
+    <h1>Admin Panel</h1>
+
+    <a href="{% url 'add_videos' %}">Add Videos</a>
+
+{% endblock content %}

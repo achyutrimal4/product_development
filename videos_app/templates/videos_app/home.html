@@ -1,0 +1,41 @@
+{% extends 'main.html'%}
+
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'styles/home.css' %}">
+{% endblock %}
+
+{% block content %}
+
+
+<h1>Videos</h1>
+
+<div class="card-container">
+    <div class="card-grid">
+
+
+        {% for video in videos %}
+        <div class="card">
+            <div class="thumbnail">
+                <img src="{% static 'images/kdb.jpg' %}">
+            </div>
+            <div class="card-details">
+                <p><a href="{% url 'video_desc' video.id %}">{{video.title}}</a></p>
+                <p><i class="fa-solid fa-arrow-up"></i>{{video.vote_ratio}}%</p>
+                {% if request.user.is_superuser %}
+                <span>
+                    <a href="{% url 'update_videos' video.id %}" ><i class="fas fa-edit"></i></a>
+                    <a href="{% url 'delete_videos' video.id %}"><i class="fa-solid fa-trash"></i></a>
+                
+                </span>
+                {% endif %}
+            </div>
+           
+
+        </div>
+        {% endfor %}
+
+    </div>
+</div>
+{% endblock content %}

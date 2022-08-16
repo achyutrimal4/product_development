@@ -18,31 +18,38 @@ body {
 }
 
 .container {
-    
-    border-radius: 5px;    
-    width: 900px;
-    justify-content: center;
-    align-content: center;
     display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;    
+    width: 100%;
     max-width: 100%;
     padding: 15px;
 }
 
-.form {
+.signup-form {
     padding: 20px 30px;
 }
-
-.label{
-    width: 200px;
-   
+#login-text{
+    margin-left: 200px;
+  }
+#login-link{
+    text-decoration: none;
+    color: var(--dark_cyan);
+    margin-left: 10px;
 }
+.input-errors{
+    display:flex;
+  }
 .input-fields {
-    margin-bottom: 10px;
-    padding-bottom: 10px;
-    position: relative;
     display: flex;
+    margin-bottom: 10px;
+    padding-bottom: 10px;    
 }
-
+.input-errors label{
+    display: inline;
+    width: 200px;
+  }
 .input-fields input {
     border: 2px solid #f0f0f0;
     border-radius: 2px;
@@ -64,105 +71,6 @@ body {
     font-size: 14px;
     height:40px;
 }
-
-.input-fields.success i.fa-check-circle {
-    visibility: visible;
-    color: #2ecc71;
-}
-
-.input-fields.error small {
-    visibility: visible;
-    color: red;
-}
-
-.input-fields small {
-    position: absolute;
-    visibility: hidden;
-    border-radius: 3px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-    padding: 4px;
-    width: 80%;
-    margin-left: 10px;
-    top: 8px;
-}
-
-/* div for password input, password helper and strength meter */
-.password-helper {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
-
-/* password helper popup */
-.helper-text {
-    font-size: 10px;
-    background-color: #eeeded;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-    padding: 5px;
-    display: none;
-    position: absolute;
-    right: 22%;
-}
-
-/* password strength meter */
-.password-helper .strength-meter {
-    position: relative;
-    width: 100%;
-    height: 15px;
-    display: none;
-    border-radius: 2px;
-    margin-top: 5px;
-    text-align: center;
-    background: #d1d1d1;
-}
-
-.password-helper .strength-meter span:nth-child(1) {
-    position: relative;
-    font-size: 10px;
-    z-index: 2;
-}
-
-.password-helper .strength-meter span:nth-child(2) {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 0%;
-    height: 100%;
-    border-radius: 2px;
-    z-index: 1;
-    transition: all 300ms ease-in-out;
-}
-
-.password-helper .helper-text i {
-    visibility: hidden;
-    color: green;
-}
-
-.eye {
-    position: absolute;
-    margin-left: -25px;
-    margin-top: 15px;
-    color: #646464;
-
-}
-
-.eye-re {
-    position: absolute;
-    margin-left: -25px;
-    margin-top: 15px;
-    color: #646464;
-}
-
-#eye1 {
-    display: none;
-}
-
-#eye3 {
-    display: none;
-}
-
 .terms {
     font-size: 11px;
 }

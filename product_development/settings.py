@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'users.apps.UsersConfig',
-    'mysite.apps.MysiteConfig',
+    'videos_app.apps.VideosAppConfig',
+
+    "verify_email.apps.VerifyEmailConfig",
 ]
 
 MIDDLEWARE = [
@@ -57,7 +59,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(BASE_DIR, 'templates'),],
+            os.path.join(BASE_DIR, 'templates'), ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -72,9 +74,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'product_development.wsgi.application'
 
-AUTHENTICATION_BACKENDS = (
-    ('django.contrib.auth.backends.ModelBackend'),
-)
+AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.AllowAllUsersModelBackend',
+                           'django.contrib.auth.backends.ModelBackend', ]
 
 AUTH_USER_MODEL = "users.User"
 
@@ -120,12 +121,21 @@ USE_I18N = True
 
 USE_TZ = True
 
+# email verification
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'acs.achyut@gmail.com'
+EMAIL_HOST_PASSWORD = 'ynhtyccadajtpnoy'
+DEFAULT_FROM_EMAIL = 'noreply<no_reply@domain.com>'
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
-MEDIA_URL='/images/'
+MEDIA_URL = '/images/'
 
 STATICFILES_DIRS = [
     BASE_DIR / 'static'

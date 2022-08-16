@@ -1,51 +1,47 @@
-{% extends 'main.html'%} 
+{% extends 'main.html'%}
 
 {% load static %}
 {% block styles %}
-    <link rel="stylesheet" href="{% static 'styles/login.css' %}">
+<link rel="stylesheet" href="{% static 'styles/login.css' %}">
 {% endblock %}
 
 {% block content%}
 
 <div class="container">
-  
+
   <form id="login-form" method="POST" novalidate>
+
     <h2>Login with email</h2>
     {% csrf_token %}
 
     {% for field in login_form %}
-    <div class="input-fields">
-      
-    <p>
-      <div class="label">
+
+    <div class="input-errors">
+
       {{field.label_tag}}
-    </div> 
-      {{field}} 
-      
-      {% if field.help_text %}
-       <small style="color: grey">{{field.help_text}}</small>
-      {% endif %}
-
-      
-    </p>
-   
-    
-  </div>
-    {% endfor %}
-    
-    {% for field in login_form %}
-      {% for error in field.errors %}
-        <small style="color: red">{{error}}</small>
-      {% endfor %}
-    {% endfor %}
-
-    {% if login_form.non_field_errors %}
-      <div style="color: red">
-        <p>{{login_form.non_field_errors}}</p>
+      <div class="input-fields">
+        {{field}}
       </div>
-    {% endif %}
+
+      <div class="errors-div">
+        {% for error in field.errors %}
+        <small style="color: red">{{error}}</small>
+        {% endfor %}
+      </div>
+
+      {% if login_form.non_field_errors %}
+      <div class="alert alert--error">
+        <p class="alert__message">{{login_form.non_field_errors}}</p>
+        <button class="alert__close">x</button>
+      </div>
+      {% endif %}
+    </div>
+    {% endfor %}
+
+
     <input type="submit" value="Login" id="default-button" />
+    <p id="register-text">Don't have an account? <a href="{% url 'register' %}" id="register-link">Register</a></p>
   </form>
 </div>
-<a href="{% url 'register' %}">Register</a>
+
 {% endblock content %}

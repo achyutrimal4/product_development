@@ -2,42 +2,44 @@
 
 {% load static %}
 {% block styles %}
-    <link rel="stylesheet" href="{% static 'styles/register.css' %}">
+<link rel="stylesheet" href="{% static 'styles/register.css' %}">
 {% endblock %}
 
 {% block content%}
 
 <div class="container">
-    
-    <form id="signup-form"  method="POST" novalidate>
+
+    <form id="signup-form" method="POST" novalidate>
 
         <h2>Signup with email</h2>
         {% csrf_token %}
 
         {% for field in registration_form %}
-        <div class="input-fields">
-        <p>
-            <div class="label">
-                {{field.label_tag}}           
-                   
+
+        <div class="input-errors" style="display:flex;">
+            <!-- division for input fields-->
+            {{field.label_tag}}
+            <div class="input-fields">
+                {{field}}
+                <!-- {% if field.help_text %}
+                    <small style="color: grey;">{{field.help_text}}</small>
+                {% endif %} -->
             </div>
-            {{field}}                           
-
-            {% if field.help_text %}
-                <small style="color: grey;">{{field.help_text}}</small>
-            {% endif %}
-
-            {% for error in field.errors %}
-            <small style="color: red;">{{error}}</small>
-            {% endfor %}
-        </p>
+            <!-- division to display errors -->
+            <div class="errors-div">
+                {% for error in field.errors %}
+                <small style="color: red;">{{error}}</small>
+                {% endfor %}
+            </div>
         </div>
-        {% endfor %}       
-    
+        {% endfor %}
+
         <input type="submit" value="Signup" id="default-button">
+        <p id="login-text">Already have an account? <a href="{% url 'login' %}" id="login-link">Login</a></p>
     </form>
 
-<!-- <script src="script/signup.js"></script> -->
+
+    <!-- <script src="script/signup.js"></script> -->
 
 </div>
 
