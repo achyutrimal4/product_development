@@ -7,38 +7,240 @@
 
 body {
     margin: auto;
+    background-color: rgb(230, 230, 230);
+    font-size: 14px;
+}
+
+body h2 {
+    display: block;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.left-container {
+    display: flex;
+    width: 20%;
+    flex-direction: column;
+    align-items: center;
+    background-image: linear-gradient(to right, rgba(128, 0, 128, 0.5), rgba(0, 255, 255, 0.5));
+    padding: 5px;
+}
+
+.fixture-container {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    padding: 5px;
+    height: fit-content;
+}
+
+.fixture-container a {
+    text-decoration: none;
+    color: black;
+    font-size: 13px;
+    margin-top: 10px;
+    transition: transform cubic-bezier(0.215, 0.610, 0.355, 1);
+}
+
+.fixture-container a:hover {
+    color: purple;
+    transform: scale(1.05);
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.fixture-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: auto;
+    font-size: 12px;
+    box-shadow: .5px .5px grey, -.5px -.5px grey;
+    border-radius: 5px;
+    margin: 5px 0;
+    transition: transform .2s;
+}
+
+.fixture-card>p {
+    margin: 5px 0;
+}
+
+.fixture-card:hover {
+    transform: scale(0.96);
+    cursor: pointer;
+}
+
+.standings-container {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    margin-top: 5px;
+    padding: 0 0 0 10px;
+    height: fit-content;
+}
+
+#standings-table {
+    font-size: 12px;
+    width: 100%;
+}
+
+#standings-table tr {
+    width: 100%;
+}
+
+#standings-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#standings-table th {
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+#standings-table td {
+    padding: 10px;
+    text-align: left;
+}
+
+.right-container {
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 10px;
+}
+
+.video-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    overflow: hidden;
+    height: 350px;
+}
+
+.title {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    /* position: relative; */
+}
+
+.title h2 {
+    text-align: left;
+    margin-left: 8px;
+}
+
+.title a {
+    position: absolute;
+    right: 0;
+    margin-right: 3rem;
+    text-decoration: none;
+    color: black;
+}
+
+.title a:hover {
+    color: purple;
+    text-decoration: underline;
+}
+
+.news-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    /* margin-top: 10px; */
+    padding: 10px;
+    overflow: hidden;
+    height: 575px;
+}
+
+.news-card-container {
+    display: flex;
+    flex-direction: column;
+    /* align-content: center; */
+    width: 100%;
+}
+
+.news-card-container a {
+    text-decoration: none;
+    color: black;
+}
+
+.news-card {
+    display: flex;
+    width: 98%;
+    box-shadow: 0 2.5px 2px -2px gray;
+    margin: 5px;
+    transition: transform .3s;
+}
+
+.news-card:hover {
+    transform: scale(0.98);
+    cursor: pointer;
+}
+
+.news-details {
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    margin-left: 10px;
+    text-align: justify;
+}
+
+.news-details p:first-child {
+    font-weight: 600;
+
+}
+
+.news-details p:last-child {
+    font-size: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.5em;
+    height: 3em;
 }
 
 .card-container {
-    margin-top: 50px;
+    /* margin-top: 50px; */
     display: flex;
-    flex-direction: row;
+    /* flex-direction: row; */
     align-content: center;
-    padding: 0 50px 0 50px;
 }
 
 .card-grid {
     display: grid;
-    grid-template-columns: repeat(4, minmax(300px, 1fr));
+    grid-template-columns: repeat(3, minmax(300px, 1fr));
     grid-gap: 10px;
 }
 
 .card {
     display: flex;
     flex-direction: column;
-    border: 1px solid grey;
+    position: relative;
     margin: 8px;
     border-radius: 8px;
-    align-content: center;
     padding: 3px;
     max-width: 320px;
-    height: 240px;
+    height: 250px;
+    box-shadow: 0 1.7px 2px -2px gray;
     transition: transform .2s;
-    /* text-align: center; */
 }
 
 .card:hover {
-    transform: scale(1.02);
+    transform: scale(0.98);
 }
 
 .card-details {
@@ -48,14 +250,17 @@ body {
     margin-left: 5px;
     text-overflow: ellipsis;
 }
-.card-details a{
+
+.card-details a {
     text-decoration: none;
     color: black;
 }
-#ratio{
+
+#ratio {
     display: block;
     margin-top: 10px;
 }
+
 .thumbnail {
     margin-left: auto;
     margin-right: auto;
@@ -64,6 +269,5 @@ body {
 
 .thumbnail img {
     height: 150px;
-    width: 280px;
+    width: 300px;
 }
-

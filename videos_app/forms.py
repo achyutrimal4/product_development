@@ -5,5 +5,5 @@ from .models import Video
 class VideoForm(ModelForm):
     class Meta:
         model = Video
-        fields = ('title', 'description', 'tags')
+        fields = ('title', 'description','video', 'tags')
         # fields = '__all__'

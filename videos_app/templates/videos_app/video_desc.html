@@ -3,11 +3,13 @@
 {% load static %}
 
 {% block styles %}
+
 {% endblock %}
 
 {% block content %}
     <h1>{{video.title}}</h1>
     <br>
+    <video src="{{video.video.url}}" type="video/mp4"controls style="width: 50%;" preload="auto" loop autoplay></video>
     <p>{{video.description}}</p>
     <br>
     {% for tag in video.tags.all %}

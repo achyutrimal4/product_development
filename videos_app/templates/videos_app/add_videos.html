@@ -8,16 +8,14 @@
 {% block content %}
     <h1>Add videos</h1>
 
-    <form action="" method="POST"  id="addVideo-form">
+    <form action="" method="POST"  id="addVideoForm" enctype="multipart/form-data">
         {% csrf_token %} 
         
         {% for field in form %}
         {{field.label}}
         {{field}}
         <br> 
-
         {% endfor %}
-
-        <input type="submit" value="Add Video">
+        <input type="submit" value="Upload Video">
     </form>
 {% endblock content %}

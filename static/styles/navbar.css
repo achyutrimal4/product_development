@@ -40,9 +40,10 @@ body {
 /* Navigation bar*/
 .nav-bar {
     width: 100%;
-
     margin-top: 30px;
     background-color: purple;
+    /* position: fixed;
+    top: 0; */
 }
 
 .nav-bar ul {
@@ -72,6 +73,9 @@ body {
     margin-top: 10px;
     width: 100%;
     justify-content: center;
+    /* position: fixed;
+    top: 90px; */
+    
 }
 
 .search-fields {
@@ -79,7 +83,7 @@ body {
     width: 400px;
     border-radius: 25px;
     overflow: hidden;
-    border: 1.5px solid grey ;
+    border: 1.5px solid grey;
 }
 
 .search-fields input {
@@ -97,11 +101,11 @@ body {
 
 .search-fields button {
     position: absolute;
-    right:0;
+    right: 0;
     top: 50%;
     transform: translateY(-50%);
     height: 100%;
-    outline: none;   
+    outline: none;
     border: none;
     border-radius: 0 25px 25px 0;
     cursor: pointer;

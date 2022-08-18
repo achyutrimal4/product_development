@@ -1,5 +1,6 @@
 @import url('./variables.css');
 
+
 .alert {
   display: inline-flex;
   gap: 1rem;
