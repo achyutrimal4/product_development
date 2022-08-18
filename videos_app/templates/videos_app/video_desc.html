@@ -3,16 +3,46 @@
 {% load static %}
 
 {% block styles %}
-
+<link rel="stylesheet" href="{% static 'styles/video_desc.css' %}">
 {% endblock %}
 
 {% block content %}
-    <h1>{{video.title}}</h1>
-    <br>
-    <video src="{{video.video.url}}" type="video/mp4"controls style="width: 50%;" preload="auto" loop autoplay></video>
-    <p>{{video.description}}</p>
-    <br>
-    {% for tag in video.tags.all %}
-    <small>{{tag}}</small>
-    {% endfor %}
+<div class="container">
+    <div class="left-container">
+        <div class="player-like">
+            <video src="{{video.video.url}}" type="video/mp4" controls style="width: 85%;" preload="auto" loop
+                autoplay></video>
+            <div class="like-buttons">
+                <a href=""><i class="fas fa-arrow-up"></i></a>
+                <p>120 likes</p>
+                <a href=""><i class="fa-solid fa-arrow-down"></i></a>
+                <a href=""><i class="fa-solid fa-share-from-square"> </i></a>
+            </div>
+        </div>
+        <h3>{{video.title}}</h3>
+        <p>{{video.description}}</p>
+        {% for tag in video.category.all %}
+        <small>{{tag}}</small>
+        {% endfor %}
+        <div class="comments-section">
+            <h3>this is a comment section</h3>
+        </div>
+    </div>
+
+    <div class="right-container">
+        <h3>Recommendations</h3>
+        {% for video in videos %}
+        <div class="video-card">
+            <a href="{% url 'video_desc' video.id %}" style="text-decoration: none; width:100%;">
+                <div class="thumbnail">
+                    <video src="{{video.video.url}}" type="video/mp4" style="width: 280px; height: 150px;"></video>
+                </div>
+                <div class="card-details">
+                    <p><a href="{% url 'video_desc' video.id %}">{{video.title}}</a></p>
+                </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
 {% endblock content %}

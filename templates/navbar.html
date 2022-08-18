@@ -38,7 +38,7 @@
     <div class="nav-bar">
         <ul>
             <li><img src="{% static 'media/images/olympic.png'%}" alt="" id="logo"></li>
-            <li><a href="#">Home</a></li>
+            <li><a href="{% url 'home' %}">Home</a></li>
             <li><a href="#">News</a></li>
             <li><a href="#">Gallery</a></li>
             <li><a href="#">Sports</a></li>
@@ -47,7 +47,7 @@
                     
             
             {% if request.user.is_superuser %}
-                <li><a href="#">Visit Admin Site</a></li>
+                <li><a href="{% url 'admin:index' %}">Visit Admin Site</a></li>
             {% endif %}
 
             <li><a href="#">Profile</a></li>
@@ -62,6 +62,21 @@
             </div>
             
         </form>
+    </div>
+    {% endif %}
+
+
+    {% if not request.user.is_authenticated %}
+    <div class="nav-bar">
+        <ul>
+            <li><img src="{% static 'media/images/olympic.png'%}" alt="" id="logo"></li>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">News</a></li>
+            <li><a href="#">Gallery</a></li>
+            <li><a href="#">Sports</a></li>
+            <li><a href="#">Fixtures</a></li>   
+            <li><a href="#">Contact</a></li>                      
+        </ul>        
     </div>
     {% endif %}
 </body>

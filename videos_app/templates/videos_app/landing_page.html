@@ -1,0 +1,112 @@
+{% extends 'main.html'%}
+
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'styles/home.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="notice">
+    <p>Login to see what's happening at funolympics 2022!</p>
+    <a href="{% url 'login' %}"> <input type="submit" name="" id="btn-signin" value="Login/Signup"></a>
+</div>
+
+<div class="container">
+
+    <div class="left-container">
+        <div class="fixture-container">
+            <h2>Upcoming games</h2>
+            {% for fixture in fixtures %}
+            <div class="fixture-card">
+                <p>{{fixture.fixture}}</p>
+                <p style="font-size:10px ;">{{fixture.date}}</p>
+            </div>
+            {% endfor %}
+            <a href="#">View fixtures and results → </a>
+        </div>
+
+        <div class="standings-container">
+            <h2>Latest standings</h2>
+            <table id="standings-table">
+                <tr>
+                    <th>Country</th>
+                    <th><i class="fa-solid fa-medal" style="color:gold ;"></i></th>
+                    <th><i class="fa-solid fa-medal" style="color:silver;"></i></th>
+                    <th><i class="fa-solid fa-medal" style="color:brown;"></i></th>
+                    <th><i class="fa-solid fa-ranking-star" style="color: purple;"></i></th>
+                </tr>
+                {% for standing in standings %}
+                <tr>
+                    <td>{{standing.country}}</td>
+                    <td>{{standing.gold}}</td>
+                    <td>{{standing.silver}}</td>
+                    <td>{{standing.bronze}}</td>
+                    <td>{{standing.total}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+
+        </div>
+    </div>
+
+    <div class="right-container">
+        <div class="video-container">
+            <div class="title">
+                <h2>Latest Videos</h2>
+                <a href="#">Load more videos →</a>
+            </div>
+            <div class="card-container">
+                <div class="card-grid">
+                    {% for video in videos %}
+                    <div class="card">
+                        <a href="{% url 'video_desc' video.id %}" style="text-decoration: none; width:100%;">
+                            <div class="thumbnail">
+                                <video src="{{video.video.url}}" type="video/mp4"
+                                    style="width: 280px; height: 150px;"></video>
+                            </div>
+                            <div class="card-details">
+                                <p><a href="{% url 'video_desc' video.id %}">{{video.title}}</a></p>
+                                <p><i class="fa-solid fa-arrow-up"></i>{{video.vote_ratio}}%</p>
+                                {% if request.user.is_superuser %}
+                                <span style="position: absolute; right: 5%; bottom: 2.5%;">
+                                    <a href="{% url 'update_videos' video.id %}"><i class="fas fa-edit"></i></a>
+                                    <a href="{% url 'delete_videos' video.id %}"><i class="fa-solid fa-trash"></i></a>
+                                </span>
+                                {% endif %}
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+
+        <div class="news-container">
+            <div class="title">
+                <h2>Latest News</h2>
+                <a href="#">Load more news →</a>
+            </div>
+
+            <div class="news-card-container">
+                {% for news in news %}
+                <a href="#">
+                    <div class="news-card">
+                        <div class="news-thumbnail">
+                            <img src="{{news.image.url}}" style="width: 280px; height: 150px;">
+                        </div>
+                        <div class="news-details">
+                            <p>{{news.title}}</p>
+                            <p>{{news.description}}</p>
+                        </div>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock content %}
