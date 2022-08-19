@@ -47,7 +47,7 @@
                     
             
             {% if request.user.is_superuser %}
-                <li><a href="{% url 'admin:index' %}">Visit Admin Site</a></li>
+                <li><a href="{% url 'admin_panel' %}">Admin Panel</a></li>
             {% endif %}
 
             <li><a href="#">Profile</a></li>
@@ -71,11 +71,9 @@
         <ul>
             <li><img src="{% static 'media/images/olympic.png'%}" alt="" id="logo"></li>
             <li><a href="#">Home</a></li>
-            <li><a href="#">News</a></li>
-            <li><a href="#">Gallery</a></li>
-            <li><a href="#">Sports</a></li>
-            <li><a href="#">Fixtures</a></li>   
-            <li><a href="#">Contact</a></li>                      
+            <li><a href="#">News</a></li>  
+            <li><a href="#">Contact</a></li>
+            <a href="{% url 'login' %}"> <input type="submit" name="" id="btn-signin" value="Login/Signup"></a>                      
         </ul>        
     </div>
     {% endif %}

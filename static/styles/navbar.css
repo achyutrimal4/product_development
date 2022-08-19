@@ -112,3 +112,23 @@ body {
     box-sizing: border-box;
     padding: 0 20px;
 }
+
+.nav-bar #btn-signin {
+    width: 130px;
+    height: 40px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: var(--dark_cyan);
+    color: #fff;
+    font: inherit;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 500;
+    text-decoration: none;
+    text-align: center;
+    position: absolute;
+    margin-top: -20px;
+    margin-left: 50px;
+}

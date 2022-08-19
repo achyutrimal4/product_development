@@ -1,14 +1,33 @@
 {% extends 'main.html'%}
 
 {% load static %}
-
 {% block styles %}
-<link rel="stylesheet" href="">
+<link rel="stylesheet" href="{% static 'styles/admin_panel.css' %}">
 {% endblock %}
 
 {% block content %}
-    <h1>Admin Panel</h1>
+<div class="container">
 
-    <a href="{% url 'add_videos' %}">Add Videos</a>
+    <div class="sidebar">
+        <a href="" class="baritem bar-button">Dashboard</a>
+        <a href="" class="baritem  bar-button">Content</a>
+        <a href="{% url 'admin:index' %}" class="baritem bar-button">Admin Site</a>
+        <a href="" class="baritem bar-button">User Site</a>
+        <a href="" class="baritem bar-button">Manage Site</a>
+        
+    </div>
+    <div class="dashboard-container">
+        <h1>Dashboard</h1>
+        <p>{{video_count}} Videos</p>
+        <p>{{news_count}} News</p>
+        <p>{{users_count}} Users</p>
+        <a href="{% url 'add_videos' %}">Add Videos</a>
+        <h3>Analytics</h3>
+    </div>
+</div>
+
+
+
+
 
 {% endblock content %}

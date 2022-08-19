@@ -1,6 +1,7 @@
 from unicodedata import category
 from django.db import models
 import uuid
+from django.conf import settings
 
 # Create your models here.
 
@@ -10,17 +11,22 @@ class Video (models.Model):
     description = models.TextField(null=True, blank=True)
     video = models.FileField(upload_to="videos/", null=True)
     category = models.ManyToManyField('Category', blank=True)
-    vote_total = models.IntegerField(default=0, null=True, blank=True)
+    likes = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='video_posts')
+    vote_total = models.IntegerField (default=0, null=True, blank=True)
     vote_ratio = models.IntegerField(default=0, null=True, blank=True)
     uploaded = models.DateTimeField(auto_now_add=True)
     id = models.UUIDField(default=uuid.uuid4, unique=True,
                           primary_key=True, editable=False)
+    
+    @property
+    def total_likes(self):
+        return self.likes.all().count()
 
     def __str__(self):
         return self.title
 
 
-class Review(models.Model):
+class Review(models.Model): 
     VOTE_TYPE = (
         ('up', 'Up Vote'),
         ('down', 'Down Vote'),

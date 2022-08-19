@@ -20,12 +20,14 @@ def register_view(request):
     if request.POST:
         form = RegistrationForm(request.POST)
         if form.is_valid():
-            form.save(commit=False)
-            email = form.cleaned_data.get('email')
-            raw_password = form.cleaned_data.get('password')
-            # user = authenticate (email=email, password=raw_password)
-            inactive_user = send_verification_email(request, form)
-            form.save()
+            
+            # email = form.cleaned_data.get('email')
+            # raw_password = form.cleaned_data.get('password')
+            # # user = authenticate (email=email, password=raw_password)
+            # inactive_user = send_verification_email(request, form)
+            user = form.save(commit=False)
+            user.is_active=True
+            user.save()
 
             messages.info(
                 request, 'Account created. Please check your inbox and verify your email to continue.')

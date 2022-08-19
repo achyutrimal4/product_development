@@ -9,4 +9,6 @@ urlpatterns=[
    path('add-videos/', views.add_videos, name="add_videos"),
    path('update-videos/<str:pk>/', views.update_videos, name="update_videos"),
    path('delete-videos/<str:pk>/', views.delete_videos, name="delete_videos"),
+   path('like/<str:pk>/', views.like, name="like_video"),
 ]
+ 

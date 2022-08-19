@@ -45,10 +45,10 @@ class User (AbstractBaseUser):
     date_joined = models.DateTimeField(verbose_name="date joined", auto_now_add=True)
     last_login  = models.DateTimeField(auto_now=True, verbose_name='last login')
     is_admin    = models.BooleanField(default=False)
-    is_active   = models.BooleanField(default=False)
+    is_active   = models.BooleanField(default=True)
     is_staff    = models.BooleanField(default=False)
     is_superuser=  models.BooleanField(default=False)
-    full_name   =models.CharField(max_length=60, default=None)
+    full_name   =models.CharField(max_length=60, null=True)
     country     =CountryField(blank=True, null=True, verbose_name="Counrty/Area of resdence", blank_label="Select Country")
     id          =models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
    
@@ -56,10 +56,9 @@ class User (AbstractBaseUser):
     #lastname
     #country
     #dob
-    
-    
+        
     USERNAME_FIELD = 'email' #use this field to login to the account instead of username
-    REQUIRED_FIELDS=['username', 'full_name', 'country', ]
+    REQUIRED_FIELDS=['username', 'full_name', 'country']
     
     objects = UserManager()
     

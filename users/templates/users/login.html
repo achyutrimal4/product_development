@@ -23,6 +23,7 @@
         {{field}}
       </div>
 
+
       <div class="errors-div">
         {% for error in field.errors %}
         <small style="color: red">{{error}}</small>
@@ -36,10 +37,15 @@
       </div>
       {% endif %}
     </div>
+
     {% endfor %}
 
+    <input type="submit" value="Login" id="default-button" /><br>
+    <div class="links">
 
-    <input type="submit" value="Login" id="default-button" />
+      <a href=""><input type="checkbox" name="" id="" value="">Remember me </a>
+      <a href="{% url 'reset_password' %}">Forgot Password?</a>
+    </div>
     <p id="register-text">Don't have an account? <a href="{% url 'register' %}" id="register-link">Register</a></p>
   </form>
 </div>

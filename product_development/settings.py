@@ -128,8 +128,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'acs.achyut@gmail.com'
-EMAIL_HOST_PASSWORD = 'ynhtyccadajtpnoy'
-DEFAULT_FROM_EMAIL = 'noreply<no_reply@domain.com>'
+EMAIL_HOST_PASSWORD = 'limekwstjgzbdqdl'
 
 
 # Static files (CSS, JavaScript, Images)

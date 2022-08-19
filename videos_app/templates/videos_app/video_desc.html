@@ -12,12 +12,20 @@
         <div class="player-like">
             <video src="{{video.video.url}}" type="video/mp4" controls style="width: 85%;" preload="auto" loop
                 autoplay></video>
+
             <div class="like-buttons">
-                <a href=""><i class="fas fa-arrow-up"></i></a>
-                <p>120 likes</p>
-                <a href=""><i class="fa-solid fa-arrow-down"></i></a>
-                <a href=""><i class="fa-solid fa-share-from-square"> </i></a>
+                <!-- Like form -->
+                <form action="{% url 'like_video' video.id %}" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" name="viedo_id" value="{{video.id}}" class="btn-small">
+                        <i class="fas fa-arrow-up"></i></button>
+                    <p>{{video.total_likes}} likes</p>
+                    <a href=""><i class="fa-solid fa-arrow-down"></i></a>
+                    <a href=""><i class="fa-solid fa-share-from-square"> </i></a>
+                </form>
             </div>
+
+
         </div>
         <h3>{{video.title}}</h3>
         <p>{{video.description}}</p>
@@ -26,6 +34,7 @@
         {% endfor %}
         <div class="comments-section">
             <h3>this is a comment section</h3>
+            <p>{{video.id}}</p>
         </div>
     </div>
 

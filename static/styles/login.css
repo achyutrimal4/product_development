@@ -63,6 +63,7 @@ body {
 
 #register-text{
   margin-left: 200px;
+  margin-top: 50px;
 }
 #register-link {
   text-decoration: none;
@@ -83,72 +84,32 @@ body {
   font-weight: 500;
   transition: 0.5s;
   margin-left: 200px;
-  
 }
 
-/* .form button:hover {
-  background-color: #f74f1c;
+.links{
+  display: flex;
+  width: 60%;
+  font-size: 12px;
+  margin-left: 200px;
+  position: relative;
+  margin-top: 20px 0;
+}
+.links a{
+  text-decoration: none;
+  color: black;
+}
+.links a:first-child{
+  position: absolute;
+  left:0%;
+}
+.links a:last-child{
+  position: absolute;
+  right:3%;
+  text-decoration: underline;
+
+}
+/* #forgot_password{
+  margin-left: 200px;
 } */
 
-/* Styling for Alert messages */
-.alert {
-  position: absolute;
-  top: 2%;
-  right: 5%;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
-  border-radius: 3px;
-  border: 1px solid rgb(238, 238, 238);
-  /* margin-bottom: 1rem;
-  margin-right: 1rem; */
-}
 
-.alert {
-  background-color: #40e0d0;
-  color: rgb(255, 255, 255);
-  font-size: 12px;
-
-}
-
-.alert.alert--error {
-  background-color: rgba(253, 57, 57, 0.582);
-  color: white;
-}
-
-.alert.alert--error>.alert__message {
-  color: white;
-}
-
-.alert.alert--success,
-.alert.alert--success>.alert__message {
-  background-color: rgb(33, 218, 33);
-  color: white;
-}
-
-.alert>.alert__close {
-  background: transparent;
-  cursor: pointer;
-  border: none;
-  outline: transparent;
-  color: white;
-  font-size: 1rem;
-  transition: 300ms;
-}
-
-.alert>.alert__close:hover {
-  opacity: 0.85;
-}
-
-.progress-bar-warning {
-  background-color: yellow;
-}
-
-.progress-bar-danger {
-  background-color: red;
-}
-
-.progress-bar-success {
-  background-color: green;
-}
