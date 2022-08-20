@@ -50,6 +50,12 @@ def video_desc(request, pk):
     context={'video':videoObject, 'videos':videos}
     return render(request, 'videos_app/video_desc.html', context)
 
+@login_required(login_url ='login')
+def news_desc(request, pk):
+    news = News.objects.all()
+    newsObject = News.objects.get(id=pk)
+    context={'news':news, 'newsObject':newsObject}
+    return render(request, 'videos_app/news_desc.html', context)
 
 # admin panel
 @login_required(login_url ='login')
@@ -118,4 +124,3 @@ def like(request, pk):
 #     post = get_object_or_404(Post, id=request.POST.get('post_id'))
 #     post.likes.add(request.user)
 #     return redirect('score:post-detail', pk=pk)
-

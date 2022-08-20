@@ -42,25 +42,38 @@
             <li><a href="#">News</a></li>
             <li><a href="#">Gallery</a></li>
             <li><a href="#">Sports</a></li>
-            <li><a href="#">Fixtures</a></li>   
-            <li><a href="#">Contact</a></li>           
-                    
-            
+            <li><a href="#">Fixtures</a></li>
+            <li><a href="#">Contact</a></li>
+
+
             {% if request.user.is_superuser %}
-                <li><a href="{% url 'admin_panel' %}">Admin Panel</a></li>
+            <li><a href="{% url 'admin_panel' %}">Admin Panel</a></li>
             {% endif %}
 
-            <li><a href="#">Profile</a></li>
-            <li><a href="{% url 'logout' %}">Logout</a></li>     
-        </ul>        
+            <div class="dropdown">
+                <button class="dropbtn">
+
+                    <img src="{{request.user.profile.profile_image.url}}" alt="" id="profile-img">
+
+                </button>
+                <div class="dropdown-content">
+                    <a>Hello, {{request.user.username}}</a>
+                    <a href="{% url 'myprofile' user.profile.id %}">My Profile</a>
+                    <a href="{% url 'logout' %}">Logout</a>
+                </div>
+            </div>
+
+
+
+        </ul>
     </div>
     <div class="bottom-nav">
         <form action="#">
             <div class="search-fields">
-                <input type="text" placeholder="Search.." name="search" >
+                <input type="text" placeholder="Search.." name="search">
                 <button type="submit"><i class="fa fa-search"></i></button>
             </div>
-            
+
         </form>
     </div>
     {% endif %}
@@ -71,10 +84,10 @@
         <ul>
             <li><img src="{% static 'media/images/olympic.png'%}" alt="" id="logo"></li>
             <li><a href="#">Home</a></li>
-            <li><a href="#">News</a></li>  
+            <li><a href="#">News</a></li>
             <li><a href="#">Contact</a></li>
-            <a href="{% url 'login' %}"> <input type="submit" name="" id="btn-signin" value="Login/Signup"></a>                      
-        </ul>        
+            <a href="{% url 'login' %}"> <input type="submit" name="" id="btn-signin" value="Login/Signup"></a>
+        </ul>
     </div>
     {% endif %}
 </body>

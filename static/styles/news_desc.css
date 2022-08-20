@@ -1,0 +1,45 @@
+@import url('./variables.css');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    /* margin: auto; */
+    background-color: rgb(230, 230, 230);
+    font-size: 14px;
+    font-family: "Poppins", sans-serif;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    justify-items: center;
+    padding: 10px 30px;
+    /* margin-top: 10px; */
+}
+.container p{
+    text-align: justify;
+}
+.left-container{
+    display:flex;
+    flex-direction: column;
+    width: 90%;
+    padding: 10px;
+    justify-content: space-between;
+    border: 1px solid black;
+    /* padding: 5px; */
+}
+.right-container{
+    display: flex;
+    flex-direction: column;
+    width: 10%;
+    right: 0;
+    top: 0;
+    border: 1px solid black;
+    height: auto;
+}
+.right-container>i{
+    font-size: 30px;
+}

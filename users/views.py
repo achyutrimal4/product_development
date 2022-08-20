@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
-from users.forms import RegistrationForm, UsersAuthenticationForm
+from users.forms import RegistrationForm, UsersAuthenticationForm, ProfileUpdateForm
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.conf import settings
+from .models import Profile
+from django.contrib.auth.decorators import login_required, user_passes_test
 from verify_email.email_handler import send_verification_email
 
 # Create your views here.
@@ -14,7 +16,6 @@ def register_view(request):
     user = request.user
     if user.is_authenticated:
         return redirect('home')
-
     
     context = {}
     if request.POST:
@@ -72,6 +73,24 @@ def login_view(request):
 
 def logout_view(request):
     logout(request)
-    messages.success(request, 'User was successfully logged out.')
-    return redirect('login')
+    # messages.success(request, 'User was successfully logged out.')
+    return redirect('landing_page')
 
+@login_required(login_url ='login')
+def profile_view(request, pk):
+    user_profile = Profile.objects.get(id=pk)
+    context = {'user_profile': user_profile}
+    return render(request, 'users/users_profile.html', context)
+
+@login_required(login_url ='login')
+def edit_profile(request, pk):
+    profile = request.user.profile
+    form=ProfileUpdateForm(instance=profile)
+    
+    if request.method == 'POST':
+        form = ProfileUpdateForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            form.save()
+            return redirect('myprofile')
+    context={'form':form}
+    return render(request, 'users/editProfile.html', context)

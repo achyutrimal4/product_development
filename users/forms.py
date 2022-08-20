@@ -1,12 +1,11 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate
-from users.models import User
+from users.models import User, Profile
 
 
 class RegistrationForm(UserCreationForm):
-    email = forms.EmailField(
-        max_length=60, help_text='Required, Add a valid email')
+    email = forms.EmailField(max_length=60, help_text='Required, Add a valid email')
 
     class Meta:
         model = User
@@ -27,3 +26,8 @@ class UsersAuthenticationForm(forms.ModelForm):
         if not authenticate(email=email, password=password):
             raise forms.ValidationError("Invalid email or password.")
         
+class ProfileUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields=('username', 'name', 'country', 'profile_image')
+            

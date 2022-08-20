@@ -17,10 +17,33 @@
         
     </div>
     <div class="dashboard-container">
-        <h1>Dashboard</h1>
-        <p>{{video_count}} Videos</p>
-        <p>{{news_count}} News</p>
-        <p>{{users_count}} Users</p>
+        <h1>Dashboard</h1>   
+        <div class="card-container">
+            <div class="card-grid">
+                              
+                <div class="card">                   
+                    <div class="card-details">
+                        <p>{{video_count}} Videos</p>
+                        <p>Manage videos in this site</p>
+                         
+                    </div>
+                </div>
+                
+                <div class="card">                   
+                    <div class="card-details">
+                        <p>{{news_count}} News</p>
+                    </div>
+                </div>
+                
+                <div class="card">                   
+                    <div class="card-details">
+                        <p>{{users_count}} Users</p>
+                    </div>
+                </div>
+                
+            
+            </div>
+        </div>
         <a href="{% url 'add_videos' %}">Add Videos</a>
         <h3>Analytics</h3>
     </div>

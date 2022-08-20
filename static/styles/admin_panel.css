@@ -8,14 +8,14 @@ body {
     font-size: 14px;
 }
 
-.container{
+.container {
     width: 100%;
     display: flex;
-    border: 1px solid red;
-    padding: 10px 0;
+    
     /* justify-content: space-around; */
 }
-.sidebar{
+
+.sidebar {
     width: 20%;
     background-color: white;
     margin-right: 20px;
@@ -23,34 +23,77 @@ body {
     display: flex;
     padding: 10px;
     flex-direction: column;
+    position: sticky;
+    top: 0;
+    /* top: 150px; */
 }
-.sidebar a{
+
+.sidebar a {
     text-decoration: none;
     color: black;
 }
-.baritem{
-    padding:14px 18px;
-    float:left;
-    width:auto;
-    border:none;
-    display:block;
-    outline:0;
-    
-}
-.bar-button{
-    white-space:normal; 
-}
-.bar-button:hover{
-    background-color: rgb(230, 230, 230);  
+
+.baritem {
+    padding: 14px 18px;
+    float: left;
+    width: auto;
+    border: none;
+    display: block;
+    outline: 0;
+
 }
 
+.bar-button {
+    white-space: normal;
+}
 
+.bar-button:hover {
+    background-color: rgb(230, 230, 230);
+}
 
-
-
-
-.dashboard-container{
+.dashboard-container {
     width: 75%;
-    border: 1px solid black;
     margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-container {
+    /* margin-top: 50px; */
+    width: 100%;
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(300px, 1fr));
+    grid-gap: 10px;
+}
+
+.card {
+    display: flex;
+    /* flex-direction: column; */
+    position: relative;
+    margin: 8px;
+    border-radius: 8px;
+    padding: 3px;
+    max-width: 320px;
+    height: 250px;
+    box-shadow: 0 1.7px 2px -2px gray;
+    transition: transform .2s;
+}
+
+.card:hover {
+    transform: scale(0.98);
+}
+
+.card-details {
+    font: weight 400px;
+    /* float: left; */
+    margin-left: 5px;
+    text-overflow: ellipsis;
+}
+
+.card-details a {
+    text-decoration: none;
+    color: black;
 }

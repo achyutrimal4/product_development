@@ -1,0 +1,39 @@
+{% extends 'main.html'%}
+
+{% load static %}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'styles/users-account.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Hello, {{user_account.name}}</h2>
+
+    <div class="details">
+        <img src="{{user_profile.profile_image.url}}" alt=""><br>
+        
+        <div class="labels">
+            <p>Email</p>
+            <p>Username</p>
+            <p>Phone number</p>
+            <p>Country</p>
+            <p>Last Login</p>           
+        </div>
+
+        <div class="info">
+            <p>{{user_account.email}}</p>
+            <p>{{user_account.name}}</p>
+            <p>Phone number</p>
+            <p>{{user_account.country}}</p>
+            <p>{{request.user.last_login}}</p>
+           
+        </div>
+
+        <div class="profile-actions">
+            <a href="{% url 'editprofile' user_profile.id %}"> <i class="fa fa-edit"></i>    Edit Details</a>
+            <a href="#"> <i class="fa-solid fa-rotate-left"></i>     Request Password Reset</a> 
+            <a href="#"  style="color:red;"> <i class="fa-solid fa-trash"></i>    Delete account</a>
+        </div>
+    </div>
+</div>
+{% endblock content %}

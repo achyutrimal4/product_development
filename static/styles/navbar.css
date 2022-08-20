@@ -42,6 +42,7 @@ body {
     width: 100%;
     margin-top: 30px;
     background-color: purple;
+    overflow: hidden;
     /* position: fixed;
     top: 0; */
 }
@@ -51,7 +52,7 @@ body {
     align-items: center;
     text-align: center;
     list-style: none;
-    gap: 4rem;
+    gap: 3rem;
     margin: 0;
     top: 0;
     padding: 0;
@@ -64,18 +65,85 @@ body {
 }
 
 .nav-bar li a {
+    float: left;
     color: white;
+    text-align: center;
+    padding: 18px 18px;
     text-decoration: none;
 }
 
+
+/* Dropdown Menu */
+
+.dropdown {
+    float: left;
+    overflow: hidden;
+}
+
+.dropdown .dropbtn {
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+    width: 150px;
+    font-family: inherit;
+    justify-content: space-between;
+    /* Important for vertical align on mobile phones */
+    margin: 0;
+    /* Important for vertical align on mobile phones */
+}
+.dropbtn img{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.nav-bar li a:hover,
+.navbar a:hover,
+.dropdown:hover .dropbtn {
+    background-color: rgb(103, 7, 103);
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+/* Bottom navigation bar for search bar and filters */
 .bottom-nav {
     display: flex;
     margin-top: 10px;
     width: 100%;
     justify-content: center;
+    padding: 5px;
+    box-shadow: 0 1.5px 2px -2px gray;
     /* position: fixed;
     top: 90px; */
-    
+
 }
 
 .search-fields {

@@ -10,7 +10,8 @@ class Video (models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField(null=True, blank=True)
     video = models.FileField(upload_to="videos/", null=True)
-    category = models.ManyToManyField('Category', blank=True)
+    category = models.ManyToManyField('Category', blank=True, verbose_name="Sports Category")
+    country = models.ManyToManyField('Country', blank=True, verbose_name="Participating Countries")
     likes = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='video_posts')
     vote_total = models.IntegerField (default=0, null=True, blank=True)
     vote_ratio = models.IntegerField(default=0, null=True, blank=True)
@@ -47,6 +48,15 @@ class Category (models.Model):
 
     def __str__(self):
         return self.name
+    
+class Country (models.Model):
+    country = models.CharField(max_length=200)
+    created = models.DateTimeField(auto_now_add=True)
+    id = models.UUIDField(default=uuid.uuid4, unique=True,
+                          primary_key=True, editable=False)
+
+    def __str__(self):
+        return self.country
 
 
 class Fixture (models.Model):
@@ -81,4 +91,5 @@ class Standing (models.Model):
     total = models.IntegerField()
 
     def __str__(self):
-        return self.country
+        return self.countryz
+

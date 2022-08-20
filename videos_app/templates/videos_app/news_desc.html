@@ -1,0 +1,28 @@
+{% extends 'main.html'%}
+
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'styles/news_desc.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="left-container">
+    <h2>{{newsObject.title}}</h2>
+    <small>Updated: {{newsObject.created}}</small>
+    <img src="{{newsObject.image.url}}" alt="" style="width:900px; height:500px">
+    <small> Image credit: {{newsObject.imageBy}}</small>
+    
+    <p>{{newsObject.description}}</p>
+    </div>
+   
+    <div class="right-container">
+        <i class="fa-brands fa-facebook" style="color: rgb(8, 78, 218);"></i>
+        <i class="fa-brands fa-twitter" style="color:skyblue;"></i>
+        <i class="fa-brands fa-reddit" style="color:orange ;"></i>
+    
+    </div>
+</div>
+
+{% endblock content %}

@@ -3,27 +3,24 @@
 :root {
   --dark_cyan: #3AB09E
 }
-
 * {
   box-sizing: border-box;
+
 }
 
 body {
-  display: flex;
-  flex-direction: column;
+  margin: auto;
+  background-color: rgb(230, 230, 230);
+  font-size: 14px;
   align-items: center;
-  /* justify-content: center; */
-  min-height: 100vh;
-  top: 0;
-  margin: 0 auto;
-  font-family: "Poppins", sans-serif;
 }
+
 
 .container {
   display: flex;    
   border-radius: 5px;
   flex-direction: column;
-  width: 900px;
+  width: 100%;
   justify-content: center;
   align-items: center;
   max-width: 100%;
@@ -55,10 +52,19 @@ body {
   border: 1px solid rgb(158, 158, 158);
   font-size: 14px;
   padding: 10px;
-  width: 500px;
+  width: 400px;
+}
+.input-fields select{
+  border: 2px solid #f0f0f0;
+  border-radius: 2px;
+  font-family: inherit;
+  border: 1px solid rgb(158, 158, 158);
+  font-size: 14px;
+  padding: 10px;
+  width: 400px;
 }
 .description-input{
-  width: 500px;
+  width: 400px;
   height: 100px;
   font: inherit;
 }
@@ -78,7 +84,7 @@ body {
   font: inherit;
 }
 #addvideo-button {
-  width: 500px;
+  width: 400px;
   height: 40px;
   border: none;
   outline: none;
