@@ -1,0 +1,42 @@
+{% extends 'main.html'%}
+
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'styles/allVideos.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="video-container">
+    <div class="title">
+        <h2>Latest Videos</h2>
+    </div>
+    <div class="card-container">
+        <div class="card-grid">
+            {% for video in videos %}
+            <div class="card">
+                <a href="{% url 'video_desc' video.id %}" style="text-decoration: none; width:100%;">
+                    <div class="thumbnail">
+                        <video src="{{video.video.url}}" type="video/mp4"
+                            style="width: 280px; height: 150px;"></video>
+                    </div>
+                    <div class="card-details">
+                        <p><a href="{% url 'video_desc' video.id %}">{{video.title}}</a></p>
+                        <p><i class="fa-solid fa-arrow-up"></i>{{video.vote_ratio}}%</p>
+                        {% if request.user.is_superuser %}
+                        <span style="position: absolute; right: 5%; bottom: 2.5%;">
+                            <a href="{% url 'update_videos' video.id %}"><i class="fas fa-edit"></i></a>
+                            <a href="{% url 'delete_videos' video.id %}"><i class="fa-solid fa-trash"></i></a>
+                        </span>
+                        {% endif %}
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

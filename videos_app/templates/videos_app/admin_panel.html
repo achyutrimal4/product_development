@@ -6,6 +6,8 @@
 {% endblock %}
 
 {% block content %}
+
+
 <div class="container">
 
     <div class="sidebar">
@@ -14,37 +16,49 @@
         <a href="{% url 'admin:index' %}" class="baritem bar-button">Admin Site</a>
         <a href="" class="baritem bar-button">User Site</a>
         <a href="" class="baritem bar-button">Manage Site</a>
-        
+
     </div>
     <div class="dashboard-container">
-        <h1>Dashboard</h1>   
+        <h1>Dashboard</h1>
+
         <div class="card-container">
             <div class="card-grid">
-                              
-                <div class="card">                   
+                <div class="card">
                     <div class="card-details">
+                        <h3>Upload video</h3>
+                        <i class="fa-solid fa-upload" style="color:purple; font-size:40px ;"></i>
+                        <br>
+                        <a href="{% url 'add_videos' %}"> <button id="btn-small"> Add Video</button></a>
+                        <p>Upload and publish a video</p>
+                        
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-details">
+                        <h3>In numbers</h3>
+                        <i class="fa-solid fa-video"></i>
+                        <br>
                         <p>{{video_count}} Videos</p>
-                        <p>Manage videos in this site</p>
-                         
+                        <a href=""><p>Manage videos in this site</p></a>
                     </div>
                 </div>
-                
-                <div class="card">                   
+                <div class="card">
                     <div class="card-details">
-                        <p>{{news_count}} News</p>
+                        <i class="fa-solid fa-newspaper"></i>
+                        <br>
+                        <p>{{news_count}} News </p>
                     </div>
                 </div>
-                
-                <div class="card">                   
+                <div class="card">
                     <div class="card-details">
+                        <i class="fa-solid fa-users"></i>
+                        <br>
                         <p>{{users_count}} Users</p>
                     </div>
                 </div>
-                
-            
+
             </div>
         </div>
-        <a href="{% url 'add_videos' %}">Add Videos</a>
         <h3>Analytics</h3>
     </div>
 </div>

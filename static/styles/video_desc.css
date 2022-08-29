@@ -13,74 +13,202 @@ body {
 
 .container {
     display: flex;
-    width: 100%;
-    justify-content: space-around;
+    width: 95%;
     justify-items: center;
-    padding: 10px 30px;
-    margin-top: 10px;
+    margin: 10px 0 0 40px;
 }
-.left-container{
-    display:flex;
+
+.left-container {
+    display: flex;
     flex-direction: column;
-    width: 75%;
-    margin: 10px 0;
+    width: 70%;
     /* padding: 5px; */
 }
 
-.player-like{
+.player {
     display: flex;
+    /* width: 90%; */
 }
-.player-like video{
-    width:130%;
-    height:421px;
-}
-.like-buttons{
+
+.video-details {
     display: flex;
+    width: 100%;
     flex-direction: column;
-    align-items: center;
-    transform: translateX(50%)
 }
-.like-buttons a{
+
+.video-desc {
+    width: 95%;
+    display: flex;
+    text-align: justify;
+    flex-direction: column;
+}
+
+.video-desc>p {
+    font-size: 20px;
+}
+
+.views-buttons {
+    display: flex;
+    position: relative;
+}
+
+.like-buttons {
+    width: 200px;
+    justify-content: space-around;
+    display: flex;
+    position: absolute;
+    align-items: center;
+    right: 0;
+    height: 50px;
+}
+
+.like-buttons button {
+    float: left;
+    height: fit-content;
+    margin-top: 12px;
+}
+
+form a {
+    position: absolute;
+    right: 0;
+}
+
+.video-details a {
     font-size: 16px;
     text-decoration: none;
-    color:grey;
+    color: grey;
 }
-.like-buttons a:last-child{
+
+.video-details a:last-child {
     margin-top: 10px;
 }
-.like-buttons a:hover{
+
+.video-details a:hover {
     color: purple;
 }
 
-.comments-section{
-    margin-top: 10px;
-    box-shadow: 0px -4px 6px -6px #888
-}
-.right-container{
+.like-buttons,
+.like-buttons form {
     display: flex;
-    flex-direction: column;
-    width: 500px;
 }
 
-.video-card{
+.comments-section {
+    margin-top: 10px;
+    box-shadow: 0px -4px 6px -6px #888;
+    display:flex;
+    flex-direction: column;
+}
+.comments-section form{
+    position: relative;
+    margin-top: -10px;
+    margin-bottom: 45px;
+}
+
+#comment-button {
+    width: 150px;
+    height: 40px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: var(--dark_cyan);
+    color: #fff;
+    font: inherit;
+    text-transform: uppercase;
+    font-weight: 500;
+    position: absolute;
+    right:1px;
+
+}
+
+.comment-input {
+    width: 100%;
+    height: 35px;
+    font: inherit;
+    outline: none;
+    background: none;
+    border-width: 0 0 1px;
+    border-color: grey;
+}
+
+.comment-data{
+    display: flex;
+    align-items: center;
+    /* position: relative; */
+
+}
+
+
+
+.right-container {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+}
+
+.video-card {
     display: flex;
     width: 98%;
     box-shadow: 0 2.5px 2px -2px gray;
-    margin: 5px;
+    padding: 5px;
+    /* margin: 5px; */
     transition: transform .3s;
 }
-.video-card a{
+
+.video-card a {
     text-decoration: none;
     color: black;
 }
-.card-details{
+
+.card-details {
     display: flex;
     flex-direction: column;
     width: 95%;
-    margin-left: 10px;
+    /* margin-left: 10px; */
     text-align: justify;
 }
+
 .thumbnail video {
-    height: 120px;
-    width: 250px;
+    height: 100px;
+    width: 200px;
+}
+
+/*comment container*/
+.comment-container{
+    display: flex;
+    box-sizing: border-box;
+    justify-content: flex-start;
+    align-items: center;
+    width: 72%;
+    height: auto;
+    padding:.5em 1.5em;   
+    position: relative;
+    border-bottom: 1px solid #b6b6b638;
+}
+
+.user-comment{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: auto;
+    margin-left: 2.5em;
+}
+
+.user-comment > p{
+    margin: .15em 0;
+}
+
+.user-comment > P:nth-child(2){
+    color: grey;
+    font-size: .95em;
+}
+
+#date{
+    margin-left: 2.5em;
+    color: grey;
+    font-size: .75em;
+    position: absolute;
+    right: 5%;
+    top: 30%;
+    transform: translateY(-50%);
 }

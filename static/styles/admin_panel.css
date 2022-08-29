@@ -65,8 +65,8 @@ body {
 
 .card-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(300px, 1fr));
-    grid-gap: 10px;
+    grid-template-columns: repeat(4, minmax(240px, 1fr));
+    grid-gap: 5px;
 }
 
 .card {
@@ -75,10 +75,11 @@ body {
     position: relative;
     margin: 8px;
     border-radius: 8px;
+    justify-content: center;
     padding: 3px;
-    max-width: 320px;
+    max-width: 240px;
     height: 250px;
-    box-shadow: 0 1.7px 2px -2px gray;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
     transition: transform .2s;
 }
 
@@ -91,6 +92,30 @@ body {
     /* float: left; */
     margin-left: 5px;
     text-overflow: ellipsis;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+.card-details p{
+    color: grey;
+}
+.card-details i{
+    color:purple; font-size:40px ;
+}
+#btn-small{
+    border: none;
+    background: var(--dark_cyan);
+    color: white;
+    font: inherit;
+    margin-top: 30px;
+    padding: 10px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    width: 120px;
+}
+#btn-small:hover{
+    cursor: pointer;
 }
 
 .card-details a {

@@ -73,17 +73,17 @@ def login_view(request):
 
 def logout_view(request):
     logout(request)
-    # messages.success(request, 'User was successfully logged out.')
+    messages.success(request, 'User was successfully logged out.')
     return redirect('landing_page')
 
 @login_required(login_url ='login')
-def profile_view(request, pk):
-    user_profile = Profile.objects.get(id=pk)
+def profile_view(request):
+    user_profile = request.user.profile
     context = {'user_profile': user_profile}
     return render(request, 'users/users_profile.html', context)
 
 @login_required(login_url ='login')
-def edit_profile(request, pk):
+def edit_profile(request):
     profile = request.user.profile
     form=ProfileUpdateForm(instance=profile)
     
@@ -91,6 +91,6 @@ def edit_profile(request, pk):
         form = ProfileUpdateForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
             form.save()
-            return redirect('myprofile')
+            return redirect('myprofile' )
     context={'form':form}
     return render(request, 'users/editProfile.html', context)

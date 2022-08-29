@@ -11,5 +11,7 @@ urlpatterns=[
    path('update-videos/<str:pk>/', views.update_videos, name="update_videos"),
    path('delete-videos/<str:pk>/', views.delete_videos, name="delete_videos"),
    path('like/<str:pk>/', views.like, name="like_video"),
+   path('all-videos/', views.all_videos, name="all_videos"),
+   path('test/', views.test, name='test'),
 ]
  

@@ -12,6 +12,7 @@
 </head>
 
 <body>
+    
     <div class="top-bar">
         <ul>
             <li><a href="#"><i class="fa-solid fa-ranking-star"></i></a></li>
@@ -58,7 +59,7 @@
                 </button>
                 <div class="dropdown-content">
                     <a>Hello, {{request.user.username}}</a>
-                    <a href="{% url 'myprofile' user.profile.id %}">My Profile</a>
+                    <a href="{% url 'myprofile'  %}">My Profile</a>
                     <a href="{% url 'logout' %}">Logout</a>
                 </div>
             </div>
@@ -77,6 +78,14 @@
         </form>
     </div>
     {% endif %}
+    <!-- <div class="sidebar">
+        <a href="" class="baritem bar-button">Dashboard</a>
+        <a href="" class="baritem  bar-button">Content</a>
+        <a href="{% url 'admin:index' %}" class="baritem bar-button">Admin Site</a>
+        <a href="" class="baritem bar-button">User Site</a>
+        <a href="" class="baritem bar-button">Manage Site</a>
+
+    </div> -->
 
 
     {% if not request.user.is_authenticated %}

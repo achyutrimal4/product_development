@@ -1,6 +1,10 @@
 @import url('./variables.css');
 
-
+/* .container{
+  z-index: 2;
+  position: absolute;
+  right: 2;
+} */
 .alert {
   display: inline-flex;
   gap: 1rem;
@@ -12,6 +16,9 @@
   margin-bottom: 1rem;
   margin-right: 1rem;
   margin-top: 1rem;
+  z-index: 2;
+  position: absolute;
+  right:2%;
 }
 
 .alert,

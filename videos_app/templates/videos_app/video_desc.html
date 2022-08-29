@@ -9,33 +9,48 @@
 {% block content %}
 <div class="container">
     <div class="left-container">
-        <div class="player-like">
-            <video src="{{video.video.url}}" type="video/mp4" controls style="width: 85%;" preload="auto" loop
+        <div class="player">
+            <video src="{{video.video.url}}" type="video/mp4" controls style="width: 95%;" preload="auto" loop
                 autoplay></video>
-
-            <div class="like-buttons">
-                <!-- Like form -->
-                <form action="{% url 'like_video' video.id %}" method="POST">
-                    {% csrf_token %}
-                    <button type="submit" name="viedo_id" value="{{video.id}}" class="btn-small">
-                        <i class="fas fa-arrow-up"></i></button>
-                    <p>{{video.total_likes}} likes</p>
-                    <a href=""><i class="fa-solid fa-arrow-down"></i></a>
-                    <a href=""><i class="fa-solid fa-share-from-square"> </i></a>
-                </form>
-            </div>
-
-
         </div>
-        <h3>{{video.title}}</h3>
-        <p>{{video.description}}</p>
-        {% for tag in video.category.all %}
-        <small>{{tag}}</small>
-        {% endfor %}
-        <p>20k views</p>
+        <div class="video-details">
+            <div class="video-desc">
+                <p>{{video.title}}</p>
+                {% for tag in video.category.all %}
+                <small>{{tag}}</small>
+                {% endfor %}
+                <div class="views-buttons">
+                    <p style="margin-right:20px ;">{{video_views}} views</p>
+                    <p>{{video.uploaded}}</p>
+                    <div class="like-buttons">
+                        <!-- Like form -->
+                        <form action="{% url 'like_video' video.id %}" method="POST">
+                            {% csrf_token %}
+                            <button type="submit" name="viedo_id" value="{{video.id}}" class="btn-small">
+                                <i class="fas fa-arrow-up"></i></button>
+                            <p>{{video.total_likes}} likes</p>
+                            <a href=""><i class="fa-solid fa-share-from-square"> </i></a>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+            <p>{{video.description}}</p>
+        </div>
+
+
         <div class="comments-section">
-            <h3>this is a comment section</h3>
-            <p>{{video.id}}</p>
+
+            <h3>{{total_comments}} Comments</h3><br>
+            <form action="{% url 'video_desc' video.id %}" method="post">
+                {% csrf_token %}
+                {% for field in form %}
+                <div class="input-fields">
+                    {{field}}
+                </div>
+                {% endfor %}
+                <input type="submit" value="Comment" id="comment-button">
+            </form>
         </div>
     </div>
 
@@ -45,7 +60,7 @@
         <div class="video-card">
             <a href="{% url 'video_desc' video.id %}" style="text-decoration: none; width:100%;">
                 <div class="thumbnail">
-                    <video src="{{video.video.url}}" type="video/mp4" style="width: 280px; height: 150px;"></video>
+                    <video src="{{video.video.url}}" type="video/mp4" style="width: 200px; height: 100px;"></video>
                 </div>
                 <div class="card-details">
                     <p><a href="{% url 'video_desc' video.id %}">{{video.title}}</a></p>
@@ -54,5 +69,15 @@
         {% endfor %}
     </div>
 </div>
+{% for review in video.review_set.all %}
+<div class="comment-container">
+    <img src="{{review.comment_by.profile_image.url}}" style="width:30px; height:30px; border-radius:50%" alt="">
+    <div class="user-comment">
+        <p>{{review.comment_by.username}}</p>
+        <p>{{review.comment | linebreaksbr}}</p>
+    </div>
+    <p id="date">{{review.created}}</p>
+</div>
+{% endfor %}
 
 {% endblock content %}
