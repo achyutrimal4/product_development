@@ -1,0 +1,57 @@
+@keyframes move-in-left {
+  0% {
+    width: 90%;
+    transform: scale(0.9);
+  }
+
+  25% {
+    width: 92%;
+    transform: scale(0.94);
+  }
+  50% {
+    width: 95%;
+    transform: scale(0.98);
+  }
+  75% {
+    width: 97%;
+    transform: scale(1);
+  }
+
+  /* 100% {
+    width: 100%;
+  } */
+}
+
+@keyframes left-right {
+  0% {
+    left: 0;
+  }
+
+  50% {
+    left: 100%;
+  }
+
+  100% {
+    left: 0;
+  }
+}
+
+@keyframes loading {
+  from {
+    transform: scale(0.8, 0.8);
+  }
+
+  to {
+    transform: scale(1, 1);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

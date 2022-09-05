@@ -9,19 +9,17 @@
 {% block content %}
 <div class="container">
     <div class="left-container">
-    <h2>{{newsObject.title}}</h2>
-    <small>Updated: {{newsObject.created}}</small>
-    <img src="{{newsObject.image.url}}" alt="" style="width:900px; height:500px">
-    <small> Image credit: {{newsObject.imageBy}}</small>
-    
-    <p>{{newsObject.description}}</p>
-    </div>
-   
-    <div class="right-container">
-        <i class="fa-brands fa-facebook" style="color: rgb(8, 78, 218);"></i>
-        <i class="fa-brands fa-twitter" style="color:skyblue;"></i>
-        <i class="fa-brands fa-reddit" style="color:orange ;"></i>
-    
+        <h2>{{newsObject.title}}</h2>
+        <small>Updated: {{newsObject.created}}</small>
+        <span>
+            <i class="fa-brands fa-facebook" style="color: rgb(8, 78, 218);"></i>
+            <i class="fa-brands fa-twitter" style="color:skyblue;"></i>
+            <i class="fa-brands fa-reddit" style="color:rgb(255, 81, 0) ;"></i>
+        </span>
+        <img src="{{newsObject.image.url}}" alt="" style="width:900px; height:500px">
+        <small> Image credit: {{newsObject.imageBy}}</small>
+
+        <p>{{newsObject.description | linebreaks}}</p>
     </div>
 </div>
 

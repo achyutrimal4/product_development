@@ -9,62 +9,63 @@
 
 
 <div class="container">
-
     <div class="sidebar">
         <a href="" class="baritem bar-button">Dashboard</a>
         <a href="" class="baritem  bar-button">Content</a>
         <a href="{% url 'admin:index' %}" class="baritem bar-button">Admin Site</a>
         <a href="" class="baritem bar-button">User Site</a>
         <a href="" class="baritem bar-button">Manage Site</a>
-
     </div>
+
     <div class="dashboard-container">
-        <h1>Dashboard</h1>
+        <h3>In Numbers</h3>
 
         <div class="card-container">
             <div class="card-grid">
                 <div class="card">
-                    <div class="card-details">
-                        <h3>Upload video</h3>
-                        <i class="fa-solid fa-upload" style="color:purple; font-size:40px ;"></i>
-                        <br>
-                        <a href="{% url 'add_videos' %}"> <button id="btn-small"> Add Video</button></a>
-                        <p>Upload and publish a video</p>
-                        
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-details">
-                        <h3>In numbers</h3>
+                    <div class="card-details">                        
                         <i class="fa-solid fa-video"></i>
-                        <br>
                         <p>{{video_count}} Videos</p>
-                        <a href=""><p>Manage videos in this site</p></a>
+                        <a href="{% url 'add_videos' %}" > <button id="btn-small"> Add
+                                Video</button></a>
                     </div>
                 </div>
                 <div class="card">
                     <div class="card-details">
-                        <i class="fa-solid fa-newspaper"></i>
-                        <br>
+                        <i class="fa-solid fa-newspaper"></i>                        
                         <p>{{news_count}} News </p>
+                        <a href="" > <button id="btn-small"> Add
+                            News</button></a>
                     </div>
                 </div>
                 <div class="card">
                     <div class="card-details">
-                        <i class="fa-solid fa-users"></i>
-                        <br>
+                        <i class="fa-solid fa-users"></i>                        
                         <p>{{users_count}} Users</p>
+                        <a href="{% url 'admin:index' %}" > <button id="btn-small">  Users
+                            </button></a>
                     </div>
                 </div>
-
+                <div class="card">
+                    <div class="card-details" >
+                        
+                        <span class="material-symbols-outlined">
+                            add_a_photo
+                        </span>
+                        <p style="margin-left:15px ;">{{photo_count}} Photos</p>
+                        <a href=""> <button id="btn-small" style="margin-left:15px ;"> Add Photo</button></a>
+                    </div>
+                </div>
             </div>
         </div>
         <h3>Analytics</h3>
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-details">                        
+                    <img src="{% static 'media/images/chart.png'%}" alt="">
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-
-
-
-
-
 {% endblock content %}

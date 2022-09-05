@@ -1,12 +1,20 @@
-from multiprocessing import context
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Video, Fixture, News, Standing
+from .models import Category, Video, Fixture, News, Standing
+from gallery_app.models import Photo
 from users.models import User
 from django.contrib.auth.decorators import login_required, user_passes_test
 from .forms import VideoForm, ReviewForm
 from django.contrib import messages
 from django.http import HttpResponseRedirect
+from django.db.models import Q
+from .utils import search_function
 from django.urls import reverse_lazy, reverse
+
+# analytics
+from django.http import JsonResponse
+from django.core import serializers
+
+
 
 
 # Create your views here.
@@ -32,12 +40,17 @@ def landing_page(request):
 # user home page
 @login_required(login_url='login')
 def home(request):
-    videos = Video.objects.all()
+
+    videos = Video.objects.all().order_by('-uploaded').values()
+    if request.method == "GET":
+        videos, search_query = search_function(request)
+
     fixtures = Fixture.objects.all()
     news = News.objects.all()
+    photos = Photo.objects.all()
     standings = Standing.objects.all().order_by('-total').values()
     context = {'videos': videos, 'fixtures': fixtures,
-               'news': news, 'standings': standings}
+               'news': news, 'standings': standings, 'search_query': search_query, 'photos': photos}
     return render(request, 'videos_app/home.html', context)
 
 
@@ -48,6 +61,19 @@ def video_desc(request, pk):
     videoObject = Video.objects.get(id=pk)
     # video_file = get_object_or_404(Video, id=pk)
     # total_likes = video_file.total_likes()
+
+    # category = videoObject.category().get() #extract video category from video object and use it for recommedations
+
+    # recommendations = Video.objects.filter(Q(category__icontains=category))
+
+    # search_query
+    search_query = ''
+    if request.GET.get('search_query'):
+        search_query = request.GET.get('search_query')
+        
+    videos = Video.objects.filter(Q(title__icontains=search_query) | Q(
+        description__icontains=search_query))
+
     form = ReviewForm()
 
     if request.user not in videoObject.video_views.all():
@@ -66,10 +92,11 @@ def video_desc(request, pk):
     total_comments = videoObject.review_set.all().count()
 
     context = {'video': videoObject,
-               'videos': videos, 
-               'video_views': views_count, 
+               'videos': videos,
+               #    'recimmendation': recommendations,
+               'video_views': views_count,
                'form': form,
-               'total_comments':total_comments
+               'total_comments': total_comments
                }
     return render(request, 'videos_app/video_desc.html', context)
 
@@ -90,8 +117,9 @@ def admin_panel(request):
     video_count = Video.objects.all().count()
     news_count = News.objects.all().count()
     users_count = User.objects.all().count()
+    photo_count = Photo.objects.all().count()
     context = {'video_count': video_count,
-               'news_count': news_count, 'users_count': users_count}
+               'news_count': news_count, 'users_count': users_count, 'photo_count': photo_count}
     return render(request, 'videos_app/admin_panel.html', context)
 
 
@@ -106,7 +134,7 @@ def add_videos(request):
             form.save()
             messages.success(request, 'Video was successfully uploaded.')
             return redirect("admin_panel")
-    context = {'add_video_form': form}
+    context = {'form': form}
     return render(request, 'videos_app/add_videos.html', context)
 
 
@@ -116,7 +144,6 @@ def add_videos(request):
 def update_videos(request, pk):
     video = Video.objects.get(id=pk)
     form = VideoForm(instance=video)
-
     if request.method == 'POST':
         form = VideoForm(request.POST, request.FILES, instance=video)
         if form.is_valid():
@@ -149,11 +176,29 @@ def like(request, pk):
 #     post = get_object_or_404(Post, id=request.POST.get('post_id'))
 #     post.likes.add(request.user)
 #     return redirect('score:post-detail', pk=pk)
-def test(request):
-    return render(request, 'videos_app/test.html' )
 
+
+def test(request):
+    return render(request, 'videos_app/test.html')
+
+
+@login_required(login_url='login')
 def all_videos(request):
     videos = Video.objects.all()
-  
     context = {'videos': videos}
     return render(request, 'videos_app/all_videos.html', context)
+
+
+@login_required(login_url='login')
+def all_news(request):
+    news = News.objects.all()
+    context = {'news': news}
+    return render(request, 'videos_app/all_news.html', context)
+
+
+@login_required(login_url='login')
+def live_games(request):
+    videos = Video.objects.all()
+    context = {'videos': videos}
+    return render(request, 'videos_app/live_games.html', context)
+

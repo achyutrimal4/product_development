@@ -1,4 +1,7 @@
 @import url('./variables.css');
+@import url('./animation.css');
+
+
 
 * {
     box-sizing: border-box;
@@ -9,6 +12,8 @@ body {
     margin: auto;
     background-color: rgb(230, 230, 230);
     font-size: 14px;
+
+
 }
 
 body h2 {
@@ -32,6 +37,7 @@ body h2 {
     justify-content: space-around;
     padding: 10px;
     margin: 10px 0 0 30px;
+
 }
 
 .left-container {
@@ -41,6 +47,7 @@ body h2 {
     align-items: center;
     background-image: linear-gradient(to right, rgba(128, 0, 128, 0.5), rgba(0, 255, 255, 0.5));
     padding: 5px;
+    /* animation: move-in-left 1.5s ease-in-out; */
 }
 
 .fixture-container {
@@ -131,6 +138,7 @@ body h2 {
     flex-direction: column;
     background-color: white;
     padding: 10px;
+    /* animation: move-in-left 1.5s ease-in-out; */
 }
 
 .video-container {
@@ -147,11 +155,26 @@ body h2 {
     width: 100%;
     align-items: center;
     /* position: relative; */
+
 }
 
 .title h2 {
     text-align: left;
     margin-left: 8px;
+}
+
+.title i {
+    color: red;
+    position: absolute;
+    right: 0;
+    margin-right: 20rem;
+    animation: loading 1.5s ease-in-out infinite;
+}
+
+#live-link {
+    margin-right: 21.5rem !important;
+    color: red;
+    animation: loading 1.5s ease-in-out infinite;
 }
 
 .title a {
@@ -166,6 +189,7 @@ body h2 {
     color: purple;
     text-decoration: underline;
 }
+
 
 .news-container {
     width: 100%;
@@ -196,6 +220,12 @@ body h2 {
     box-shadow: 0 2.5px 2px -2px gray;
     margin: 5px;
     transition: transform .3s;
+}
+
+.news-thumbnail img {
+    object-fit: fill;
+    width: 280px;
+    height: 150px;
 }
 
 .news-card:hover {
@@ -230,7 +260,13 @@ body h2 {
     /* flex-direction: row; */
     align-content: center;
 }
+.gallery-container {
+    display: flex;
+    align-content: center;
+    height: 250px;
+    overflow: hidden;
 
+}
 .card-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(300px, 1fr));
@@ -275,6 +311,14 @@ body h2 {
 .thumbnail {
     margin-left: auto;
     margin-right: auto;
-    display: block;
+    display: flex;
+    align-items: center;
+
 }
 
+.thumbnail img {
+    height: 150px;
+    width: 280px;
+    object-fit: cover;
+    /* margin-top: 10px; */
+}

@@ -1,5 +1,3 @@
-from email.policy import default
-from re import T
 from django.db import models
 from users.models import User
 from users.models import Profile
@@ -22,7 +20,7 @@ class Video (models.Model):
     likes = models.ManyToManyField(
         settings.AUTH_USER_MODEL, blank=True, related_name='video_posts')
     video_views = models.ManyToManyField(
-        settings.AUTH_USER_MODEL, related_name='video_views', null=True, blank=True, default="admin@gmail.com")
+        settings.AUTH_USER_MODEL, related_name='video_views', blank=True, default="admin@gmail.com")
     uploaded = models.DateTimeField(auto_now_add=True)
     id = models.UUIDField(default=uuid.uuid4, unique=True,
                           primary_key=True, editable=False)  
@@ -35,7 +33,7 @@ class Review(models.Model):
     comment_by = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
     video = models.ForeignKey(Video, on_delete=models.CASCADE)
     comment = models.TextField(null=True, blank=False)
-    created = datetime.datetime.now()
+    created = models.DateTimeField(auto_now_add=True)
     id = models.UUIDField(default=uuid.uuid4, unique=True,
                           primary_key=True, editable=False)
 

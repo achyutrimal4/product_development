@@ -24,21 +24,20 @@
       </div>
 
 
-      <div class="errors-div">
+      <!-- <div class="errors-div">
         {% for error in field.errors %}
         <small style="color: red">{{error}}</small>
         {% endfor %}
-      </div>
+      </div> -->
+    </div>
 
-      {% if login_form.non_field_errors %}
+    {% endfor %}
+    {% if login_form.non_field_errors %}
       <div class="alert alert--error">
         <p class="alert__message">{{login_form.non_field_errors}}</p>
         <button class="alert__close">x</button>
       </div>
       {% endif %}
-    </div>
-
-    {% endfor %}
 
     <input type="submit" value="Login" id="default-button" /><br>
     <div class="links">

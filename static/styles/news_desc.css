@@ -18,6 +18,7 @@ body {
     justify-items: center;
     padding: 10px 30px;
     /* margin-top: 10px; */
+
 }
 .container p{
     text-align: justify;
@@ -25,21 +26,15 @@ body {
 .left-container{
     display:flex;
     flex-direction: column;
-    width: 90%;
+    width: 80%;
     padding: 10px;
-    justify-content: space-between;
-    border: 1px solid black;
+    justify-content: center;
     /* padding: 5px; */
 }
-.right-container{
-    display: flex;
-    flex-direction: column;
-    width: 10%;
-    right: 0;
-    top: 0;
-    border: 1px solid black;
-    height: auto;
+.left-container img{
+    object-fit: cover;
 }
-.right-container>i{
-    font-size: 30px;
+.left-container span{
+    font-size: 25px;
+    width: 100%;
 }

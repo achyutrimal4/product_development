@@ -2,19 +2,34 @@
 
 {% load static%}
 {% block styles%}
-{% endblock %}
+<link rel="stylesheet" href="{% static 'styles/edit_profile.css' %}">
+{% endblock styles%}
 
 
 
 {% block content %}
-<h1>Edit your details</h1>
 
-<form action="{% url 'editprofile' %}" method="post" enctype="multipart/form-data">
 
-    {% csrf_token %}
-    {{form.as_p}}
-    <input type="submit" name="Update" id="">
+<div class="container">
 
-</form>
+    <form action="{% url 'editprofile' %}" method="post" enctype="multipart/form-data">
+
+        <h2>Update your details</h2>
+        {% csrf_token %}
+
+        {% for field in form %}
+
+        <div class="input-errors">
+            {{field.label_tag}}
+            <div class="input-fields">
+                {{field}}
+            </div>
+        </div>
+        {%endfor%}
+        <input type="submit" name="Update" id="default-button">
+    </form>
+
+
+</div>
 
 {% endblock content %}

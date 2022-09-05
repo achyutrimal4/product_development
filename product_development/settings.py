@@ -37,8 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
     'users.apps.UsersConfig',
     'videos_app.apps.VideosAppConfig',
+    'gallery_app.apps.GalleryAppConfig',
+    # 'analytics_app.app.AnalyticsAppConfig'
 
     "verify_email.apps.VerifyEmailConfig",
 ]

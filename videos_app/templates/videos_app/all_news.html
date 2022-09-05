@@ -1,0 +1,36 @@
+{% extends 'main.html'%}
+
+{% load static%}
+{% block styles%}
+<link rel="stylesheet" href="{% static 'styles/all_news.css' %}">
+{% endblock styles %}
+
+
+{% block content%}
+<div class="container">
+
+<div class="news-container">
+    <div class="title">
+        <h2>Latest News</h2>
+        <a href="">Filter By</a>
+    </div>
+
+    <div class="news-card-container">
+        {% for news in news %}
+        <a href="{% url 'news_desc' news.id %}">
+            <div class="news-card">
+                <div class="news-thumbnail">
+                    <img src="{{news.image.url}}">
+                </div>
+                <div class="news-details">
+                    <p>{{news.title}}</p>
+                    <p>{{news.description}}</p>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+</div>
+
+{% endblock content %}

@@ -15,7 +15,19 @@ body h2 {
     display: block;
 }
 
-
+.container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px;
+}
+.title {
+    display: flex;
+    width: 80%;
+    align-items: center;
+    /* position: relative; */
+}
 .video-container {
     width: 100%;
     display: flex;
@@ -23,15 +35,9 @@ body h2 {
     overflow: auto;
     justify-content: center;
     align-items: center;
-    margin-left: 10px;
 }
 
-.title {
-    display: flex;
-    width: 100%;
-    align-items: center;
-    /* position: relative; */
-}
+
 
 .title h2 {
     text-align: left;
@@ -39,11 +45,13 @@ body h2 {
 }
 
 .title a {
-    position: absolute;
-    right: 0;
-    margin-right: 4rem;
+    position:absolute;
+    right: 20px;
     text-decoration: none;
+    background-color: rgba(128, 0, 128, 0.286);
     color: black;
+    padding: 10px 15px;
+    border-radius: 8px;
 }
 
 .title a:hover {
@@ -52,10 +60,9 @@ body h2 {
 }
 
 .card-container {
-    /* margin-top: 50px; */
     display: flex;
-    /* flex-direction: row; */
     align-content: center;
+    width: 100%;
 }
 
 .card-grid {

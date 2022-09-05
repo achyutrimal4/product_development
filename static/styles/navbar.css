@@ -32,22 +32,19 @@ body {
 }
 
 #logo {
-    width: 110px;
-    height: 50px;
+    width: 90px;
+    height: 40px;
     margin: 10px 50px 0px 30px;
 }
 
 /* Navigation bar*/
 .nav-bar {
     width: 100%;
-    margin-top: 30px;
     background-color: purple;
-    overflow: hidden;
-    /* position: sticky;
-    top:0; */
-    /* z-index: 2; */
-    /* position: fixed;
-    top: 0; */
+    position: sticky;
+    top: 0;
+    z-index: 1;
+
 }
 
 .nav-bar ul {
@@ -71,7 +68,7 @@ body {
     float: left;
     color: white;
     text-align: center;
-    padding: 18px 18px;
+    padding: 15px;
     text-decoration: none;
 }
 
@@ -96,10 +93,12 @@ body {
     margin: 0;
     /* Important for vertical align on mobile phones */
 }
-.dropbtn img{
+
+.dropbtn img {
     width: 30px;
     height: 30px;
     border-radius: 50%;
+    object-fit: cover;
 }
 
 .nav-bar li a:hover,
@@ -114,7 +113,6 @@ body {
     background-color: #f9f9f9;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 2;
 }
 
 .dropdown-content a {
@@ -140,19 +138,18 @@ body {
 .bottom-nav {
     display: flex;
     margin-top: 10px;
-    width: 100%;
     justify-content: center;
     padding: 5px;
     box-shadow: 0 1.5px 2px -2px gray;
-    
     background-color: rgb(230, 230, 230);
-
+    z-index: 2;
 }
 
 .search-fields {
     position: relative;
     width: 400px;
-    border-radius: 25px;
+    height: 40px;
+    border-radius: 5px;
     overflow: hidden;
     border: 1.5px solid grey;
 }
@@ -167,7 +164,7 @@ body {
     outline: none;
     padding: 10px 30px 10px 10px;
     width: 100%;
-    border-radius: 25px;
+    border-radius: 5px;
 }
 
 .search-fields button {
@@ -178,7 +175,7 @@ body {
     height: 100%;
     outline: none;
     border: none;
-    border-radius: 0 25px 25px 0;
+    border-radius: 0 5px 5px 0;
     cursor: pointer;
     box-sizing: border-box;
     padding: 0 20px;
@@ -204,6 +201,7 @@ body {
     margin-left: 50px;
 }
 
+/* 
 /* sidebar */
 
 .sidebar {
@@ -213,10 +211,12 @@ body {
     box-shadow: 2px 0 5px -2px #888;
     display: flex;
     padding: 10px;
+    height: 100%;
     flex-direction: column;
     position: sticky;
     left: 0;
-    /* top: 150px; */
+    top: 0;
+    top: 150px;
 }
 
 .sidebar a {
@@ -231,7 +231,14 @@ body {
     border: none;
     display: block;
     outline: 0;
+}
 
+#blank-btn {
+    cursor: context-menu;
+}
+
+#blank-btn:hover {
+    background-color: white !important;
 }
 
 .bar-button {

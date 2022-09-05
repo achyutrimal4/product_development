@@ -11,18 +11,20 @@
 body {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  /* justify-content: center; */
   min-height: 100vh;
-  
   overflow: hidden;
   top: 0;
   margin: 0 auto;
   font-family: "Poppins", sans-serif;
+  background: url(../media/images/background.jpg);
+  background-size: 800px 650px;
+  background-repeat: no-repeat;
+  background-position: bottom right;
+
 }
 
 .container {
-  display: flex;    
+  display: flex;
   border-radius: 5px;
   flex-direction: column;
   width: 900px;
@@ -31,24 +33,28 @@ body {
   max-width: 100%;
   margin-top: 50px;
   padding: 15px;
+
 }
 
 .login-form {
   padding: 20px 30px;
-  
+
 }
-.input-errors{
-  display:flex;
+
+.input-errors {
+  display: flex;
 }
-.input-errors label{
+
+.input-errors label {
   display: inline;
   width: 200px;
 }
+
 .input-fields {
-  display:flex;
-  margin-right:20px ;
+  display: flex;
+  margin-right: 20px;
   margin-bottom: 10px;
-  padding-bottom: 10px;  
+  padding-bottom: 10px;
 }
 
 .input-fields input {
@@ -61,15 +67,17 @@ body {
   width: 300px;
 }
 
-#register-text{
+#register-text {
   margin-left: 200px;
   margin-top: 50px;
 }
+
 #register-link {
   text-decoration: none;
   color: var(--dark_cyan);
   margin-left: 10px;
 }
+
 #default-button {
   width: 300px;
   height: 40px;
@@ -86,7 +94,7 @@ body {
   margin-left: 200px;
 }
 
-.links{
+.links {
   display: flex;
   width: 60%;
   font-size: 12px;
@@ -94,22 +102,24 @@ body {
   position: relative;
   margin-top: 20px 0;
 }
-.links a{
+
+.links a {
   text-decoration: none;
   color: black;
 }
-.links a:first-child{
+
+.links a:first-child {
   position: absolute;
-  left:0%;
+  left: 0%;
 }
-.links a:last-child{
+
+.links a:last-child {
   position: absolute;
-  right:3%;
+  right: 3%;
   text-decoration: underline;
 
 }
+
 /* #forgot_password{
   margin-left: 200px;
 } */
-
-

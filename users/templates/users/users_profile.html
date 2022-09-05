@@ -7,7 +7,7 @@
 
 {% block content %}
 <div class="container">
-    <h2>Hello, {{user_profile.name}}</h2>
+    <h2>Hello, {{user_profile.username}}</h2>
 
     <div class="details">
         <img src="{{user_profile.profile_image.url}}" alt=""><br>
@@ -23,7 +23,7 @@
         <div class="info">
             <p>{{user_profile.email}}</p>
             <p>{{user_profile.username}}</p>
-            <p>Phone number</p>
+            <p>+97798605651651</p>
             <p>{{user_profile.country}}</p>
             <p>{{user_profile.user.last_login}}</p>
            
@@ -34,7 +34,7 @@
             <br>
             <small style="color:rgb(79, 139, 243);">By clicking the button below, a password reset request message will be sent to the admin.</small>
             <a href="#"> <i class="fa-solid fa-rotate-left"></i>     Request Password Reset</a> 
-            <a href="#"  style="color:red;"> <i class="fa-solid fa-trash"></i>    Delete account</a>
+            <a href="#"  style="color:red;"> <i class="fa-solid fa-trash"></i>    Deactivate account</a>
         </div>
     </div>
 </div>

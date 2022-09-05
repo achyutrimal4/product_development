@@ -16,9 +16,16 @@
         <div class="video-details">
             <div class="video-desc">
                 <p>{{video.title}}</p>
-                {% for tag in video.category.all %}
-                <small>{{tag}}</small>
-                {% endfor %}
+
+                <div class="tags">
+                    {% for category in video.category.all %}
+                    <small>{{category}}</small>
+                    {% endfor %}
+                    {% for country in video.country.all %}
+                    <small>{{country}}</small>
+                    {% endfor %}
+                </div>
+                
                 <div class="views-buttons">
                     <p style="margin-right:20px ;">{{video_views}} views</p>
                     <p>{{video.uploaded}}</p>

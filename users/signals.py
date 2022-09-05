@@ -35,9 +35,9 @@ def updateUser(sender, instance, created, **kwargs):
         user.save()
         
 
-        
-@receiver(post_delete, sender=Profile)
-def deleteUser(self, instance, created, **keargs):
+@receiver(post_delete, sender=Profile)    
+def deleteUser(sender, instance, **kwargs):
     user = instance.user
     user.delete()
+    
     

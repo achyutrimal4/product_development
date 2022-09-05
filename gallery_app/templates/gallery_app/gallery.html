@@ -1,0 +1,72 @@
+{% extends 'main.html'%}
+
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'styles/gallery.css' %}">
+{% endblock %}
+
+{% block content %}
+
+
+
+<div class="container">
+
+    <div class="left-container">
+        <div class="albums">
+            <h2>Featured Albums</h2>
+            <!-- {% for fixture in fixtures %}
+            <div class="album-card">
+                <p>{{fixture.fixture}}</p>
+                <p style="font-size:10px ;">{{fixture.date}}</p>
+            </div>
+            {% endfor %} -->
+            <a href="" class="baritem bar-button">All</a>
+
+            {% for album in albums %}
+            <a href="" class="baritem bar-button">{{album.name}}</a>
+           
+            {% endfor %} 
+           
+
+            {% if request.user.is_superuser %}
+            <a href="{% url 'add_photos' %}"><input type="submit" id="default-button" value="Add Photo"></a>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="right-container">
+        <div class="gallery-container">
+            <div class="title">
+                <h2>Featured Photos</h2>
+            </div>
+            {% if search_query%}
+            <p style="margin-left:15px; color:#3AB09E">Search results for {{search_query}}</p>
+            {% endif %}
+            <div class="card-container">
+                <div class="card-grid">
+                    
+                    {% for photo in photos  %}
+                    <div class="card">
+                        <a href="{% url 'view_photo' photo.id %}">
+                            <div class="thumbnail">
+                                <img src="{{ photo.photo.url }}" alt="">
+
+                            </div>
+                            <div class="card-details">
+                                <a> {{photo.album.name}}</a>
+                            </div>
+                        </a>
+                    </div>
+                    {% empty %}
+                    <h3>No Photos</h3>
+                    {% endfor %}
+                        
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock content %}

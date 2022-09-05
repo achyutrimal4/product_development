@@ -1,12 +1,14 @@
+from email.policy import default
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django_countries.fields import CountryField
 import uuid
+
 # Create your models here.
 
 
 class UserManager (BaseUserManager):
-    def create_user(self, email, username,   full_name, country, password=None,  ):
+    def create_user(self, email, username,   full_name, country, password=None  ):
         if not email:
             raise ValueError("You must provide an email address")
         if not username:
@@ -16,7 +18,7 @@ class UserManager (BaseUserManager):
             email=self.normalize_email(email),
             username = username,
             full_name = full_name,
-            country = country,            
+            country = country,          
         )        
         user.set_password(password)
         user.save(using=self._db)
@@ -86,3 +88,7 @@ class Profile (models.Model):
     def __str__(self):
         return str(self.user.username)
 
+
+# class Message (models.Model):
+#     sender = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, blank=True) 
+#     recipent = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, blank=True, related_name="messages")

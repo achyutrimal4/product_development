@@ -12,45 +12,40 @@
 </head>
 
 <body>
-    
-    <div class="top-bar">
-        <ul>
-            <li><a href="#"><i class="fa-solid fa-ranking-star"></i></a></li>
-            <li><a href="#"><i class="fa-solid fa-futbol"></i></a></li>
-            <li><a href="#"><i class='fa-solid fa-basketball'></i></a></li>
-            <li><a href="#"><i class='fas fa-golf-ball'></i></a></li>
-            <li><a href="#"><i class="fa-solid fa-person-swimming"></i></a></li>
-            <li><a href="#"><i class='fas fa-hockey-puck'></i></a></li>
-            <li><a href="#"><i class="fa-solid fa-table-tennis-paddle-ball"></i></a></li>
-            <li><a href="#"><i class='fas fa-running'></i></a></li>
-            <li><a href="#"><i class="fa-solid fa-person-biking"></i></a></li>
-            <li><a href="#"><i class='fas fa-skiing'></i></a></li>
-            <li><a href="#"><i class='fa-solid fa-volleyball'></i></a></li>
-            <li><a href="#"><i class="fa-solid fa-person-skating"></i></a></li>
-            <li><a href="#"><i class="fa-solid fa-person-snowboarding"></i></a></li>
-            <li><a href="#"><i class="fa-solid fa-dumbbell"></i></a></li>
-            <li><a href="#"><i class="fa-solid fa-uniform-martial-arts"></i></a></li>
-            <li><a href="#"><i class="fa-solid fa-award-simple"></i></a></li>
-
-        </ul>
-    </div>
 
     {% if request.user.is_authenticated %}
     <div class="nav-bar">
         <ul>
-            <li><img src="{% static 'media/images/olympic.png'%}" alt="" id="logo"></li>
+           
+            <img src="{% static 'media/images/olympic.png'%}" alt="" id="logo">
             <li><a href="{% url 'home' %}">Home</a></li>
-            <li><a href="#">News</a></li>
-            <li><a href="#">Gallery</a></li>
-            <li><a href="#">Sports</a></li>
+            <li><a href="{% url 'all_news' %}">News</a></li>
+            <li><a href="{% url 'gallery' %}">Gallery</a></li>
+            
+            <div class="dropdown">
+              <li><a href="{% url 'all_videos' %}">Games <i class="fa-solid fa-caret-down"></i></a></li>                
+                <div class="dropdown-content">
+                    <a href="">Football</a>
+                    <a href="">Table Tennis</a>
+                    <a href="">Swimming</a>
+                    <a href="">Sprint</a>
+                    <a href="">Marathon</a>
+                    <a href="">Long Jump</a>
+                    <a href="">High Jump</a>
+                    <a href="">Gymnastics</a>
+                </div>
+            </div>
             <li><a href="#">Fixtures</a></li>
             <li><a href="#">Contact</a></li>
 
-
+            
             {% if request.user.is_superuser %}
-            <li><a href="{% url 'admin_panel' %}">Admin Panel</a></li>
+            <li> <a href="{% url 'admin_panel' %}" class="baritem bar-button">Admin Panel</a></li>
+                
             {% endif %}
-
+                
+          
+          
             <div class="dropdown">
                 <button class="dropbtn">
 
@@ -68,31 +63,30 @@
 
         </ul>
     </div>
+
+    {% if not request.path == '/users/my_profile/' %}       
+    
     <div class="bottom-nav">
-        <form action="#">
+        <form action="", method="get">
             <div class="search-fields">
-                <input type="text" placeholder="Search.." name="search">
+                <input type="text" placeholder="Search..." name="search_query">
                 <button type="submit"><i class="fa fa-search"></i></button>
             </div>
 
         </form>
+
+        <form action="#" id="filter">
+             
+        </form>
     </div>
+    {% endif  %}
     {% endif %}
-    <!-- <div class="sidebar">
-        <a href="" class="baritem bar-button">Dashboard</a>
-        <a href="" class="baritem  bar-button">Content</a>
-        <a href="{% url 'admin:index' %}" class="baritem bar-button">Admin Site</a>
-        <a href="" class="baritem bar-button">User Site</a>
-        <a href="" class="baritem bar-button">Manage Site</a>
-
-    </div> -->
-
 
     {% if not request.user.is_authenticated %}
     <div class="nav-bar">
         <ul>
             <li><img src="{% static 'media/images/olympic.png'%}" alt="" id="logo"></li>
-            <li><a href="#">Home</a></li>
+            <li><a href="{% url 'landing_page' %}">Home</a></li>
             <li><a href="#">News</a></li>
             <li><a href="#">Contact</a></li>
             <a href="{% url 'login' %}"> <input type="submit" name="" id="btn-signin" value="Login/Signup"></a>
