@@ -2,22 +2,23 @@
 """
 
 
-from unicodedata import name
 from django.contrib import admin
 from django.urls import path, include
 
 from django.conf import settings
 from django.conf.urls.static import static
+from users.views import *
 
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('users/', include('users.urls')),
-    path('verification/', include('verify_email.urls')),
     path('funolympics/', include('videos_app.urls')),
     path('funolympics/', include('gallery_app.urls')),
 
+    path('verification/', include('verify_email.urls')),
+    # password reset implementations
     path('reset_password/', auth_views.PasswordResetView.as_view(
         template_name="reset_password.html"), name="reset_password"),
     path('reset_password_sent/', auth_views.PasswordResetDoneView.as_view(template_name="reset_password_sent.html"),

@@ -14,7 +14,7 @@ body {
   min-height: 100vh;
   overflow: hidden;
   top: 0;
-  margin: 0 auto;
+  margin: 0;
   font-family: "Poppins", sans-serif;
   background: url(../media/images/background.jpg);
   background-size: 800px 650px;
@@ -117,7 +117,6 @@ body {
   position: absolute;
   right: 3%;
   text-decoration: underline;
-
 }
 
 /* #forgot_password{

@@ -1,8 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
 
-:root{
+:root {
     --dark_cyan: #3AB09E
 }
+
 * {
     box-sizing: border-box;
 }
@@ -15,41 +16,53 @@ body {
     overflow: scroll;
     margin: 0;
     font-family: "Poppins", sans-serif;
+    background: url(../media/images/background.jpg);
+    background-size: 800px 650px;
+    background-repeat: no-repeat;
+    background-position: bottom right;
 }
 
 .container {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 5px;    
+    border-radius: 5px;
+    flex-direction: column;
     width: 100%;
-    max-width: 100%;
-    padding: 15px;
+    justify-content: left;
+    margin-top: 50px;
+    padding: 15px 15px 15px 300px;
 }
 
 .signup-form {
     padding: 20px 30px;
-}
-#login-text{
     margin-left: 200px;
-  }
-#login-link{
+}
+
+#login-text {
+    margin-left: 200px;
+}
+
+#login-link {
     text-decoration: none;
     color: var(--dark_cyan);
     margin-left: 10px;
+    font-weight: 600;
 }
-.input-errors{
-    display:flex;
-  }
+
+.input-errors {
+    display: flex;
+}
+
 .input-fields {
     display: flex;
     margin-bottom: 10px;
-    padding-bottom: 10px;    
+    padding-bottom: 10px;
 }
-.input-errors label{
+
+.input-errors label {
     display: inline;
     width: 200px;
-  }
+}
+
 .input-fields input {
     border: 2px solid #f0f0f0;
     border-radius: 2px;
@@ -58,10 +71,11 @@ body {
     font-size: 14px;
     padding: 10px;
     width: 300px;
-    
+
 }
-.input-fields select{
-    max-width:300px;
+
+.input-fields select {
+    max-width: 300px;
     margin-bottom: 10px;
     padding-bottom: 10px;
     border: 2px solid #f0f0f0;
@@ -69,8 +83,9 @@ body {
     font-family: inherit;
     border: 1px solid rgb(158, 158, 158);
     font-size: 14px;
-    height:40px;
+    height: 40px;
 }
+
 .terms {
     font-size: 11px;
 }

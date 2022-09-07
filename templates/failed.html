@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            top: 0;
+            margin: 0 auto;
+            font-family: "Poppins", sans-serif;
+            background-image: url(../static/media/images/background.jpg);
+            background-size: 800px 650px;
+            background-repeat: no-repeat;
+            background-position: bottom right;
+
+        }
+
+        .container {
+            width: 100%;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            position: relative;
+        }
+
+        .header {
+            width: 100%;
+            text-align: center;
+            background-color:rgba(255, 0, 0, 0.437);
+            color: red;
+            position: absolute;
+            top: 0;
+        }
+
+        .message {
+            position: absolute;
+            top: 300px;
+        }
+
+        .container a {
+            text-decoration: none;
+            color: white;
+        }
+
+        .my-button {
+            text-decoration: none;
+            width: 100px;
+            height: 40px;
+            border: none;
+            padding: 10px 20px;
+            outline: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #3AB09E;
+            color: #fff;
+            font: inherit;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Account Activation Failed</h2>
+        </div>
+        <div class="message">
+            <h3>Sorry!</h3>
+            <p>
+                Your account could not be activated. We can resend you a confirmation mail.
+                Click the button below.
+            </p>
+
+            <a href="{% url 'request-new-link-from-email' %}" class="my-button">Resend Confirmation</a>
+        </div>
+
+
+
+
+    </div>
+</body>
+
+</html>

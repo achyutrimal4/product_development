@@ -8,34 +8,24 @@ import uuid
 
 
 class UserManager (BaseUserManager):
-    def create_user(self, email, username,   full_name, country, password=None  ):
+    def create_user(self, email, password=None, **extra_fields):
         if not email:
             raise ValueError("You must provide an email address")
-        if not username:
-            raise ValueError("You must provide a username")
-        
-        user = self.model(
-            email=self.normalize_email(email),
-            username = username,
-            full_name = full_name,
-            country = country,          
-        )        
+
+        email=self.normalize_email(email)
+        user = self.model(email=email, **extra_fields)             
         user.set_password(password)
         user.save(using=self._db)
         return user
-    
-    def create_superuser(self, email, username, full_name, country, password=None):
-        user = self.create_user(
-            email=self.normalize_email(email),
-            password=password,
-            username=username, 
-            full_name=full_name,
-            country=country, 
-        )        
-        user.is_admin = True
-        user.is_staff = True
-        user.is_superuser= True
-        user.is_active=True
+     
+    def create_superuser(self, email, password=None, **extra_fields):
+        extra_fields.setdefault('is_admin', True)
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', True)
+        extra_fields.setdefault('is_active', True)
+        
+        email=self.normalize_email(email)
+        user = self.create_user(email, password, **extra_fields)        
         user.save(using=self._db)
         return user
         
@@ -55,9 +45,9 @@ class User (AbstractBaseUser):
     id          =models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
    
     # first_name = 
-    #lastname
-    #country
-    #dob
+    # lastname
+    # country
+    # dob
         
     USERNAME_FIELD = 'email' #use this field to login to the account instead of username
     REQUIRED_FIELDS=['username', 'full_name', 'country']

@@ -17,9 +17,14 @@
   margin-bottom: 1rem;
   margin-right: 1rem;
   margin-top: 1rem;
-  z-index: 2;
+  z-index: 20;
   position: absolute;
-  right:2%;
+  width: fit-content;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 2px 2px -2px gray;
+
+  
 }
 
 

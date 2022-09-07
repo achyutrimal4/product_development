@@ -28,6 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -41,9 +42,9 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'videos_app.apps.VideosAppConfig',
     'gallery_app.apps.GalleryAppConfig',
-    # 'analytics_app.app.AnalyticsAppConfig'
-
+    
     "verify_email.apps.VerifyEmailConfig",
+    'rest_framework',    
 ]
 
 MIDDLEWARE = [
@@ -132,6 +133,25 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'acs.achyut@gmail.com'
 EMAIL_HOST_PASSWORD = 'limekwstjgzbdqdl'
+
+# django-verify-email modifications
+LOGIN_URL = 'login'
+EXPIRE_AFTER = "1d"
+MAX_RETRIES = 3
+SUBJECT = 'Verify Your Email Address'
+
+HTML_MESSAGE_TEMPLATE = "html_template.html"
+
+VERIFICATION_SUCCESS_TEMPLATE = "success.html"
+
+VERIFICATION_FAILED_TEMPLATE = "failed.html"
+
+REQUEST_NEW_EMAIL_TEMPLATE = "email.html"
+
+# LINK_EXPIRED_TEMPLATE = 'path/to/expired.html'
+
+# NEW_EMAIL_SENT_TEMPLATE  = 'path/to/new_email_sent.html'
+
 
 
 # Static files (CSS, JavaScript, Images)

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+
+            min-height: 100vh;
+            overflow: hidden;
+            top: 0;
+            margin: 0 auto;
+            font-family: "Poppins", sans-serif;
+
+        }
+
+        .container {
+            text-align: center;
+            width: 900px;
+            max-width: 100%;
+            margin-top: 50px;
+            padding: 15px;
+
+        }
+
+        .header {
+            text-align: center;
+            background-color: purple;
+            color: white;
+        }
+
+        .container a {
+            text-decoration: none;
+            color: white;
+        }
+
+        .my-button {
+            text-decoration: none;
+            width: 100px;
+            height: 40px;
+            border: none;
+            padding: 10px 20px;
+            outline: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #3AB09E;
+            color: #fff;
+            font: inherit;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Account Activation</h2>
+        </div>
+        <h3>Confirm Your Email Address</h3>
+        <p>
+            Greetings! <br>
+
+            You received this mail because you attempted to make account on Funolympics, Please click on the link below
+            to confirm the email and activate your account.</p>
+
+        <a href="{{link}}" class="my-button">Verify</a>
+
+
+
+    </div>
+</body>
+
+</html>
