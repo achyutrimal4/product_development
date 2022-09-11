@@ -35,15 +35,15 @@
                     <a href="">Gymnastics</a>
                 </div>
             </div>
-            <li><a href="#">Fixtures</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="{% url 'fixtures' %}">Fixtures</a></li>
+            <li><a href="{% url 'contact'  %}">Contact</a></li>
 
             
             {% if request.user.is_superuser %}
             <li> <a href="{% url 'admin_panel' %}" class="baritem bar-button">Admin Panel</a></li>
                 
             {% endif %}
-                
+                  
           
           
             <div class="dropdown">
@@ -87,7 +87,7 @@
             <li><img src="{% static 'media/images/olympic.png'%}" alt="" id="logo"></li>
             <li><a href="{% url 'landing_page' %}">Home</a></li>
             <li><a href="#">News</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="{% url 'contact'  %}">Contact</a></li>
             <a href="{% url 'login' %}"> <input type="submit" name="" id="btn-signin" value="Login/Signup"></a>
         </ul>
     </div>

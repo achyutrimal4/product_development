@@ -1,0 +1,23 @@
+{% extends 'main.html' %}
+
+{% load static %}
+
+
+{% block static %}
+    
+{% endblock static %}
+
+
+{% block content %}
+    <div class="container">
+        <div class="form" method="POST">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="Submit" value="Submit">
+        </div>
+    </div>
+    
+{% endblock content %}
+    
+    
+

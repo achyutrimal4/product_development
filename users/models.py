@@ -78,6 +78,17 @@ class Profile (models.Model):
     def __str__(self):
         return str(self.user.username)
 
+class Contact (models.Model):
+    # if the message sender is not the user
+    email = models.EmailField(max_length=255, null=False, blank=False)
+    # if the sender is website user
+    sender = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, blank=True)
+    msg_title = models.CharField(max_length=255, null=False, blank=False)
+    message = models.TextField(max_length=  255, null=False, blank=False)
+    
+    def __str__(self):
+        return str(self.sender)
+    
 
 # class Message (models.Model):
 #     sender = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, blank=True) 

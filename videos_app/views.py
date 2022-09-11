@@ -1,5 +1,6 @@
+from multiprocessing import context
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Category, Video, Fixture, News, Standing
+from .models import Category, Video, Fixture, News, Standing, Players
 from gallery_app.models import Photo
 from users.models import User
 from django.contrib.auth.decorators import login_required, user_passes_test
@@ -7,14 +8,12 @@ from .forms import VideoForm, ReviewForm
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.db.models import Q
-from .utils import search_function
+from .utils import search_function, search_news
 from django.urls import reverse_lazy, reverse
 
 # analytics
 from django.http import JsonResponse
 from django.core import serializers
-
-
 
 
 # Create your views here.
@@ -49,8 +48,9 @@ def home(request):
     news = News.objects.all()
     photos = Photo.objects.all()
     standings = Standing.objects.all().order_by('-total').values()
+    players = Players.objects.all().order_by('-total').values()
     context = {'videos': videos, 'fixtures': fixtures,
-               'news': news, 'standings': standings, 'search_query': search_query, 'photos': photos}
+               'news': news, 'standings': standings, 'search_query': search_query, 'photos': photos, 'players': players}
     return render(request, 'videos_app/home.html', context)
 
 
@@ -70,7 +70,7 @@ def video_desc(request, pk):
     search_query = ''
     if request.GET.get('search_query'):
         search_query = request.GET.get('search_query')
-        
+
     videos = Video.objects.filter(Q(title__icontains=search_query) | Q(
         description__icontains=search_query))
 
@@ -192,7 +192,12 @@ def all_videos(request):
 @login_required(login_url='login')
 def all_news(request):
     news = News.objects.all()
-    context = {'news': news}
+
+
+    if request.method == "GET":
+        news, search_query = search_news(request)
+
+    context = {'news': news, 'search_query': search_query}
     return render(request, 'videos_app/all_news.html', context)
 
 
@@ -202,3 +207,8 @@ def live_games(request):
     context = {'videos': videos}
     return render(request, 'videos_app/live_games.html', context)
 
+
+def fixtures(request):
+    fixtures = Fixture.objects.all()
+    context = {'fixtures': fixtures}
+    return render(request, 'videos_app/fixtures.html', context)

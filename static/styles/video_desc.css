@@ -57,7 +57,11 @@ body {
     padding: 5px;
     border-radius: 5px;
 }
-
+.social-share{
+    display: flex;
+    width: 15%;
+    justify-content: space-between;
+}
 .views-buttons {
     display: flex;
     position: relative;
@@ -145,10 +149,7 @@ form a {
 .comment-data{
     display: flex;
     align-items: center;
-    /* position: relative; */
-
 }
-
 
 
 .right-container {
@@ -162,8 +163,7 @@ form a {
     width: 98%;
     box-shadow: 0 2.5px 2px -2px gray;
     padding: 5px;
-    /* margin: 5px; */
-    transition: transform .3s;
+     transition: transform .3s;
 }
 
 .video-card a {
@@ -176,7 +176,7 @@ form a {
     flex-direction: column;
     width: 95%;
     /* margin-left: 10px; */
-    text-align: justify;
+    text-align:left;
 }
 
 .thumbnail video {
@@ -195,6 +195,10 @@ form a {
     padding:.5em 1.5em;   
     position: relative;
     border-bottom: 1px solid #b6b6b638;
+}
+
+.comment-container img{
+    object-fit: cover;
 }
 
 .user-comment{

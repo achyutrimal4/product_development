@@ -1,0 +1,40 @@
+@import url('./variables.css');
+@import url('./animation.css');
+
+* {
+    box-sizing: border-box;
+
+}
+
+body {   
+    margin: auto;
+    background-color: rgb(230, 230, 230);
+    font-size: 14px;
+}
+
+.container {
+  display: flex;
+  border-radius: 5px;
+  flex-direction: column;
+  /* width: 900px; */
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+  margin-top: 50px;
+  padding: 15px;
+
+}
+.fixture-grid{
+    display: grid;
+    grid-template-columns: repeat(4, minmax(300px, 1fr));
+    grid-gap: 10px;
+}
+
+.fixture-card{
+    padding: 10px;
+    background-color: white;
+}
+
+.fixture-card p:last-child{
+    color: grey;
+}

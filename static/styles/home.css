@@ -1,8 +1,6 @@
 @import url('./variables.css');
 @import url('./animation.css');
 
-
-
 * {
     box-sizing: border-box;
 
@@ -10,10 +8,8 @@
 
 body {
     margin: auto;
-    background-color: rgb(230, 230, 230);
+    background-color: var(--background-color);
     font-size: 14px;
-
-
 }
 
 body h2 {
@@ -30,6 +26,68 @@ body h2 {
     color: red;
 }
 
+.live-banner {
+    width: 100%;
+    background: white;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    justify-content: center;
+}
+
+.live-thumbnail {
+    display: flex;
+    width: 15%;
+    text-align: center;
+    transition: transform .2s
+}
+.live-thumbnail:hover{
+    cursor: pointer;
+    transform: scale(0.98);
+}
+
+.live-thumbnail img {
+    width: 100px;
+    height: 75px;
+}
+
+.live-thumbnail p {
+    background-color: red;
+    color: white;
+    width: 40px;
+    margin: 0;
+    padding: 0;
+}
+.live-description{
+    width: 70%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+.live-description h3, p{
+    margin: 0;
+    padding: 0;
+}
+.live-description p:last-child{
+    color: grey;
+    font-size: 14px;
+}
+
+.live-banner i {
+    color: red;
+    position: absolute;
+    right: 0;
+    margin-right: 3rem;
+    animation: loading 1.5s ease-in-out infinite;
+}
+
+#live-link {
+    margin-right: 1.5rem !important;
+    color: red;
+    animation: loading 1.5s ease-in-out infinite;
+}
+
+
 
 .container {
     display: flex;
@@ -37,7 +95,6 @@ body h2 {
     justify-content: space-around;
     padding: 10px;
     margin: 10px 0 0 30px;
-
 }
 
 .left-container {
@@ -47,7 +104,8 @@ body h2 {
     align-items: center;
     background-image: linear-gradient(to right, rgba(128, 0, 128, 0.5), rgba(0, 255, 255, 0.5));
     padding: 5px;
-    /* animation: move-in-left 1.5s ease-in-out; */
+    height: fit-content
+        /* animation: move-in-left 1.5s ease-in-out; */
 }
 
 .fixture-container {
@@ -98,7 +156,7 @@ body h2 {
     cursor: pointer;
 }
 
-.standings-container {
+.standings-container, .players{
     display: flex;
     width: 100%;
     flex-direction: column;
@@ -157,26 +215,6 @@ body h2 {
     /* position: relative; */
 
 }
-
-.title h2 {
-    text-align: left;
-    margin-left: 8px;
-}
-
-.title i {
-    color: red;
-    position: absolute;
-    right: 0;
-    margin-right: 20rem;
-    animation: loading 1.5s ease-in-out infinite;
-}
-
-#live-link {
-    margin-right: 21.5rem !important;
-    color: red;
-    animation: loading 1.5s ease-in-out infinite;
-}
-
 .title a {
     position: absolute;
     right: 0;
@@ -188,6 +226,11 @@ body h2 {
 .title a:hover {
     color: purple;
     text-decoration: underline;
+}
+
+.title h2 {
+    text-align: left;
+    margin-left: 8px;
 }
 
 
@@ -260,6 +303,7 @@ body h2 {
     /* flex-direction: row; */
     align-content: center;
 }
+
 .gallery-container {
     display: flex;
     align-content: center;
@@ -267,6 +311,7 @@ body h2 {
     overflow: hidden;
 
 }
+
 .card-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(300px, 1fr));

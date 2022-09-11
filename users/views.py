@@ -1,8 +1,9 @@
 from email import message
 from lib2to3.pgen2 import token
+from multiprocessing import context
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
-from users.forms import RegistrationForm, UsersAuthenticationForm, ProfileUpdateForm
+from users.forms import RegistrationForm, UsersAuthenticationForm, ProfileUpdateForm, ContactForm
 from django.contrib.auth.models import User
 from django.contrib import messages
 from .models import Profile
@@ -92,3 +93,16 @@ def edit_profile(request):
             return redirect('myprofile')
     context = {'form': form}
     return render(request, 'users/editProfile.html', context)
+
+
+def contact(request):   
+    form = ContactForm(request.POST)
+
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Your message has been recorded. We will get back at you as soon as possible.')
+            return redirect('contact')
+    context = {'form': form}
+    return render(request, 'users/contact.html', context)

@@ -14,6 +14,7 @@ urlpatterns=[
    path('all-videos/', views.all_videos, name="all_videos"),
    path('like/<str:pk>/', views.like, name="like_video"),
    path('live-games/', views.live_games, name="live_games"),
+   path('fixtures/', views.fixtures, name='fixtures'),
    
    # news
    path('all-news/', views.all_news, name='all_news'),

@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     
     "verify_email.apps.VerifyEmailConfig",
     'rest_framework',    
+    
+    'django_social_share',
 ]
 
 MIDDLEWARE = [
@@ -72,6 +74,9 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.media',
+                
+                # django-social-share
+                'django.template.context_processors.request',
             ],
         },
     },
@@ -140,13 +145,13 @@ EXPIRE_AFTER = "1d"
 MAX_RETRIES = 3
 SUBJECT = 'Verify Your Email Address'
 
-HTML_MESSAGE_TEMPLATE = "html_template.html"
+HTML_MESSAGE_TEMPLATE = "email_verification/html_template.html"
 
-VERIFICATION_SUCCESS_TEMPLATE = "success.html"
+VERIFICATION_SUCCESS_TEMPLATE = "email_verification/success.html"
 
-VERIFICATION_FAILED_TEMPLATE = "failed.html"
+VERIFICATION_FAILED_TEMPLATE = "email_verification/failed.html"
 
-REQUEST_NEW_EMAIL_TEMPLATE = "email.html"
+REQUEST_NEW_EMAIL_TEMPLATE = "email_verification/email.html"
 
 # LINK_EXPIRED_TEMPLATE = 'path/to/expired.html'
 

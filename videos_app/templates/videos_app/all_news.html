@@ -16,6 +16,9 @@
     </div>
 
     <div class="news-card-container">
+        {% if search_query%}
+        <p style="color:#3AB09E">Search results for {{search_query}}</p>
+        {% endif %}
         {% for news in news %}
         <a href="{% url 'news_desc' news.id %}">
             <div class="news-card">
@@ -27,6 +30,7 @@
                     <p>{{news.description}}</p>
                 </div>
             </div>
+            
         </a>
         {% endfor %}
     </div>

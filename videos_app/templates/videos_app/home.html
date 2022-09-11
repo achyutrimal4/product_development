@@ -9,10 +9,21 @@
 {% block content %}
 
 
+<div class="live-banner">
+    <div class="live-thumbnail">
+        <img src="{% static 'media/images/cycling.png' %}" alt="">
+        <p>Live now</p>
 
+    </div>
+    <div class="live-description">
+        <h3>ROAD RACE - MEN TRIAL 400 K.M</h3>
+        <p>September 7 2022, 13:30</p>
+        <p>Venue:  Bayjing FunOlympics Park, Track 2</p>
+    </div>
+    <a href="{% url 'live_games' %}" id="live-link">Live Games</a>
+    <i class="fa-solid fa-tv"></i>
+</div>
 <div class="container">
-
-
     <div class="left-container">
         <div class="fixture-container">
             <h2>Upcoming games</h2>
@@ -46,14 +57,37 @@
                 {% endfor %}
             </table>
         </div>
+
+        <div class="players">
+            <h2>Top Players</h2>
+            <table id="top-players">
+                <table id="standings-table">
+                    <tr>
+                        <th>Player</th>
+                        <th><i class="fa-solid fa-medal" style="color:gold ;"></i></th>
+                        <th><i class="fa-solid fa-medal" style="color:silver;"></i></th>
+                        <th><i class="fa-solid fa-medal" style="color:brown;"></i></th>
+                        <th><i class="fa-solid fa-ranking-star" style="color: purple;"></i></th>
+                    </tr>
+                    {% for player in players %}
+                    <tr>
+                        <td>{{player.name}}</td>
+                        <td>{{player.gold}}</td>
+                        <td>{{player.silver}}</td>
+                        <td>{{player.bronze}}</td>
+                        <td>{{player.total}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </table>
+        </div>
     </div>
 
     <div class="right-container">
         <div class="video-container">
             <div class="title">
                 <h2>Latest Videos</h2>
-                <a href="{% url 'live_games' %}" id="live-link">Live Games</a>
-                <i class="fa-solid fa-tv"></i>
+              
                 <a href="{% url 'all_videos' %}">Load more videos →</a>
             </div>
             {% if search_query%}

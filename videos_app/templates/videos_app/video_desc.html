@@ -16,7 +16,6 @@
         <div class="video-details">
             <div class="video-desc">
                 <p>{{video.title}}</p>
-
                 <div class="tags">
                     {% for category in video.category.all %}
                     <small>{{category}}</small>
@@ -25,7 +24,11 @@
                     <small>{{country}}</small>
                     {% endfor %}
                 </div>
-                
+                <div class="social-share">
+                    {% include 'social_share.html' %}
+                </div>
+
+
                 <div class="views-buttons">
                     <p style="margin-right:20px ;">{{video_views}} views</p>
                     <p>{{video.uploaded}}</p>
@@ -36,7 +39,6 @@
                             <button type="submit" name="viedo_id" value="{{video.id}}" class="btn-small">
                                 <i class="fas fa-arrow-up"></i></button>
                             <p>{{video.total_likes}} likes</p>
-                            <a href=""><i class="fa-solid fa-share-from-square"> </i></a>
                         </form>
                     </div>
 
@@ -86,5 +88,4 @@
     <p id="date">{{review.created}}</p>
 </div>
 {% endfor %}
-
 {% endblock content %}

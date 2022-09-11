@@ -1,0 +1,8 @@
+{% load social_share %}
+{% post_to_facebook object_or_url '<i class="fa-brands fa-facebook-f" style="color:blue;"></i>'%}
+{% post_to_twitter "{{object.title}}. Check it out!" object_or_url '<i class="fa-brands fa-twitter" style="color:skyblue;"></i>'%}
+{% send_email object.title "{{object.title}}. Check it out!" object_or_url "<i class='fa fa-envelope'></i>" %}
+{% post_to_reddit "{{object.title}}" object_or_url '<i class="fa-brands fa-reddit"  style="color:rgb(255, 68, 0);" ></i>' %}
+{% post_to_whatsapp  object_or_url '<i class="fa-brands fa-whatsapp" style="color:rgb(11, 98, 24);"></i>' %}
+
+

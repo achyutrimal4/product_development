@@ -96,3 +96,13 @@ class Standing (models.Model):
 
     def __str__(self):
         return self.country
+
+class Players(models.Model):
+    name = models.CharField(max_length=255)
+    gold = models.IntegerField()
+    silver = models.IntegerField()
+    bronze = models.IntegerField()
+    total = models.IntegerField()
+
+    def __str__(self):
+        return self.name
