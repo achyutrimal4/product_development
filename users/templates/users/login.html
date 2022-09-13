@@ -1,5 +1,8 @@
 {% extends 'main.html'%}
 
+{% block title %}Login- FunOlympics{% endblock title %}
+
+
 {% load static %}
 {% block styles %}
 <link rel="stylesheet" href="{% static 'styles/login.css' %}">
@@ -9,7 +12,7 @@
 
 <div class="container">
 
-  <form id="login-form" method="POST" novalidate>
+  <form class="default-form" method="POST" novalidate>
 
     <h2>Login with email</h2>
     {% csrf_token %}
@@ -22,13 +25,6 @@
       <div class="input-fields">
         {{field}}
       </div>
-
-
-      <!-- <div class="errors-div">
-        {% for error in field.errors %}
-        <small style="color: red">{{error}}</small>
-        {% endfor %}
-      </div> -->
     </div>
 
     {% endfor %}
@@ -39,7 +35,7 @@
       </div>
       {% endif %}
 
-    <input type="submit" value="Login" id="default-button" /><br>
+    <input type="submit" value="Login" class="default-button" /><br>
     <div class="links">
 
       <a href=""><input type="checkbox" name="" id="" value="">Remember me </a>

@@ -1,23 +1,131 @@
 {% extends 'main.html'%}
 
+{% block title %}Add Videos - FunOlympics{% endblock title %}
+
 {% load static %}
 {% block styles %}
 <link rel="stylesheet" href="{% static 'styles/add_videos.css' %}">
 {% endblock %}
 
+
 {% block content%}
 
+<!-- This template is used to generate forms to add new videos, live videos sports category and participating countries -->
+
 <div class="container">
+ 
+  <!-- Add new live videos -->
+  <!-- ============================================================= -->
+  {% if page == 'add_live' %}
+
+  <span>
+    <a href="{% url 'add_videos' %}">Add Videos</a>
+    <a href="{% url 'add_country' %}">Add Participating Countries</a>
+    <a href="{% url 'add_category' %}">Add Sports Category</a>
+  </span>
+
+  <form action="" id="video-form" method="POST" novalidate>
+
+    <h2>Add a new live video</h2>
+
+    {% csrf_token %}
+    {% for field in liveform %}
+    <div class="input-errors">
+      {{field.label_tag}}
+      <div class="input-fields">
+        {{field}}
+      </div>
+
+      <div class="errors-div">
+        {% for error in field.errors %}
+        <small style="color: red">{{error}}</small>
+        {% endfor %}
+      </div>
+    </div>
+    {% endfor %}
+    <input type="submit" value="Add Live Video" id="addvideo-button">
+  </form>
+
+<!-- Add country -->
+<!-- ================================================================= -->
+
+
+  {% elif page == 'add_country' %}
+  <span>
+    <a href="{% url 'add_live' %}">Add Live Videos</a>
+    <a href="{% url 'add_videos' %}">Add Videos</a>
+    <a href="{% url 'add_category' %}">Add Sports Category</a>
+  </span>
+
+  <form action="" id="video-form" method="POST" novalidate>
+
+    <h2>Add a participating country</h2>
+
+    {% csrf_token %}
+    {% for field in countryform %}
+    <div class="input-errors">
+      {{field.label_tag}}
+      <div class="input-fields">
+        {{field}}
+      </div>
+
+      <div class="errors-div">
+        {% for error in field.errors %}
+        <small style="color: red">{{error}}</small>
+        {% endfor %}
+      </div>
+    </div>
+    {% endfor %}
+    <input type="submit" value="Add Country" id="addvideo-button">
+  </form>
+
+
+  <!-- Add new sports category form -->
+  <!-- ===============================================================  -->
+  {% elif page == 'add_category' %}
+
+  <span>
+    <a href="{% url 'add_live' %}">Add Live Videos</a>
+    <a href="{% url 'add_videos' %}">Add Videos</a>
+    <a href="{% url 'add_country' %}">Add Participating Countries</a>
+  </span>
+
+  <form action=""id="video-form" method="POST" novalidate>
+
+    <h2>Add a sports category</h2>
+
+    {% csrf_token %}
+    {% for field in categoryform %}
+    <div class="input-errors">
+      {{field.label_tag}}
+      <div class="input-fields">
+        {{field}}
+      </div>
+
+      <div class="errors-div">
+        {% for error in field.errors %}
+        <small style="color: red">{{error}}</small>
+        {% endfor %}
+      </div>
+    </div>
+    {% endfor %}
+    <input type="submit" value="Add Sports Category" id="addvideo-button">
+  </form>
+
+  <!-- Add new video form -->
+  <!-- ===============================================================  -->
+  {% else %}
+  <span>
+    <a href="{% url 'add_live' %}">Add Live Videos</a>
+    <a href="{% url 'add_country' %}">Add Participating Country</a>
+    <a href="{% url 'add_category' %}">Add Sports Category</a>
+  </span>
 
   <form id="video-form" method="POST" novalidate enctype="multipart/form-data">
-
     <h2>Add a new video</h2>
     {% csrf_token %}
-
-    {% for field in form  %}
-
+    {% for field in form %}
     <div class="input-errors">
-
       {{field.label_tag}}
       <div class="input-fields">
         {{field}}
@@ -32,6 +140,7 @@
     {% endfor %}
     <input type="submit" value="Add Video" id="addvideo-button" />
   </form>
+  {% endif %}
 </div>
 
 {% endblock content %}

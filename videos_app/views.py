@@ -1,19 +1,18 @@
 from multiprocessing import context
+from pydoc import pager
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Category, Video, Fixture, News, Standing, Players
+from .models import Category, Video, Fixture, News, Standing, Players, Country
 from gallery_app.models import Photo
 from users.models import User
 from django.contrib.auth.decorators import login_required, user_passes_test
-from .forms import VideoForm, ReviewForm
+from .forms import LiveVideoForm, VideoForm, ReviewForm, CountryForm, CategoryForm, NewsForm
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.db.models import Q
 from .utils import search_function, search_news
 from django.urls import reverse_lazy, reverse
 
-# analytics
-from django.http import JsonResponse
-from django.core import serializers
+
 
 
 # Create your views here.
@@ -54,7 +53,94 @@ def home(request):
     return render(request, 'videos_app/home.html', context)
 
 
-# video description and play
+
+# add videos template
+@login_required(login_url='login')
+@user_passes_test(lambda u: u.is_superuser, login_url='home')
+def add_videos(request):
+    page='add_video'
+    form = VideoForm()
+    if request.method == 'POST':
+        form = VideoForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Video was successfully uploaded.')
+            return redirect("admin_panel")
+    context = {'form': form, 'page': page}
+    return render(request, 'videos_app/add_videos.html', context)
+
+
+
+
+# add live videos
+@user_passes_test(lambda u: u.is_superuser, login_url='home')
+@login_required(login_url='login')
+def add_live(request):
+    page='add_live'
+    form = LiveVideoForm()
+    if request.method == 'POST':
+        form = LiveVideoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Live video successfully added.')
+            return redirect("admin_panel")
+    context = {'liveform': form, 'page': page}
+    return render(request, 'videos_app/add_videos.html', context)
+
+
+
+
+# add participating countries
+@user_passes_test(lambda u: u.is_superuser, login_url='home')
+@login_required(login_url='login')
+def add_country(request):
+    page='add_country'
+    form = CountryForm()
+    if request.method == 'POST':
+        form = CountryForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Country successfully added.')
+            return redirect("add_videos")
+    context = {'countryform': form, 'page': page}
+    return render(request, 'videos_app/add_videos.html', context)
+
+
+
+
+# add sports category
+@user_passes_test(lambda u: u.is_superuser, login_url='home')
+@login_required(login_url='login')
+def add_category(request):
+    page='add_category'
+    form = CategoryForm()
+    if request.method == 'POST':
+        form = CategoryForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Sports category successfully added.')
+            return redirect("add_videos")
+    context = {'categoryform': form, 'page': page}
+    return render(request, 'videos_app/add_videos.html', context)
+
+
+# add news
+@user_passes_test(lambda u: u.is_superuser, login_url='home')
+@login_required(login_url='login')
+def add_news(request):
+    form = NewsForm()
+    if request.method == 'POST':
+        form = NewsForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'News successfully added.')
+            return redirect("admin_panel")
+    context = {'newsform': form}
+    return render(request, 'videos_app/add_news.html', context)
+
+
+
+# video description 
 @login_required(login_url='login')
 def video_desc(request, pk):
     videos = Video.objects.all()
@@ -101,6 +187,7 @@ def video_desc(request, pk):
     return render(request, 'videos_app/video_desc.html', context)
 
 
+# news description
 @login_required(login_url='login')
 def news_desc(request, pk):
     news = News.objects.all()
@@ -108,9 +195,8 @@ def news_desc(request, pk):
     context = {'news': news, 'newsObject': newsObject}
     return render(request, 'videos_app/news_desc.html', context)
 
+
 # admin panel
-
-
 @login_required(login_url='login')
 @user_passes_test(lambda u: u.is_superuser, login_url='home')
 def admin_panel(request):
@@ -118,24 +204,18 @@ def admin_panel(request):
     news_count = News.objects.all().count()
     users_count = User.objects.all().count()
     photo_count = Photo.objects.all().count()
+    
+    
+    # for password reset request
+    profile = request.user.profile
+    inbox = profile.messages.all()
+    unread_count = inbox.filter(is_read=False).count()
+    
     context = {'video_count': video_count,
-               'news_count': news_count, 'users_count': users_count, 'photo_count': photo_count}
+               'news_count': news_count, 'users_count': users_count, 'photo_count': photo_count, 'unread_count': unread_count}
     return render(request, 'videos_app/admin_panel.html', context)
 
 
-# add videos template
-@login_required(login_url='login')
-@user_passes_test(lambda u: u.is_superuser, login_url='home')
-def add_videos(request):
-    form = VideoForm()
-    if request.method == 'POST':
-        form = VideoForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Video was successfully uploaded.')
-            return redirect("admin_panel")
-    context = {'form': form}
-    return render(request, 'videos_app/add_videos.html', context)
 
 
 # view to update videos
@@ -167,6 +247,7 @@ def delete_videos(request, pk):
     return render(request, 'videos_app/delete_confirmation.html', context)
 
 
+# like videos
 def like(request, pk):
     video = get_object_or_404(Video, id=request.POST.get('video_id'))
     video.likes.add(request.user)
@@ -178,21 +259,30 @@ def like(request, pk):
 #     return redirect('score:post-detail', pk=pk)
 
 
-def test(request):
-    return render(request, 'videos_app/test.html')
 
-
+# view all videos
 @login_required(login_url='login')
 def all_videos(request):
-    videos = Video.objects.all()
-    context = {'videos': videos}
+    categories = Category.objects.all()
+    countries = Country.objects.all()
+    # videos = Video.objects.all()
+    
+    # filter by category
+    category = request.GET.get('category')
+    if category  is None:
+        videos = Video.objects.all()
+    else:
+        videos = Video.objects.filter(category__name = category)
+    
+    context = {'videos': videos, 'categories': categories, 'countries':countries}
     return render(request, 'videos_app/all_videos.html', context)
 
 
+
+# view all news
 @login_required(login_url='login')
 def all_news(request):
-    news = News.objects.all()
-
+    news = News.objects.all().order_by('-created').values()
 
     if request.method == "GET":
         news, search_query = search_news(request)
@@ -201,6 +291,7 @@ def all_news(request):
     return render(request, 'videos_app/all_news.html', context)
 
 
+# view live games
 @login_required(login_url='login')
 def live_games(request):
     videos = Video.objects.all()
@@ -208,7 +299,8 @@ def live_games(request):
     return render(request, 'videos_app/live_games.html', context)
 
 
-def fixtures(request):
+# view fixtures and results
+def fixtures(request):    
     fixtures = Fixture.objects.all()
     context = {'fixtures': fixtures}
     return render(request, 'videos_app/fixtures.html', context)

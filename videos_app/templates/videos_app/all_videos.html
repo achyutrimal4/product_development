@@ -1,5 +1,8 @@
 {% extends 'main.html'%}
 
+
+{% block title %}Videos- FunOlympics{% endblock title %}
+
 {% load static %}
 
 {% block styles %}
@@ -9,37 +12,45 @@
 {% block content %}
 
 <div class="container">
-    <div class="title">
-        <h2>Latest Videos</h2>
-        <a href="">Filter By</a>
-    </div>
-<div class="video-container">   
-    <div class="card-container">
-        <div class="card-grid">
-            {% for video in videos %}
-            <div class="card">
-                <a href="{% url 'video_desc' video.id %}" style="text-decoration: none; width:100%;">
-                    <div class="thumbnail">
-                        <video src="{{video.video.url}}" type="video/mp4"
-                            style="width: 280px; height: 150px;"></video>
-                    </div>
-                    <div class="card-details">
-                        <p><a href="{% url 'video_desc' video.id %}">{{video.title}}</a></p>
-                        <p><i class="fa-solid fa-arrow-up"></i>{{video.vote_ratio}}%</p>
-                        {% if request.user.is_superuser %}
-                        <span style="position: absolute; right: 5%; bottom: 2.5%;">
-                            <a href="{% url 'update_videos' video.id %}"><i class="fas fa-edit"></i></a>
-                            <a href="{% url 'delete_videos' video.id %}"><i class="fa-solid fa-trash"></i></a>
-                        </span>
-                        {% endif %}
-                    </div>
-                </a>
-            </div>
-            {% endfor %}
 
+    <div class="sidebar">
+       
+        <h4>Categories</h4>
+
+        <a href="{% url 'all_videos' %}" class="baritem bar-button">All Videos</a>
+        {% for category in categories %}
+        <a href="{%  url 'all_videos' %}?category={{category.name}}" class="baritem bar-button">{{category.name}}</a>
+        {% endfor %}
+
+    </div>
+
+    <div class="video-container">
+        <div class="card-container">
+            <div class="card-grid">
+                {% for video in videos %}
+                <div class="card">
+                    <a href="{% url 'video_desc' video.id %}" style="text-decoration: none; width:100%;">
+                        <div class="thumbnail">
+                            <video src="{{video.video.url}}" type="video/mp4"
+                                style="width: 280px; height: 150px;"></video>
+                        </div>
+                        <div class="card-details">
+                            <p><a href="{% url 'video_desc' video.id %}">{{video.title}}</a></p>
+                            <p><i class="fa-solid fa-arrow-up"></i>{{video.vote_ratio}}%</p>
+                            {% if request.user.is_superuser %}
+                            <span style="position: absolute; right: 5%; bottom: 2.5%;">
+                                <a href="{% url 'update_videos' video.id %}"><i class="fas fa-edit"></i></a>
+                                <a href="{% url 'delete_videos' video.id %}"><i class="fa-solid fa-trash"></i></a>
+                            </span>
+                            {% endif %}
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+
+            </div>
         </div>
     </div>
-</div>
 </div>
 
 {% endblock content %}

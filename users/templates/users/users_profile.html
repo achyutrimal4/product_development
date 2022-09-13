@@ -1,8 +1,11 @@
 {% extends 'main.html'%}
 
+
+{% block title %}My Profile - FunOlympics{% endblock title %}
+
 {% load static %}
 {% block styles %}
-<link rel="stylesheet" href="{% static 'styles/users-account.css' %}">
+<link rel="stylesheet" href="{% static 'styles/users-profile.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -32,9 +35,14 @@
         <div class="profile-actions">
             <a href="{% url 'editprofile'%}"> <i class="fa fa-edit"></i>    Edit Details</a>
             <br>
-            <small style="color:rgb(79, 139, 243);">By clicking the button below, a password reset request message will be sent to the admin.</small>
-            <a href="#"> <i class="fa-solid fa-rotate-left"></i>     Request Password Reset</a> 
+            
+            {% if not request.user.is_superuser %}
+            
+            <a href="{% url 'create-message' admin.id %}"> <i class="fa-solid fa-rotate-left"></i>     Request Password Reset</a> 
             <a href="#"  style="color:red;"> <i class="fa-solid fa-trash"></i>    Deactivate account</a>
+                
+            {% endif %}
+                
         </div>
     </div>
 </div>

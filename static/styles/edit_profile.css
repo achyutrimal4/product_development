@@ -1,22 +1,15 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
-
-:root {
-    --dark_cyan: #3AB09E
-}
-
-* {
-    box-sizing: border-box;
-}
+@import url('./variables.css');
+@import url('./animation.css');
+@import url('../styles/modules/buttons.css');
+@import url('../styles/modules/app.css');
 
 body {
     display: flex;
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
-    /* overflow: hidden; */
     top: 0;
     margin: 0 auto;
-    font-family: "Poppins", sans-serif;
 }
 
 .container {

@@ -1,0 +1,32 @@
+{% extends 'main.html' %}
+
+
+{% block title %}Messages{% endblock title %}
+
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'styles/message.css' %}">
+{% endblock styles %}
+    
+
+{% block content %}
+<div class="container">
+   <div class="message-box">
+    <a href="{% url 'inbox' %}"><i class="fa fa-arrow-left"></i></a>
+    <div class="title">
+        <h4>{{inbox.subject}}</h4>
+    </div>
+    <div class="sender-details">
+        <p>{{inbox.sender}}</p>
+        <p>{{inbox.created}}</p>
+
+    </div>
+    <div class="message">
+        {{inbox.body}}
+    </div>
+   </div>
+</div>
+ 
+{% endblock content %}
+    

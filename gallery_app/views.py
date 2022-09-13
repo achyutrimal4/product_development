@@ -1,8 +1,7 @@
 from django.shortcuts import render
 from django.contrib import messages
-from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
-from gallery_app.forms import PhotoForm
+from gallery_app.forms import PhotoForm, AlbumForm
 from.models import Photo, Album
 
 
@@ -10,19 +9,26 @@ from.models import Photo, Album
 
 
 def gallery(request):
-    photos = Photo.objects.all()
+    album = request.GET.get('album')
+    if album == None:
+        photos = Photo.objects.all()
+    else:
+        photos = Photo.objects.filter(album__name = album)
+    
     albums = Album.objects.all()
+    # photos = Photo.objects.all()
+    
     context = {'photos': photos, 'albums': albums}
     return render(request, 'gallery_app/gallery.html', context)
 
 
 def view_photo(request, pk):
-    photo = Photo.objects.get(id=pk)
-    
+    photo = Photo.objects.get(id=pk)    
     return render(request, 'gallery_app/photo.html', {'photo': photo})
 
 
 def add_photos(request):
+    page = 'add_photo'
     form = PhotoForm()
     if request.method == 'POST':
         form = PhotoForm(request.POST, request.FILES)
@@ -30,5 +36,18 @@ def add_photos(request):
             form.save()
             messages.success(request, 'Photo was successfully uploaded.')
             return redirect('gallery')
-    context={'form': form}
+    context={'form': form, 'page':page}
+    return render(request, 'gallery_app/add_photos.html', context)
+
+
+def add_album(request):
+    page = 'add_album'
+    form = AlbumForm()
+    if request.method == 'POST':
+        form = AlbumForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'New album successfully created.')
+            return redirect('add_photos')
+    context={'albumform': form, 'page':page}
     return render(request, 'gallery_app/add_photos.html', context)

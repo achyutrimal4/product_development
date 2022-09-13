@@ -1,15 +1,7 @@
 @import url('./variables.css');
-
-* {
-    box-sizing: border-box;
-
-}
-
-body {
-    margin: auto;
-    background-color: rgb(230, 230, 230);
-    font-size: 14px;
-}
+@import url('../styles/modules/animation.css');
+@import url('../styles/modules/buttons.css');
+@import url('../styles/modules/app.css');
 
 body h2 {
     display: block;

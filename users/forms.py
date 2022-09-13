@@ -2,7 +2,7 @@ from fileinput import FileInput
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate
-from users.models import User, Profile, Contact
+from users.models import Inbox, User, Profile, Contact
 
 
 class RegistrationForm(UserCreationForm):
@@ -39,5 +39,8 @@ class ContactForm(forms.ModelForm):
         model = Contact
         fields=('email', 'msg_title', 'message')
         
-        
+class MessageForm(forms.ModelForm):
+    class Meta:
+        model = Inbox
+        fields = ['subject']
             

@@ -1,12 +1,6 @@
 @import url('./variables.css');
 @import url('./animation.css');
-
-
-
-* {
-    box-sizing: border-box;
-
-}
+@import url('../styles/modules/buttons.css');
 
 body {
     margin: auto;
@@ -25,7 +19,6 @@ body {
 
 form {
     padding: 20px 30px;
-
 }
 
 .input-errors {
@@ -86,20 +79,4 @@ form {
 .tag-input {
     width: 200px;
     font: inherit;
-}
-
-#addphoto-button {
-    width: 400px;
-    height: 40px;
-    border: none;
-    outline: none;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: var(--dark_cyan);
-    color: #fff;
-    font: inherit;
-    text-transform: uppercase;
-    font-weight: 500;
-    transition: 0.5s;
-    margin-left: 200px;
 }

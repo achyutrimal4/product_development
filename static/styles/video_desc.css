@@ -1,15 +1,7 @@
 @import url('./variables.css');
-
-* {
-    box-sizing: border-box;
-}
-
-body {
-    margin: auto;
-    background-color: rgb(230, 230, 230);
-    font-size: 14px;
-    font-family: "Poppins", sans-serif;
-}
+@import url('./animation.css');
+@import url('../styles/modules/buttons.css');
+@import url('../styles/modules/app.css');
 
 .container {
     display: flex;
@@ -46,10 +38,10 @@ body {
 .video-desc>p {
     font-size: 20px;
 }
+
 .tags{
     display: flex;
     width: 100%;
-
 }
 .tags small{
     background-color: rgba(128, 0, 128, 0.168);

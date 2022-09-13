@@ -1,0 +1,91 @@
+{% extends 'main.html' %}
+
+
+{% block title %}Send Messagae{% endblock title %}
+
+{% load static %}
+{% block styles %}
+<!-- <link rel="stylesheet" href="{% static 'styles/login.css' %}"> -->
+{% endblock %}
+
+
+{% block content %}
+
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+        overflow: hidden;
+        top: 0;
+        font-size: 14px;
+        margin: 0 auto;
+        font-family: "Poppins", sans-serif;
+    }
+
+    .container {
+        display: flex;
+        border-radius: 5px;
+        flex-direction: column;
+        width: 900px;
+        justify-content: center;
+        align-items: center;
+        max-width: 100%;
+        margin-top: 50px;
+        padding: 15px;
+        box-shadow: 2px 5px 4px -6px grey ;
+    }
+
+    .container form {
+        padding: 20px 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+   form label{
+    display: block;
+    width: 300px;
+   }
+
+    input {
+        border: 2px solid #f0f0f0;
+        border-radius: 2px;
+        font-family: inherit;
+        border: 1px solid rgb(158, 158, 158);
+        font-size: 14px;
+        padding: 10px;
+        width: 300px;
+    }
+
+    .submit-request {
+        width: auto;
+        height: 40px;
+        border: none;
+        outline: none;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: var(--dark_cyan);
+        color: #fff;
+        font: inherit;
+        text-transform: uppercase;
+        text-align: center;
+        font-weight: 500;
+    }
+    form li{
+        font-size: 12px;
+    }
+</style>
+
+<div class="container">
+    <form method="POST" novalidate>
+        <h2>Reset Password Request</h2>
+        <p>By clicking the button below, a password reset request will be sent to the admin.</p>
+        <p>After verification, you will receive a password reset link in your email inbox. Check that out. </p>
+        {% csrf_token %}
+        <!-- {{form.as_p}} -->
+        <input type="submit" value="Send Password Reset Request" class="submit-request" />
+    </form>
+</div>
+{% endblock content %}

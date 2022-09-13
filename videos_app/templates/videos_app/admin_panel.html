@@ -1,5 +1,8 @@
 {% extends 'main.html'%}
 
+
+{% block title %}Admin Panel - FunOlympics{% endblock title %}
+
 {% load static %}
 {% block styles %}
 <link rel="stylesheet" href="{% static 'styles/admin_panel.css' %}">
@@ -13,13 +16,17 @@
         <a href="" class="baritem bar-button">Dashboard</a>
         <a href="" class="baritem  bar-button">Content</a>
         <a href="{% url 'admin:index' %}" class="baritem bar-button">Admin Site</a>
+        <a href="{% url 'inbox' %}" class="baritem bar-button" style="display:flex ;">Passowrd Reset Requests 
+            <div class="circle">
+                <small >{{unread_count}}</small>
+            </div>
+        </a>
         <a href="" class="baritem bar-button">User Site</a>
-        <a href="" class="baritem bar-button">Manage Site</a>
+        <a href="{% url 'add_live' %}" class="baritem bar-button">Add Live Video</a>
     </div>
 
     <div class="dashboard-container">
         <h3>In Numbers</h3>
-
         <div class="card-container">
             <div class="card-grid">
                 <div class="card">
@@ -34,7 +41,7 @@
                     <div class="card-details">
                         <i class="fa-solid fa-newspaper"></i>                        
                         <p>{{news_count}} News </p>
-                        <a href="" > <button id="btn-small"> Add
+                        <a href="{% url 'add_news' %}" > <button id="btn-small"> Add
                             News</button></a>
                     </div>
                 </div>
@@ -53,11 +60,13 @@
                             add_a_photo
                         </span>
                         <p style="margin-left:15px ;">{{photo_count}} Photos</p>
-                        <a href=""> <button id="btn-small" style="margin-left:15px ;"> Add Photo</button></a>
+                        <a href="{% url 'add_photos' %}"> <button id="btn-small" style="margin-left:15px ;"> Add Photo</button></a>
                     </div>
                 </div>
             </div>
         </div>
+
+
         <h3>Analytics</h3>
         <div class="card-grid">
             <div class="card">

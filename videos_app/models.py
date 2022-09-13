@@ -28,6 +28,26 @@ class Video (models.Model):
     def __str__(self):
         return self.title
 
+class LiveVideo(models.Model):
+    title = models.CharField(max_length=255)
+    description = models.TextField(null=True, blank=True)
+    url = models.TextField(verbose_name="Live URL")
+    upload_by = models.ForeignKey(Profile, null=True, blank=True, on_delete=models.SET_NULL)
+    category = models.ManyToManyField(
+        'Category', blank=True, verbose_name="Sports Category")
+    country = models.ManyToManyField(
+        'Country', blank=True, verbose_name="Participating Countries")
+    venue = models.CharField(max_length=255, blank=True, null=True, default="Bayjing FunOlympics Park")
+    likes = models.ManyToManyField(
+        settings.AUTH_USER_MODEL, blank=True, related_name='like_live')
+    video_views = models.ManyToManyField(
+        settings.AUTH_USER_MODEL, related_name='like_views', blank=True, default="admin@gmail.com")
+    uploaded = models.DateTimeField(auto_now_add=True)
+    id = models.UUIDField(default=uuid.uuid4, unique=True,
+                          primary_key=True, editable=False)  
+    
+    def __str__(self):
+        return self.title
 
 class Review(models.Model):
     comment_by = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
@@ -39,8 +59,6 @@ class Review(models.Model):
 
     def __str__(self):
         return self.comment
-
-
 
 
 class Category (models.Model):
@@ -75,10 +93,12 @@ class Fixture (models.Model):
 
 
 class News (models.Model):
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=255)
     description = models.TextField(null=True, blank=True)
-    image = models.ImageField(null=True, blank=True)
+    image = models.ImageField(null=True, blank=True, upload_to='images/news/')
     imageBy = models.CharField(max_length=200, default="Funolympics Admin")
+    author = models.CharField(max_length=200, default="Funolympics Admin", null=True, blank=True)
+    photo_caption = models.CharField(max_length=255,null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     id = models.UUIDField(default=uuid.uuid4, unique=True,
                           primary_key=True, editable=False)
@@ -89,7 +109,7 @@ class News (models.Model):
 
 class Standing (models.Model):
     country = models.CharField(max_length=200)
-    gold = models.IntegerField()
+    gold = models.IntegerField()    
     silver = models.IntegerField()
     bronze = models.IntegerField()
     total = models.IntegerField()
@@ -106,3 +126,5 @@ class Players(models.Model):
 
     def __str__(self):
         return self.name
+
+

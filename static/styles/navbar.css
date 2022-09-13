@@ -1,35 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
 
-body {
-    font-family: "Poppins", sans-serif;
-    margin: 0;
-}
-
-.top-bar {
-    width: 100%;
-    align-items: center;
-    align-content: center;
-    height: 5px;
-}
-
-.top-bar a {
-    color: purple;
-}
-
-.top-bar ul {
-    list-style-type: none;
-    margin: 0;
-    top: 0;
-    padding: 0;
-    overflow: hidden;
-
-}
-
-.top-bar li {
-    padding: 30px;
-    display: inline;
-    text-align: center;
-}
 
 #logo {
     width: 90px;
@@ -199,52 +168,4 @@ body {
     position: absolute;
     margin-top: -20px;
     margin-left: 50px;
-}
-
-/* 
-/* sidebar */
-
-.sidebar {
-    width: 20%;
-    background-color: white;
-    margin-right: 20px;
-    box-shadow: 2px 0 5px -2px #888;
-    display: flex;
-    padding: 10px;
-    height: 100%;
-    flex-direction: column;
-    position: sticky;
-    left: 0;
-    top: 0;
-    top: 150px;
-}
-
-.sidebar a {
-    text-decoration: none;
-    color: black;
-}
-
-.baritem {
-    padding: 14px 18px;
-    float: left;
-    width: auto;
-    border: none;
-    display: block;
-    outline: 0;
-}
-
-#blank-btn {
-    cursor: context-menu;
-}
-
-#blank-btn:hover {
-    background-color: white !important;
-}
-
-.bar-button {
-    white-space: normal;
-}
-
-.bar-button:hover {
-    background-color: rgb(230, 230, 230);
 }

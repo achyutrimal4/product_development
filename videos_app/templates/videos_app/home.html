@@ -1,5 +1,8 @@
 {% extends 'main.html'%}
 
+
+{% block title %}Watch Games - FunOlympics{% endblock title %}
+
 {% load static %}
 
 {% block styles %}
@@ -150,7 +153,6 @@
                 <a href="{% url 'gallery' %}">See more photos →</a>
             </div>
             <div class="gallery-container">
-
                 <div class="card-grid">
                     {% for photo in photos %}
                     <div class="card">

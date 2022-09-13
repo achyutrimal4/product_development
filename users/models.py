@@ -70,13 +70,13 @@ class Profile (models.Model):
     name = models.CharField(max_length=255, blank=True, null=True)
     email = models.EmailField(max_length=255, blank=True, null=True)
     country = CountryField(blank=True, null=True, verbose_name="Counrty/Area of resdence", blank_label="Select Country")
-    profile_image = models.ImageField(null=True, blank=True, upload_to='images/', default='images/default.jpg')
+    profile_image = models.ImageField(null=True, blank=True, upload_to='images/profile_pics/', default='images/profile_pics/default.jpg')
     created = models.DateTimeField(auto_now_add=True)
     id = models.UUIDField(default=uuid.uuid4, unique=True,
                           primary_key=True, editable=False)
     
     def __str__(self):
-        return str(self.user.username)
+        return str(self.user.username) 
 
 class Contact (models.Model):
     # if the message sender is not the user
@@ -89,7 +89,19 @@ class Contact (models.Model):
     def __str__(self):
         return str(self.sender)
     
-
-# class Message (models.Model):
-#     sender = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, blank=True) 
-#     recipent = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, blank=True, related_name="messages")
+class Inbox (models.Model):
+    sender = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, blank=True)
+    receiver = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, blank=True, related_name='messages')
+    name = models.CharField(max_length=200, null=True, blank=True)
+    email = models.EmailField(max_length=200, null=True, blank=True)
+    subject = models.CharField(max_length=200, null=False, blank=False, default='Reset Password')
+    is_read = models.BooleanField(default=False, null=True)
+    created = models.DateTimeField(auto_now_add=True)
+    id = models.UUIDField(default=uuid.uuid4, unique=True,
+                          primary_key=True, editable=False)
+    
+    def __str__(self):
+        return str ( self.subject) 
+    
+    class Meta:
+        ordering = ['is_read', '-created']

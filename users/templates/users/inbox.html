@@ -1,0 +1,37 @@
+{% extends 'main.html' %}
+
+
+{% block title %}Messages{% endblock title %}
+
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'styles/inbox.css' %}">
+{% endblock styles %}
+
+
+{% block content %}
+<div class="container">
+    <div class="inbox-container">
+        
+        <span>
+            <p>Messages ({{inbox_count}})</p>
+            <p>New Messages ({{unread_count}})</p>
+        </span>
+
+
+        {% for inbox in inbox %}
+        <a href="{% url 'viewMessage' inbox.id %}">
+            <div class="message-card">
+                {% if not inbox.is_read %}
+                <p id="new-tag">New</p>
+                {% endif %}
+                <p id="sender">{{inbox.sender}}</p>
+                <p id="msg">{{inbox.subject}}</p>
+                <p id="time">{{inbox.created}}</p>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}

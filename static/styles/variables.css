@@ -1,9 +1,6 @@
 :root {
     --background-color: rgb(230, 230, 230);
     --dark_cyan: #3AB09E;
-    --color-main: #5aa5b9;
-    --color-main-light: #e6faff;
-    --color-sub-lighter: #ededfd;
     --color-text: #737373;
     --color-gray: #8b8b8b;
     --color-light: #e5e7eb;
@@ -15,8 +12,6 @@
     --color-success-bg: #def8e8;
     --color-error: #fc4b0b;
     --color-error-bg: #fff2ee;
-    --font-base: 'Poppins', arial, helvetica, 'Segoe UI', roboto, ubuntu, sans-serif;
-    --font-monospace: 'Fira Code', 'Courier New', courier, monospace;
     --font-regular: 300;
     --font-medium: 500;
     --font-bold: 700;

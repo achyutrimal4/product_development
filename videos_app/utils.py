@@ -25,4 +25,5 @@ def search_news(request):
     news = News.objects.distinct().filter(Q(title__icontains=search_query)|
                                   Q(description__icontains=search_query)                    
                                   )
+    
     return news, search_query

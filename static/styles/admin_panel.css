@@ -1,3 +1,6 @@
+@import url('../styles/modules/sidebar.css');
+@import url('../styles/modules/app.css');
+
 * {
     box-sizing: border-box;
 }
@@ -6,6 +9,7 @@ body {
     margin: auto;
     background-color: rgb(230, 230, 230);
     font-size: 14px;
+    font-family: "Poppins", sans-serif;
 }
 
 .container {
@@ -15,41 +19,6 @@ body {
     /* justify-content: space-around; */
 }
 
-.sidebar {
-    width: 20%;
-    background-color: white;
-    margin:0 20px 0 20px;
-    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
-    display: flex;
-    padding: 10px;
-    flex-direction: column;
-    position: sticky;
-    top: 0;
-    top: 150px;
-}
-
-.sidebar a {
-    text-decoration: none;
-    color: black;
-}
-
-.baritem {
-    padding: 14px 18px;
-    float: left;
-    width: auto;
-    border: none;
-    display: block;
-    outline: 0;
-
-}
-
-.bar-button {
-    white-space: normal;
-}
-
-.bar-button:hover {
-    background-color: rgb(230, 230, 230);
-}
 
 .dashboard-container {
     width: 75%;

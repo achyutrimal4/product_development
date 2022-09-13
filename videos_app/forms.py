@@ -1,9 +1,9 @@
 from dataclasses import fields
 from fileinput import FileInput
-from pyexpat import model
+from django_countries.fields import CountryField
 from django.forms import ModelForm
 from django import forms
-from .models import Video, Review
+from .models import Category, Country, LiveVideo, Video, Review, News
 
 
 class VideoForm(ModelForm):
@@ -17,6 +17,15 @@ class VideoForm(ModelForm):
         }
         # fields = '__all__'
 
+class LiveVideoForm(ModelForm):
+     class Meta:
+        model = LiveVideo
+        fields = ['title', 'description', 'url', 'category', 'country', 'venue']
+        widgets = {
+            'url':forms.Textarea(attrs={'class': 'description-input'}),
+            'description': forms.Textarea(attrs={'class': 'description-input'}),
+            'category': forms.SelectMultiple(attrs={'class': 'tag-input'}),
+        }
 
 class ReviewForm (ModelForm):
     class Meta:
@@ -25,3 +34,26 @@ class ReviewForm (ModelForm):
         widgets = {
             'comment': forms.Textarea(attrs={'class': 'comment-input', 'placeholder': 'Add a comment'}),           
         }
+
+
+class CountryForm(ModelForm):
+    class Meta:
+        model = Country
+        fields = ['country']
+        
+
+class CategoryForm(ModelForm):
+    class Meta:
+        model = Category
+        fields = ['name']
+        
+class NewsForm (ModelForm):
+    class Meta:
+        model = News
+        fields = ['title', 'description', 'image', 'photo_caption', 'author','imageBy']
+        widgets = {
+            'description': forms.Textarea(attrs={'class': 'description-input'}),
+        }
+        
+        
+   

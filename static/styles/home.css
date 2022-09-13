@@ -1,16 +1,7 @@
 @import url('./variables.css');
-@import url('./animation.css');
-
-* {
-    box-sizing: border-box;
-
-}
-
-body {
-    margin: auto;
-    background-color: var(--background-color);
-    font-size: 14px;
-}
+@import url('../styles/modules/animation.css');
+@import url('../styles/modules/buttons.css');
+@import url('../styles/modules/app.css');
 
 body h2 {
     display: block;
@@ -266,7 +257,7 @@ body h2 {
 }
 
 .news-thumbnail img {
-    object-fit: fill;
+    object-fit: cover;
     width: 280px;
     height: 150px;
 }

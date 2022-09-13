@@ -5,19 +5,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>{% block title %}FunOlympics{% endblock title %}</title>
 
     {% block styles %}
     {% endblock %}
 
-    
+
     {% load static %}
     <link rel="stylesheet" href="{% static 'styles/main.css' %}">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 
 <body>
-        
+
     {% include 'navbar.html' %}
 
     {% if messages %}
@@ -30,12 +31,12 @@
     {% endfor %}
 
     {% endif %}
-   
-    <!--  -->
-        {% block content %}
 
-        {% endblock content %}
-   
+    <!--  -->
+    {% block content %}
+
+    {% endblock content %}
+
 
     {% include 'footer.html' %}
 

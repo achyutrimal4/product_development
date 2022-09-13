@@ -1,0 +1,47 @@
+.default-button {
+    width: 300px;
+    height: 40px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: var(--dark_cyan);
+    color: #fff;
+    font: inherit;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: 0.5s;
+    margin-left: 200px;
+}
+
+.default-button--large {
+    width: 400px;
+    height: 40px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: var(--dark_cyan);
+    color: #fff;
+    font: inherit;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: 0.5s;
+    margin-left: 200px;
+}
+
+.default-button--md{
+    width: 10px;
+    height: 40px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: var(--dark_cyan);
+    color: #fff;
+    font: inherit;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: 0.5s;
+    margin-left: 200px;
+}

@@ -1,5 +1,7 @@
 @import url('./variables.css');
 @import url('./animation.css');
+@import url('../styles/modules/buttons.css');
+@import url('../styles/modules/app.css');
 
 /* .container{
   z-index: 2;

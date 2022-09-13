@@ -1,5 +1,7 @@
 {% extends 'main.html'%}
 
+{% block title %}News - FunOlympics{% endblock title %}
+
 {% load static %}
 
 {% block styles %}
@@ -11,10 +13,16 @@
     <div class="left-container">
         <h2>{{newsObject.title}}</h2>
         <small>Updated: {{newsObject.created}}</small>
+        <small>Article by: {{newsObject.author}}</small>
         <span>
            {% include 'social_share.html' %}
         </span>
         <img src="{{newsObject.image.url}}" alt="" style="width:900px; height:500px">
+        
+        {% if newsObject.photo_caption %}
+        <em> <small>{{newsObject.photo_caption}}</small></em>
+        {% endif %}           
+       
         <small> Image credit: {{newsObject.imageBy}}</small>
 
         <p>{{newsObject.description | linebreaks}}</p>

@@ -16,10 +16,10 @@
         <div class="albums">
             <h2>Featured Albums</h2>
            
-            <a href="" class="baritem bar-button">All</a>
+            <a href="{% url 'gallery' %}" class="baritem bar-button">All</a>
 
             {% for album in albums %}
-            <a href="" class="baritem bar-button">{{album.name}}</a>
+            <a href="{%  url 'gallery' %}?album={{album.name}}"class="baritem bar-button">{{album.name}}</a>
            
             {% endfor %} 
            

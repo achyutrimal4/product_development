@@ -1,0 +1,44 @@
+.sidebar {
+    width: 20%;
+    margin:0;
+    border-right: 1px solid rgba(128, 128, 128, 0.16);
+    display: flex;
+    padding: 10px;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    top: 150px;
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: black;
+}
+.sidebar .circle{
+    margin-left: 2px;
+    background-color:green;
+    border-radius:50%;
+    color:white; 
+    width:20px; 
+    height:20px; 
+    line-height:20px; 
+    text-align:center; 
+}
+
+.baritem {
+    padding: 14px 18px;
+    float: left;
+    width: auto;
+    border: none;
+    display: block;
+    outline: 0;
+
+}
+
+.bar-button {
+    white-space: normal;
+}
+
+.bar-button:hover {
+    background-color: rgb(210, 209, 209);
+}
