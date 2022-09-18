@@ -38,12 +38,16 @@
                         <!-- Like form -->
                         <form action="{% url 'like_video' video.id %}" method="POST">
                             {% csrf_token %}
-                            <button type="submit" name="viedo_id" value="{{video.id}}" class="btn-small">
-                                <i class="fas fa-arrow-up"></i></button>
-                            <p>{{video.total_likes}} likes</p>
+                            {% if liked %}
+                                <button type="submit" name="video_id" value="{{video.id}}" class="btn-small">
+                                    <i class="fa-solid fa-thumbs-up" style="color: #3AB09E;"></i></button>
+                            {% else %}
+                                <button type="submit" name="video_id" value="{{video.id}}" class="btn-small">
+                                    <i class="fa-solid fa-thumbs-up"></i></button>
+                            {% endif %}
+                                <p>{{total_likes}} likes</p>
                         </form>
                     </div>
-
                 </div>
             </div>
             <p>{{video.description}}</p>
@@ -91,3 +95,7 @@
 </div>
 {% endfor %}
 {% endblock content %}
+
+{% block footer %}
+{% include 'footer.html' %}
+{% endblock footer %}

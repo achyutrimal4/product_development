@@ -13,7 +13,7 @@ def search_function(request):
                                   Q(description__icontains=search_query)|
                                   Q(category__in = category)|
                                   Q(country__in = country)                                  
-                                  )
+                                  ).order_by('-uploaded')
     return videos, search_query
 
 def search_news(request):

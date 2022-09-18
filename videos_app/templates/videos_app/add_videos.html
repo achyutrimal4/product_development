@@ -10,21 +10,23 @@
 
 {% block content%}
 
-<!-- This template is used to generate forms to add new videos, live videos sports category and participating countries -->
+<!-- This template is used to generate forms to add new videos, live videos, sports category and participating countries -->
 
 <div class="container">
- 
+
   <!-- Add new live videos -->
   <!-- ============================================================= -->
   {% if page == 'add_live' %}
 
-  <span>
+  <div class="tab-buttons">
+    <a href="{% url 'add_live' %}" class="active-tab">Add Live Videos</a>
     <a href="{% url 'add_videos' %}">Add Videos</a>
     <a href="{% url 'add_country' %}">Add Participating Countries</a>
     <a href="{% url 'add_category' %}">Add Sports Category</a>
-  </span>
+  </div>
 
-  <form action="" id="video-form" method="POST" novalidate>
+
+  <form action="" id="default-form" method="POST" novalidate>
 
     <h2>Add a new live video</h2>
 
@@ -46,18 +48,19 @@
     <input type="submit" value="Add Live Video" id="addvideo-button">
   </form>
 
-<!-- Add country -->
-<!-- ================================================================= -->
+  <!-- Add country -->
+  <!-- ================================================================= -->
 
 
   {% elif page == 'add_country' %}
-  <span>
+  <div class="tab-buttons">
     <a href="{% url 'add_live' %}">Add Live Videos</a>
     <a href="{% url 'add_videos' %}">Add Videos</a>
+    <a href="{% url 'add_country' %}" class="active-tab">Add Participating Countries</a>
     <a href="{% url 'add_category' %}">Add Sports Category</a>
-  </span>
+  </div>
 
-  <form action="" id="video-form" method="POST" novalidate>
+  <form action="" id="default-form" method="POST" novalidate>
 
     <h2>Add a participating country</h2>
 
@@ -84,13 +87,14 @@
   <!-- ===============================================================  -->
   {% elif page == 'add_category' %}
 
-  <span>
+  <div class="tab-buttons">
     <a href="{% url 'add_live' %}">Add Live Videos</a>
     <a href="{% url 'add_videos' %}">Add Videos</a>
     <a href="{% url 'add_country' %}">Add Participating Countries</a>
-  </span>
+    <a href="{% url 'add_category' %}" class="active-tab">Add Sports Category</a>
+  </div>
 
-  <form action=""id="video-form" method="POST" novalidate>
+  <form action="" id="default-form" method="POST" novalidate>
 
     <h2>Add a sports category</h2>
 
@@ -115,13 +119,14 @@
   <!-- Add new video form -->
   <!-- ===============================================================  -->
   {% else %}
-  <span>
+  <div class="tab-buttons">
     <a href="{% url 'add_live' %}">Add Live Videos</a>
-    <a href="{% url 'add_country' %}">Add Participating Country</a>
+    <a href="{% url 'add_videos' %}" class="active-tab">Add Videos</a>
+    <a href="{% url 'add_country' %}">Add Participating Countries</a>
     <a href="{% url 'add_category' %}">Add Sports Category</a>
-  </span>
+  </div>
 
-  <form id="video-form" method="POST" novalidate enctype="multipart/form-data">
+  <form id="default-form" method="POST" novalidate enctype="multipart/form-data">
     <h2>Add a new video</h2>
     {% csrf_token %}
     {% for field in form %}

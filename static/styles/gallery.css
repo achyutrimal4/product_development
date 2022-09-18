@@ -2,6 +2,7 @@
 @import url('./animation.css');
 @import url('../styles/modules/buttons.css');
 @import url('../styles/modules/app.css');
+@import url('../styles/modules/sidebar.css');
 
 body h2 {
     display: block;
@@ -9,32 +10,17 @@ body h2 {
 
 .container {
     display: flex;
-    width: 95%;
+    width: 100%;
     justify-content: space-around;
     padding: 10px;
-    margin: 10px 0 0 30px;
+    overflow: hidden;
+    overflow-y: auto;
 
-}
-
-.left-container {
-    display: flex;
-    width: 25%;
-    flex-direction: column;
-    align-items: center;
-    background-image: linear-gradient(to right, rgba(128, 0, 128, 0.5), rgba(0, 255, 255, 0.5));
-    padding: 3px;
-    height: fit-content;
-    margin-right: 5px;
-    /* animation: move-in-left 1.5s ease-in-out; */
 }
 
 .albums {
     width: 100%;
-    background-color: white;
-    /* margin-right: 20px; */
-    box-shadow: 2px 0 5px -2px #888;
     display: flex;
-    padding: 5px;
     flex-direction: column;
     position: sticky;
     top: 150px;
@@ -47,30 +33,14 @@ body h2 {
     color: black;
 }
 
-.baritem {
-    padding: 14px 18px;
-    float: left;
-    width: auto;
-    border: none;
-    display: block;
-    outline: 0;
-}
-
-.bar-button {
-    white-space: normal;
-}
-
-.bar-button:hover {
-    background-color: rgb(230, 230, 230);
-}
 
 .right-container {
     width: 75%;
     display: flex;
     flex-direction: column;
     background-color: white;
-    padding: 10px;
-    /* animation: move-in-left 1.5s ease-in-out; */
+    /* justify-content: center;
+    align-items: center; */
 }
 
 .gallery-container {
@@ -78,8 +48,8 @@ body h2 {
     display: flex;
     flex-direction: column;
     background-color: white;
-    /* overflow: hidden; */
-    /* height: 340px; */
+    justify-content: center;
+    align-items: center;
 }
 
 .title {

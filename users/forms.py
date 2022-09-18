@@ -5,13 +5,13 @@ from django.contrib.auth import authenticate
 from users.models import Inbox, User, Profile, Contact
 
 
+
 class RegistrationForm(UserCreationForm):
     email= forms.EmailField(widget=forms.EmailInput(attrs={'autocomplete': False}))
     # email = forms.EmailField(max_length=60, help_text='Required, Add a valid email', )
-
     class Meta:
         model = User
-        fields = ("email",  "username", "full_name", "password1", "password2","country",)
+        fields = ("email",  "username", "full_name", "password1", "password2","country","phone_number")
 
 
 class UsersAuthenticationForm(forms.ModelForm):
@@ -32,7 +32,7 @@ class ProfileUpdateForm(forms.ModelForm):
     profile_image = forms.FileField()
     class Meta:
         model = Profile
-        fields=('username', 'name', 'country', 'profile_image')
+        fields=('username', 'name', 'country', 'profile_image', 'phone_number')
         
 class ContactForm(forms.ModelForm):
     class Meta:

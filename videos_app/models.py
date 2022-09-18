@@ -18,7 +18,7 @@ class Video (models.Model):
     country = models.ManyToManyField(
         'Country', blank=True, verbose_name="Participating Countries")
     likes = models.ManyToManyField(
-        settings.AUTH_USER_MODEL, blank=True, related_name='video_posts')
+        User, blank=True, related_name='video_posts')
     video_views = models.ManyToManyField(
         settings.AUTH_USER_MODEL, related_name='video_views', blank=True, default="admin@gmail.com")
     uploaded = models.DateTimeField(auto_now_add=True)
@@ -80,18 +80,6 @@ class Country (models.Model):
     def __str__(self):
         return self.country
 
-
-class Fixture (models.Model):
-    fixture = models.CharField(max_length=200)
-    date = models.CharField(max_length=200)
-    created = models.DateTimeField(auto_now_add=True)
-    id = models.UUIDField(default=uuid.uuid4, unique=True,
-                          primary_key=True, editable=False)
-
-    def __str__(self):
-        return self.fixture
-
-
 class News (models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField(null=True, blank=True)
@@ -106,9 +94,19 @@ class News (models.Model):
     def __str__(self):
         return self.title
 
+class Fixture (models.Model):
+    fixture = models.CharField(max_length=200)
+    date = models.DateField(verbose_name='Game Date')
+    thumbnail = models.ImageField(upload_to='images/fixtures/', default='media/images/background/bg.png', blank=True, null=True)
+    created = models.DateTimeField(auto_now_add=True)
+    id = models.UUIDField(default=uuid.uuid4, unique=True,
+                          primary_key=True, editable=False)
+
+    def __str__(self):
+        return self.fixture
 
 class Standing (models.Model):
-    country = models.CharField(max_length=200)
+    country = models.CharField(max_length=200, unique=True)
     gold = models.IntegerField()    
     silver = models.IntegerField()
     bronze = models.IntegerField()
@@ -117,8 +115,9 @@ class Standing (models.Model):
     def __str__(self):
         return self.country
 
-class Players(models.Model):
-    name = models.CharField(max_length=255)
+class Player(models.Model):
+    name = models.CharField(max_length=255, unique=True)
+    image = models.ImageField(null=True, blank=True, upload_to='images/players/', default='images/profile_pics/default.jpg')
     gold = models.IntegerField()
     silver = models.IntegerField()
     bronze = models.IntegerField()

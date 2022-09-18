@@ -15,6 +15,7 @@
   <form class="default-form" method="POST" novalidate>
 
     <h2>Login with email</h2>
+    
     {% csrf_token %}
 
     {% for field in login_form %}

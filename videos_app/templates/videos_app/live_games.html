@@ -17,12 +17,11 @@
     </div>
     <div class="card-container">
         <div class="card-grid">
-            {% for video in videos %}
+            {% for video in livevideos %}
             <div class="card">
                 <a href="{% url 'video_desc' video.id %}" style="text-decoration: none; width:100%;">
                     <div class="thumbnail">
-                        <video src="{{video.video.url}}" type="video/mp4"
-                            style="width: 280px; height: 150px;"></video>
+                        {{video.url}}
                     </div>
                     <div class="card-details">
                         <p><a href="{% url 'video_desc' video.id %}">{{video.title}}</a></p>
@@ -46,3 +45,8 @@
 </div>
 
 {% endblock content %}
+
+{% block footer %}
+{% include 'footer.html' %}
+
+{% endblock footer %}

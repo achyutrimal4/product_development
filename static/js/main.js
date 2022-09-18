@@ -11,6 +11,6 @@ if (alertWrapper){
 
 }
 
-function message(){
-    
-}
+function message() {
+    alert("Login to view this content");
+  }

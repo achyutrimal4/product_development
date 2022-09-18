@@ -39,14 +39,17 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     
+    # project apps
     'users.apps.UsersConfig',
     'videos_app.apps.VideosAppConfig',
     'gallery_app.apps.GalleryAppConfig',
     
+    # email verification
     "verify_email.apps.VerifyEmailConfig",
-    'rest_framework',    
     
-    'django_social_share',
+    # utils
+    'django_social_share',    
+    "phonenumber_field",
 ]
 
 MIDDLEWARE = [

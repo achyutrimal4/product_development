@@ -186,6 +186,7 @@ body h2 {
     display: flex;
     flex-direction: column;
     background-color: white;
+    height: fit-content;
     padding: 10px;
     /* animation: move-in-left 1.5s ease-in-out; */
 }
@@ -298,7 +299,7 @@ body h2 {
 .gallery-container {
     display: flex;
     align-content: center;
-    height: 250px;
+    height: 180px;
     overflow: hidden;
 
 }
@@ -322,6 +323,21 @@ body h2 {
     transition: transform .2s;
 }
 
+.card--photo {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin: 8px;
+    border-radius: 8px;
+    padding: 3px;
+    max-width: 320px;
+    text-align: center;
+    height: fit-content;
+    box-shadow: 0 1.7px 2px -2px gray;
+    transition: transform .2s;
+}
+
+
 .card:hover {
     transform: scale(0.98);
 }
@@ -344,7 +360,7 @@ body h2 {
     margin-top: 10px;
 }
 
-.thumbnail {
+.thumbnail, .card-grid--3 .thumbnail {
     margin-left: auto;
     margin-right: auto;
     display: flex;
@@ -352,9 +368,88 @@ body h2 {
 
 }
 
-.thumbnail img {
+.thumbnail img, .card-grid--3 .thumbnail img {
     height: 150px;
     width: 280px;
     object-fit: cover;
     /* margin-top: 10px; */
+}
+.featured-players {
+    width: 100%;
+    z-index: 2;
+    height: 500px;
+    /* margin-top: -15px; */
+    background-color: rgba(128, 0, 128, 0.155);
+}
+.featured-events{
+    width: 100%;
+    z-index: 2;
+    height: fit-content;
+    /* margin-top: -15px; */
+    background-color: rgba(128, 0, 128, 0.155);
+}
+.featured-players h2{
+    margin: 0;
+}
+.card-grid--five {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(200px, 1fr));
+    grid-gap: 10px;
+    margin-left: 20px;
+}
+
+.card--players {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin: 8px;
+    border-radius: 8px;
+    padding: 3px;
+    max-width: 200px;
+    text-align: center;
+    height: fit-content;
+    box-shadow: 0 1.7px 2px -2px gray;
+    transition: transform .2s;
+}
+
+.featured-events{
+    background-color: white ;
+    background: url(../media/images/background/bg.png);
+    object-fit: contain;
+    background-repeat: no-repeat;
+    width: 100%;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    color: white;
+    margin: 20px 0;
+    height: 520px;
+}
+.card-grid--3 {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(200px, 1fr));
+    overflow: hidden;
+    width: 100%;
+    align-items:  center;
+    grid-gap: 10px;
+    margin-left: 20px;
+}
+.card--fixtures {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    margin: 8px;
+    padding: 0px;
+    max-width: 300px;
+    text-align: center;
+    height: fit-content;
+    border: 1px solid rgba(128, 128, 128, 0.241);
+    font-weight: 100;
+}
+.backdrop{
+    width: 100%;
+    height: inherit;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.95);
 }

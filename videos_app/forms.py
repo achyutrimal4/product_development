@@ -3,7 +3,7 @@ from fileinput import FileInput
 from django_countries.fields import CountryField
 from django.forms import ModelForm
 from django import forms
-from .models import Category, Country, LiveVideo, Video, Review, News
+from .models import Category, Country, Fixture, LiveVideo, Player, Video, Review, News, Standing
 
 
 class VideoForm(ModelForm):
@@ -55,5 +55,19 @@ class NewsForm (ModelForm):
             'description': forms.Textarea(attrs={'class': 'description-input'}),
         }
         
+class FixtureForm(ModelForm):
+    date = forms.DateField(widget=forms.widgets.DateInput(attrs={'type': 'date'}))
+    class Meta:
+        model = Fixture
+        fields=['fixture', 'date', 'thumbnail']
+      
+
+class PlayerForm(ModelForm):
+    class Meta:
+        model=Player
+        fields=['name', 'image','gold', 'silver', 'bronze', 'total']
         
-   
+class StandingForm(ModelForm):
+    class Meta:
+        model=Standing
+        fields=['country', 'gold', 'silver', 'bronze', 'total']

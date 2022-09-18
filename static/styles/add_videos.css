@@ -17,12 +17,12 @@ body {
   padding: 15px;
 }
 
-.container span{
+.tab-buttons{
   display: flex;
   width: 100%;
   justify-content: center;
 }
-.container span a{
+.tab-buttons a{
   text-decoration: none;
   color: black;
   background-color: rgba(128, 0, 128, 0.168);
@@ -30,7 +30,16 @@ body {
   padding: 5px;
   border-radius: 5px;
 }
-.video-form {
+.tab-buttons .active-tab{
+  background-color: var(--dark_cyan);
+  color: white;
+  cursor: none;
+}
+.tab-buttons .active-tab:disabled, a[disabled]{
+  background-color: var(--dark_cyan);
+  color: white;
+}
+.default-form {
   padding: 20px 30px;
   
 }

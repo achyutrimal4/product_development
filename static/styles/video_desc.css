@@ -73,6 +73,17 @@
     float: left;
     height: fit-content;
     margin-top: 12px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: gray;
+    transition: transform .2s;
+}
+.like-buttons button:hover{
+    color: var(--dark_cyan);
+    transform: scale(1.2);
+    cursor: pointer;
+
 }
 
 form a {

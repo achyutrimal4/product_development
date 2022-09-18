@@ -16,7 +16,7 @@
     <div class="sidebar">
        
         <h4>Categories</h4>
-
+        <a href="{% url 'live_games' %}" class="baritem bar-button"><i class="fa-solid fa-circle" style="color:red;"></i> Live videos</a>
         <a href="{% url 'all_videos' %}" class="baritem bar-button">All Videos</a>
         {% for category in categories %}
         <a href="{%  url 'all_videos' %}?category={{category.name}}" class="baritem bar-button">{{category.name}}</a>
@@ -54,3 +54,7 @@
 </div>
 
 {% endblock content %}
+{% block footer %}
+{% include 'footer.html' %}
+
+{% endblock footer %}

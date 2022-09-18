@@ -1,6 +1,6 @@
 {% extends 'main.html'%}
 
-{% block title %}News - FunOlympics{% endblock title %}
+{% block title %}{{newsObject.title}}{% endblock title %}
 
 {% load static %}
 
@@ -30,3 +30,8 @@
 </div>
 
 {% endblock content %}
+
+{% block footer %}
+{% include 'footer.html' %}
+
+{% endblock footer %}

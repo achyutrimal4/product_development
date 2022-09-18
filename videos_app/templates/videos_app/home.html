@@ -14,14 +14,14 @@
 
 <div class="live-banner">
     <div class="live-thumbnail">
-        <img src="{% static 'media/images/cycling.png' %}" alt="">
+        <img src="{% static 'media/images/cycling.jpg' %}" alt="" style="object-fit: cover;">
         <p>Live now</p>
 
     </div>
     <div class="live-description">
         <h3>ROAD RACE - MEN TRIAL 400 K.M</h3>
         <p>September 7 2022, 13:30</p>
-        <p>Venue:  Bayjing FunOlympics Park, Track 2</p>
+        <p>Venue: Bayjing FunOlympics Park, Track 2</p>
     </div>
     <a href="{% url 'live_games' %}" id="live-link">Live Games</a>
     <i class="fa-solid fa-tv"></i>
@@ -90,7 +90,7 @@
         <div class="video-container">
             <div class="title">
                 <h2>Latest Videos</h2>
-              
+
                 <a href="{% url 'all_videos' %}">Load more videos →</a>
             </div>
             {% if search_query%}
@@ -155,10 +155,10 @@
             <div class="gallery-container">
                 <div class="card-grid">
                     {% for photo in photos %}
-                    <div class="card">
+                    <div class="card--photo">
                         <a href="{% url 'view_photo' photo.id %}" style="text-decoration: none; width:100%;">
                             <div class="thumbnail">
-                               <img src="{{photo.photo.url}}" alt="">
+                                <img src="{{photo.photo.url}}" alt="">
                             </div>
                             <div class="card-details">
                                 <p>{{photo.album.name}}</p>
@@ -166,12 +166,61 @@
                         </a>
                     </div>
                     {% endfor %}
-
                 </div>
             </div>
         </div>
+    </div>
 
+</div>
+
+<div class="featured-events">
+    <div class="backdrop">
+        <div class="title">
+            <h2>Games to Watch</h2>
+        </div>
+        <div class="card-grid--3">
+            {% for fixture in fixtures %}
+            <div class="card--fixtures">
+                {% if fixture.thumbnail.url is not None %}
+
+                <div class="thumbnail">
+                    <img src="{{fixture.thumbnail.url}}" alt="" style=" object-fit:cover; ">
+                </div>
+
+                {% endif %}
+                <p>{{fixture.fixture}}</p>
+                <p>{{fixture.date}}</p>
+            </div>
+            {% endfor %}
+
+        </div>
     </div>
 </div>
 
+<div class="featured-players">
+    <div class="title">
+        <h2>Winners</h2>
+    </div>
+    <div class="card-grid--five">
+        {% for player in players %}
+        <div class="card--players">
+            <p>{{player.name}}</p>
+            <p>{{player.total}}</p>
+            <img src="{{player.image.url}}" alt="" style="object-fit:cover; ">
+            <span>
+                <i class="fa-solid fa-medal" style="color:gold ;"></i>{{player.gold}}
+                <i class="fa-solid fa-medal" style="color:rgb(153, 152, 152);"></i>{{player.silver}}
+                <i class="fa-solid fa-medal" style="color:brown;"></i> {{player.bronze}}
+            </span>
+        </div>
+        {% endfor %}
+
+    </div>
+
+</div>
+
 {% endblock content %}
+
+{% block footer %}
+{% include 'footer.html' %}
+{% endblock footer %}

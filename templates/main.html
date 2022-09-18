@@ -10,11 +10,16 @@
     {% block styles %}
     {% endblock %}
 
-
+    <!-- link css -->
     {% load static %}
     <link rel="stylesheet" href="{% static 'styles/main.css' %}">
+
+    <!-- google icons -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+    <!-- use py-script -->
+    <!-- <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" /> -->
 </head>
 
 <body>
@@ -32,15 +37,25 @@
 
     {% endif %}
 
-    <!--  -->
+    <!--  content block-->
     {% block content %}
 
     {% endblock content %}
 
 
-    {% include 'footer.html' %}
+
+    {% block footer %}
+
+    {% endblock footer %}
 
 </body>
+
+
+{% block script %}
 <script src="{% static 'js/main.js' %}"></script>
+<!-- <script defer src="https://pyscript.net/latest/pyscript.js"></script> -->
+
+
+{% endblock script %}
 
 </html>

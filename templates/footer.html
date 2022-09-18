@@ -1,12 +1,50 @@
-<style>
-    footer {
-        left: 0;
-        bottom: 0;
-        width: 100%;
-        margin: 0px;
-        text-align: center;
-    }
-</style>
+{% load static %}
+<link rel="stylesheet" href="{% static 'styles/footer.css' %}">
+
 <footer>
+    <div class="backdrop">
+
+
+    <img src="{% static 'media/images/olympic.png'%}" alt="" id="logo">
+
+    <div class="col-container">
+        <div class="col--1">
+            <strong>About </strong>
+            <p>About Us</p>
+            <p>Developers</p>
+        </div>
+        <div class="col--2">
+            <strong>Contact </strong>
+            <p>Tinkune, Gairigaun</p>
+            <p>Kathmandu-44600, NEP</p>
+            <p><i class="fa fa-phone"></i> +977 9865320120, +977 9865471023</p>
+        </div>
+        <div class="col--3">
+            <strong>Explore</strong>
+            <p>Highlights</p>
+            <p>Live Games</p>
+            <p>Upcoming Games</p>
+            <p>Results</p>
+            <p>News</p>
+            <p>Gallery</p>
+        </div>
+    </div>
+    <div class="policies">
+        <p>Privacy Policy</p>
+        <p>Cookie Policy</p>
+        <p>Cookie Settings</p>
+        <p>Terms of Service</p>
+        <p>Sitemap</p>
+    </div>
+    <div class="socials">
+        <a href=""><i class="fa-brands fa-facebook "></i></a>
+        <a href=""><i class="fa-brands fa-twitter"></i></a>
+        <a href=""><i class="fa-brands fa-instagram"></i></a>
+        <a href=""><i class="fa-brands fa-tiktok"></i></a>
+        <a href=""><i class="fa-brands fa-reddit"></i></a>
+        <a href=""><i class="fa-brands fa-youtube"></i></a>
+    </div>
+
     <p>All rights belong to Funolympics 2022 &copy;</p>
+</div>
 </footer>

@@ -25,7 +25,7 @@
                 <p style="font-size:10px ;">{{fixture.date}}</p>
             </div>
             {% endfor %}
-            <a href="#">View fixtures and results → </a>
+            <a href="" onclick="message()">View fixtures and results → </a>
         </div>
 
         <div class="standings-container">
@@ -113,3 +113,8 @@
 </div>
 
 {% endblock content %}
+
+{% block footer %}
+{% include 'footer.html' %}
+
+{% endblock footer %}

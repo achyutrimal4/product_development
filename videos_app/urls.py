@@ -29,5 +29,10 @@ urlpatterns=[
    path('news-description/<str:pk>/', views.news_desc, name="news_desc"),
    path('add-news/',views.add_news, name='add_news'),
    
+   # add misc
+   path('add-fixtures/', views.add_fixtures, name='add_fixtures'),
+   path('add-players/', views.add_players, name='add_players'),
+   path('add-standings/', views.add_standing, name='add_standings'),
+   
 ]
  

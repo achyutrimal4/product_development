@@ -3,6 +3,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django_countries.fields import CountryField
 import uuid
+from phonenumber_field.modelfields import PhoneNumberField
 
 # Create your models here.
 
@@ -40,6 +41,7 @@ class User (AbstractBaseUser):
     is_active   = models.BooleanField(default=True)
     is_staff    = models.BooleanField(default=False)
     is_superuser=  models.BooleanField(default=False)
+    phone_number = PhoneNumberField(null=True, verbose_name='Phone Number', blank=True, )
     full_name   =models.CharField(max_length=60, null=True)
     country     =CountryField(blank=True, null=True, verbose_name="Counrty/Area of resdence", blank_label="Select Country")
     id          =models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
@@ -50,7 +52,7 @@ class User (AbstractBaseUser):
     # dob
         
     USERNAME_FIELD = 'email' #use this field to login to the account instead of username
-    REQUIRED_FIELDS=['username', 'full_name', 'country']
+    REQUIRED_FIELDS=['username', 'full_name', 'country', 'phone_number']
     
     objects = UserManager()
     
@@ -71,6 +73,7 @@ class Profile (models.Model):
     email = models.EmailField(max_length=255, blank=True, null=True)
     country = CountryField(blank=True, null=True, verbose_name="Counrty/Area of resdence", blank_label="Select Country")
     profile_image = models.ImageField(null=True, blank=True, upload_to='images/profile_pics/', default='images/profile_pics/default.jpg')
+    phone_number = PhoneNumberField(null=True, verbose_name='Phone Number', blank=True)
     created = models.DateTimeField(auto_now_add=True)
     id = models.UUIDField(default=uuid.uuid4, unique=True,
                           primary_key=True, editable=False)

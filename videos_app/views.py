@@ -1,16 +1,19 @@
 from multiprocessing import context
+from pickle import FALSE
 from pydoc import pager
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Category, Video, Fixture, News, Standing, Players, Country
+from .models import Category, Video, Fixture, News, Standing, Player, Country, LiveVideo
 from gallery_app.models import Photo
 from users.models import User
 from django.contrib.auth.decorators import login_required, user_passes_test
-from .forms import LiveVideoForm, VideoForm, ReviewForm, CountryForm, CategoryForm, NewsForm
+from .forms import FixtureForm, LiveVideoForm, PlayerForm, StandingForm, VideoForm, ReviewForm, CountryForm, CategoryForm, NewsForm
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.db.models import Q
 from .utils import search_function, search_news
 from django.urls import reverse_lazy, reverse
+
+
 
 
 
@@ -38,18 +41,24 @@ def landing_page(request):
 # user home page
 @login_required(login_url='login')
 def home(request):
-
+    
     videos = Video.objects.all().order_by('-uploaded').values()
     if request.method == "GET":
         videos, search_query = search_function(request)
 
-    fixtures = Fixture.objects.all()
-    news = News.objects.all()
+    fixtures = Fixture.objects.all().order_by('-created')
+    news = News.objects.all().order_by('-created')
     photos = Photo.objects.all()
-    standings = Standing.objects.all().order_by('-total').values()
-    players = Players.objects.all().order_by('-total').values()
-    context = {'videos': videos, 'fixtures': fixtures,
-               'news': news, 'standings': standings, 'search_query': search_query, 'photos': photos, 'players': players}
+    standings = Standing.objects.all().order_by('-total')
+    players = Player.objects.all().order_by('-total')
+    first_player = Player.objects.all().order_by('-total').first
+    context = {'videos': videos,
+               'fixtures': fixtures,
+               'news': news, 
+               'standings': standings, 
+               'search_query': search_query, 
+               'photos': photos, 
+               'players': players,}
     return render(request, 'videos_app/home.html', context)
 
 
@@ -140,17 +149,64 @@ def add_news(request):
 
 
 
+# =============================================================
+# Add misc(fixtures, players, and latest standings)
+@user_passes_test(lambda u: u.is_superuser, login_url='home')
+@login_required(login_url='login')
+def add_fixtures(request):
+    page='add_fixtures'
+    form = FixtureForm()
+    if request.method == 'POST':
+        form = FixtureForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Fixture successfully added.')
+            return redirect("admin_panel")
+    context = {'fixtureform': form, 'page':page}
+    return render(request, 'videos_app/add_misc.html', context)
+
+@user_passes_test(lambda u: u.is_superuser, login_url='home')
+@login_required(login_url='login')
+def add_players(request):
+    page='add_players'
+    form = PlayerForm()
+    if request.method == 'POST':
+        form = PlayerForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Player successfully added.')
+            return redirect("admin_panel")
+    context = {'playerform': form, 'page':page}
+    return render(request, 'videos_app/add_misc.html', context)
+
+@user_passes_test(lambda u: u.is_superuser, login_url='home')
+@login_required(login_url='login')
+def add_standing(request):
+    page='add_standing'
+    form = StandingForm()
+    if request.method == 'POST':
+        form = StandingForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Standing successfully updated.')
+            return redirect("admin_panel")
+    context = {'standingform': form, 'page':page}
+    return render(request, 'videos_app/add_misc.html', context)
+
+
 # video description 
 @login_required(login_url='login')
 def video_desc(request, pk):
     videos = Video.objects.all()
+    
+    
     videoObject = Video.objects.get(id=pk)
-    # video_file = get_object_or_404(Video, id=pk)
-    # total_likes = video_file.total_likes()
+    total_likes = videoObject.likes.count()
+    
+    liked = False
+    if videoObject.likes.filter(id=request.user.id).exists():
+        liked=True
 
-    # category = videoObject.category().get() #extract video category from video object and use it for recommedations
-
-    # recommendations = Video.objects.filter(Q(category__icontains=category))
 
     # search_query
     search_query = ''
@@ -179,10 +235,11 @@ def video_desc(request, pk):
 
     context = {'video': videoObject,
                'videos': videos,
-               #    'recimmendation': recommendations,
                'video_views': views_count,
                'form': form,
-               'total_comments': total_comments
+               'total_comments': total_comments,
+               'total_likes':total_likes,
+               'liked':liked
                }
     return render(request, 'videos_app/video_desc.html', context)
 
@@ -250,13 +307,15 @@ def delete_videos(request, pk):
 # like videos
 def like(request, pk):
     video = get_object_or_404(Video, id=request.POST.get('video_id'))
-    video.likes.add(request.user)
+    liked = False
+    if video.likes.filter(id=request.user.id).exists():
+        video.likes.remove(request.user)
+        liked=False
+    else:
+        video.likes.add(request.user)
+        liked=True
     return HttpResponseRedirect(reverse('video_desc', args=[str(pk)]))
 
-# def LikeView(request, pk):
-#     post = get_object_or_404(Post, id=request.POST.get('post_id'))
-#     post.likes.add(request.user)
-#     return redirect('score:post-detail', pk=pk)
 
 
 
@@ -294,8 +353,8 @@ def all_news(request):
 # view live games
 @login_required(login_url='login')
 def live_games(request):
-    videos = Video.objects.all()
-    context = {'videos': videos}
+    live_videos = LiveVideo.objects.all()
+    context = {'live_videos': live_videos}
     return render(request, 'videos_app/live_games.html', context)
 
 
