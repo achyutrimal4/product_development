@@ -1,3 +1,4 @@
+from dataclasses import field
 from fileinput import FileInput
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
@@ -63,3 +64,4 @@ class ContactReplyForm(forms.ModelForm):
             'receiver': forms.EmailInput(attrs={'placeholder': 'Receiver email address'}),
             'message': forms.Textarea(attrs={'class': 'description-input'}),
         }
+

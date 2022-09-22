@@ -13,6 +13,8 @@ from django.contrib.auth import get_user_model
 from django.core.mail import send_mail
 from verify_email.email_handler import send_verification_email
 from django.utils.crypto import get_random_string
+from django.template.loader import render_to_string
+from django.core.mail import EmailMultiAlternatives
 
 
 def register_view(request):
@@ -119,6 +121,8 @@ def inbox(request):
 
 # =================================================================
 # function to create reset requests for users and notify admin
+
+
 @login_required(login_url='login')
 def create_message(request, pk):
     form = MessageForm()
@@ -167,16 +171,26 @@ def viewMessage(request, pk):
         except:
             messages.error(request, 'Invalid email address provided')
         new_pass = get_random_string(length=8)
+        ctx = {'password': new_pass}
 
         subject = 'Password Reset'
-        body = f'Your password has been successfully reset. Your new password is {new_pass} You can use this password to login. Click this link to set new password. '
-        send_mail(
-            subject,
-            body,
-            settings.EMAIL_HOST_USER,
-            [user_email],
-            fail_silently=False,
-        )
+        body = render_to_string("users/password_reset_confirmation.html", ctx)
+        # body = f'Your password has been successfully reset. Your new password is {new_pass} You can use this password to login. Click this link to set new password. '
+
+        msg = EmailMultiAlternatives(subject=subject, from_email=settings.EMAIL_HOST_USER,
+                             to=[user_email], body=body)
+
+
+        msg.attach_alternative(body, "text/html")
+        msg.send()
+
+        # send_mail(
+        #     subject,
+        #     body,
+        #     settings.EMAIL_HOST_USER,
+        #     [user_email],
+        #     fail_silently=False,
+        # )
         user.set_password(new_pass)
         user.save()
         messages.success(request, 'New password successfully sent.')
@@ -283,7 +297,41 @@ def viewContactMail(request, pk):
 # ======================================================================
 # function to change password after admin resetting user password
 
+
 @login_required(login_url='login')
 def change_password(request):
-    context={}
+    context = {}
+    if request.method == 'POST':
+        User = get_user_model()
+        username = request.user.username
+        user = User.objects.get(username=username)
+
+        current_pass = request.POST['current-password']
+        new_pass = request.POST['new-password']
+        confirm_pass = request.POST['confirm-password']
+
+        if (len(current_pass) == 0 or len(new_pass) == 0 or len(confirm_pass) == 0):
+            messages.error(request, 'Password field/s cannot be empty.')
+
+        elif not user.check_password(current_pass):
+            messages.error(request, 'Current password is incorrect.')
+
+        elif len(new_pass) < 8:
+            messages.error(
+                request, 'New password must be at least 8 characters.')
+
+        elif current_pass == new_pass:
+            messages.error(
+                request, 'New password cannot be the same as current password.')
+
+        elif new_pass == confirm_pass:
+
+            user.set_password(new_pass)
+            user.save()
+            messages.success(request, 'Password successflly changed.')
+            return redirect('home')
+        else:
+            messages.error(
+                request, 'Could not change password. Try Again.')
+
     return render(request, 'users/change_password.html', context)

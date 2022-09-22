@@ -124,3 +124,4 @@ class Inbox (models.Model):
     
     class Meta:
         ordering = ['is_read', '-created']
+        
