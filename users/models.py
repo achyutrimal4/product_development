@@ -81,16 +81,32 @@ class Profile (models.Model):
     def __str__(self):
         return str(self.user.username) 
 
-class Contact (models.Model):
-    # if the message sender is not the user
-    email = models.EmailField(max_length=255, null=False, blank=False)
-    # if the sender is website user
+class ContactMail (models.Model):
     sender = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, blank=True)
-    msg_title = models.CharField(max_length=255, null=False, blank=False)
-    message = models.TextField(max_length=  255, null=False, blank=False)
+    receiver = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, blank=True, related_name='contact_mails')
+    email = models.EmailField(max_length=200, null=True, blank=True)
+    subject = models.CharField(max_length=200)
+    message = models.TextField()
+    is_read = models.BooleanField(default=False, null=True)
+    created = models.DateTimeField(auto_now_add=True)
+    id = models.UUIDField(default=uuid.uuid4, unique=True,
+                          primary_key=True, editable=False)
     
     def __str__(self):
-        return str(self.sender)
+        return str ( self.subject) 
+    
+    class Meta:
+        ordering = ['is_read', '-created']
+        
+class ContactReply(models.Model):
+    sender = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, blank=True)
+    receiver = models.EmailField(null=True, blank=False, max_length=255, default=None)
+    message = models.TextField()
+    created = models.DateTimeField(auto_now_add=True)
+    id = models.UUIDField(default=uuid.uuid4, unique=True,primary_key=True, editable=False)
+    
+    def __str__ (self):
+        return str(self.receiver.username)
     
 class Inbox (models.Model):
     sender = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, blank=True)

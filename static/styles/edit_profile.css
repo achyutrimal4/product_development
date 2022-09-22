@@ -1,7 +1,5 @@
-@import url('./variables.css');
-@import url('./animation.css');
-@import url('../styles/modules/buttons.css');
-@import url('../styles/modules/app.css');
+@import url(uikit.css);
+
 
 body {
     display: flex;
@@ -24,10 +22,7 @@ body {
     padding: 15px;
 }
 
-.container form {
-    padding: 10px 20px;
 
-}
 
 .input-errors {
     display: flex;
@@ -56,7 +51,7 @@ body {
 }
 
 .input-fields select{
-    max-width:300px;
+    max-width:400px;
     margin-bottom: 10px;
     padding-bottom: 10px;
     border: 2px solid #f0f0f0;
@@ -68,7 +63,7 @@ body {
 }
 
 
-#default-button {
+.default-button--large {
     width: 300px;
     height: 40px;
     border: none;

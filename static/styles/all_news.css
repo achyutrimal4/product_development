@@ -1,6 +1,5 @@
-@import url('../styles/modules/animation.css');
-@import url('./variables.css');
-@import url('../styles/modules/app.css');
+@import url(uikit.css);
+
 
 
 body h2 {

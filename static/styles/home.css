@@ -1,7 +1,5 @@
-@import url('./variables.css');
-@import url('../styles/modules/animation.css');
-@import url('../styles/modules/buttons.css');
-@import url('../styles/modules/app.css');
+@import url(uikit.css);
+
 
 body h2 {
     display: block;
@@ -349,6 +347,9 @@ body h2 {
     margin-left: 5px;
     text-overflow: ellipsis;
 }
+.card-details p:first-child{
+    font-weight: 600;
+}
 
 .card-details a {
     text-decoration: none;
@@ -374,22 +375,16 @@ body h2 {
     object-fit: cover;
     /* margin-top: 10px; */
 }
+
+
 .featured-players {
     width: 100%;
     z-index: 2;
-    height: 500px;
-    /* margin-top: -15px; */
+    height: 400px;
     background-color: rgba(128, 0, 128, 0.155);
 }
-.featured-events{
-    width: 100%;
-    z-index: 2;
-    height: fit-content;
-    /* margin-top: -15px; */
-    background-color: rgba(128, 0, 128, 0.155);
-}
-.featured-players h2{
-    margin: 0;
+.featured-players .title{
+    margin: 8px 0 0 0;
 }
 .card-grid--five {
     display: grid;
@@ -403,13 +398,24 @@ body h2 {
     flex-direction: column;
     position: relative;
     margin: 8px;
-    border-radius: 8px;
-    padding: 3px;
     max-width: 200px;
+    height: 300px;
     text-align: center;
-    height: fit-content;
-    box-shadow: 0 1.7px 2px -2px gray;
+    border: 1px solid rgba(128, 128, 128, 0.27);
+    overflow: hidden;
     transition: transform .2s;
+}
+.card--players img{
+    object-fit: cover;
+    height: 250px;
+    width: 200px;
+    
+}
+.card--players span{
+    width: 100%;
+    display: flex;
+    padding: 5px;
+    justify-content: space-between;
 }
 
 .featured-events{
@@ -419,20 +425,21 @@ body h2 {
     background-repeat: no-repeat;
     width: 100%;
     display: flex;
-    justify-content:center;
+    justify-content:center !important;
     align-items: center;
     color: white;
-    margin: 20px 0;
+    margin: 20px 0 0 0;
     height: 520px;
 }
 .card-grid--3 {
     display: grid;
-    grid-template-columns: repeat(3, minmax(200px, 1fr));
+    grid-template-columns: repeat(4, minmax(200px, 1fr));
     overflow: hidden;
     width: 100%;
     align-items:  center;
-    grid-gap: 10px;
-    margin-left: 20px;
+    justify-content: center;
+    grid-gap: 15px;
+    /* margin-left: 20px; */
 }
 .card--fixtures {
     display: flex;
@@ -450,6 +457,7 @@ body h2 {
 .backdrop{
     width: 100%;
     height: inherit;
-    padding: 20px;
+    /* padding: 20px; */
     background-color: rgba(0, 0, 0, 0.95);
+  
 }

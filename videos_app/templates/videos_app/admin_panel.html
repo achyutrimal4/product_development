@@ -21,9 +21,15 @@
                 <small >{{unread_count}}</small>
             </div>
         </a>
+        <a href="{% url 'contact-inbox' %}" class="baritem bar-button" style="display:flex ;">Contact Mails 
+            <div class="circle">
+                <small >{{unread_mails}}</small>
+            </div>
+        </a>
         <a href="" class="baritem bar-button">User Site</a>
         <a href="{% url 'add_live' %}" class="baritem bar-button">Add Live Video</a>
         <a href="{% url 'add_fixtures' %}" class="baritem bar-button">Add Fixtures</a>
+        <a href="{% url 'change-password' %}" class="baritem bar-button">Change Password</a>
     </div>
 
     <div class="dashboard-container">
@@ -34,7 +40,7 @@
                     <div class="card-details">                        
                         <i class="fa-solid fa-video"></i>
                         <p>{{video_count}} Videos</p>
-                        <a href="{% url 'add_videos' %}" > <button id="btn-small"> Add
+                        <a href="{% url 'add_videos' %}" > <button class="card-btn"> Add
                                 Video</button></a>
                     </div>
                 </div>
@@ -42,7 +48,7 @@
                     <div class="card-details">
                         <i class="fa-solid fa-newspaper"></i>                        
                         <p>{{news_count}} News </p>
-                        <a href="{% url 'add_news' %}" > <button id="btn-small"> Add
+                        <a href="{% url 'add_news' %}" > <button class="card-btn"> Add
                             News</button></a>
                     </div>
                 </div>
@@ -50,7 +56,7 @@
                     <div class="card-details">
                         <i class="fa-solid fa-users"></i>                        
                         <p>{{users_count}} Users</p>
-                        <a href="{% url 'admin:index' %}" > <button id="btn-small">  Users
+                        <a href="{% url 'admin:index' %}" > <button class="card-btn">  Users
                             </button></a>
                     </div>
                 </div>
@@ -61,7 +67,7 @@
                             add_a_photo
                         </span>
                         <p style="margin-left:15px ;">{{photo_count}} Photos</p>
-                        <a href="{% url 'add_photos' %}"> <button id="btn-small" style="margin-left:15px ;"> Add Photo</button></a>
+                        <a href="{% url 'add_photos' %}"> <button class="card-btn" style="margin-left:15px ;"> Add Photo</button></a>
                     </div>
                 </div>
             </div>

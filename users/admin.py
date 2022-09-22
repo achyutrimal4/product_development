@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from users.models import User, Profile, Contact, Inbox
+from users.models import User, Profile, ContactMail, Inbox
 # Register your models here.
 
 
@@ -17,6 +17,6 @@ admin.site.register(User, UserAdministrator)
 
 
 admin.site.register(Profile)
-admin.site.register(Contact)
+admin.site.register(ContactMail)
 admin.site.register(Inbox)
 

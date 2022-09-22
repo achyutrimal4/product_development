@@ -15,14 +15,16 @@ urlpatterns=[
    path('all-videos/', views.all_videos, name="all_videos"),
    path('like/<str:pk>/', views.like, name="like_video"),
    path('live-games/', views.live_games, name="live_games"),
+   path('live-description/<str:pk>/', views.live_desc, name='live_desc'),
    path('add-live/',views.add_live, name='add_live'),
    
    
    path('add-country/', views.add_country, name='add_country'),
    path('add-category/', views.add_category, name='add_category'),
    
-   # fixtures
+   # fixtures and results
    path('fixtures/', views.fixtures, name='fixtures'),
+   path('results/', views.results, name='results'),
    
    # news
    path('all-news/', views.all_news, name='all_news'),

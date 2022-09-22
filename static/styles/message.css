@@ -1,7 +1,5 @@
-@import url('./variables.css');
-@import url('./animation.css');
-@import url('../styles/modules/buttons.css');
-@import url('../styles/modules/app.css');
+@import url(uikit.css);
+
 
 
 .container{
@@ -39,3 +37,20 @@
     height: fit-content;
     margin-top: 20px;
 }
+/* google font */
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
+}
+
+.reply{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+

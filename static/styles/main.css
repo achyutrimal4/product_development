@@ -1,13 +1,6 @@
-@import url('./variables.css');
-@import url('./animation.css');
-@import url('../styles/modules/buttons.css');
-@import url('../styles/modules/app.css');
+@import url(uikit.css);
 
-/* .container{
-  z-index: 2;
-  position: absolute;
-  right: 2;
-} */
+
 .alert {
   display: inline-flex;
   gap: 1rem;

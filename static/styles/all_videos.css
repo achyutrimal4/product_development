@@ -1,6 +1,4 @@
-@import url('../styles/modules/app.css');
-@import url('./variables.css');
-@import url('../styles/modules/sidebar.css');
+@import url(uikit.css);
 
 
 body h2 {
@@ -11,7 +9,6 @@ body h2 {
     display: flex;
     width: 100%;
     justify-content: center;
-    /* flex-direction: column; */
     padding: 10px;
 }
 .video-container {

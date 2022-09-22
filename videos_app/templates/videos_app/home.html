@@ -36,7 +36,7 @@
                 <p style="font-size:10px ;">{{fixture.date}}</p>
             </div>
             {% endfor %}
-            <a href="#">View fixtures and results → </a>
+            <a href="{% url 'fixtures' %}">View fixtures and results → </a>
         </div>
 
         <div class="standings-container">
@@ -108,7 +108,7 @@
                             </div>
                             <div class="card-details">
                                 <p><a href="{% url 'video_desc' video.id %}">{{video.title}}</a></p>
-                                <p><i class="fa-solid fa-arrow-up"></i>{{video.vote_ratio}}%</p>
+                                <p>{{video.uploaded|date}}</p>
                                 {% if request.user.is_superuser %}
                                 <span style="position: absolute; right: 5%; bottom: 2.5%;">
                                     <a href="{% url 'update_videos' video.id %}"><i class="fas fa-edit"></i></a>
@@ -199,18 +199,18 @@
 
 <div class="featured-players">
     <div class="title">
-        <h2>Winners</h2>
+        <h2>Featured Players</h2>
     </div>
-    <div class="card-grid--five">
+    <div class="card-grid--five">        
         {% for player in players %}
         <div class="card--players">
             <p>{{player.name}}</p>
             <p>{{player.total}}</p>
-            <img src="{{player.image.url}}" alt="" style="object-fit:cover; ">
+            <img src="{{player.image.url}}" alt="{{player.name}} with medals.">
             <span>
-                <i class="fa-solid fa-medal" style="color:gold ;"></i>{{player.gold}}
-                <i class="fa-solid fa-medal" style="color:rgb(153, 152, 152);"></i>{{player.silver}}
-                <i class="fa-solid fa-medal" style="color:brown;"></i> {{player.bronze}}
+                <p><i class="fa-solid fa-medal" style="color:gold ;"></i>{{player.gold}}</p>
+                <p><i class="fa-solid fa-medal" style="color:rgb(153, 152, 152);"></i>{{player.silver}}</p>
+                <p><i class="fa-solid fa-medal" style="color:brown;"></i> {{player.bronze}}</p>
             </span>
         </div>
         {% endfor %}

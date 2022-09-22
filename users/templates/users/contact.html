@@ -1,28 +1,46 @@
 {% extends 'main.html' %}
 
-{% load static %}
 
 {% block title %}Contact Us - FunOlympics{% endblock title %}
-{% block static %}
-    
-{% endblock static %}
 
+{% load static %}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'styles/add_videos.css' %}">
+{% endblock %}
 
 {% block content %}
-    <div class="container">
-        <div class="form" method="POST">
-            {% csrf_token %}
-            {{form.as_p}}
-            <input type="Submit" value="Submit">
+
+
+
+<div class="container">
+
+    <form class="default-form" method="POST" novalidate>
+
+        <h2>Contact Us</h2>
+
+        {% csrf_token %}
+
+        {% for field in form %}
+
+        <div class="input-errors">
+
+            {{field.label_tag}}
+            <div class="input-fields">
+                {{field}}
+            </div>
         </div>
-    </div>
-    
+
+        {% endfor %}
+
+       
+        <input type="submit" value="Send Message" class="default-button--large" /><br>
+    </form>
+</div>
+
 {% endblock content %}
-    
+
 
 {% block footer %}
 {% include 'footer.html' %}
 
 {% endblock footer %}
-    
-

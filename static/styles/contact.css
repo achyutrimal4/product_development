@@ -1,0 +1,15 @@
+@import url(uikit.css);
+
+
+
+.container {
+    display: flex;
+    border-radius: 5px;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+    margin-top: 50px;
+    padding: 15px;
+}

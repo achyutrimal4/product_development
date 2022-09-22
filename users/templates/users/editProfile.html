@@ -14,7 +14,7 @@
 
 <div class="container">
 
-    <form action="{% url 'editprofile' %}" method="post" enctype="multipart/form-data">
+    <form action="{% url 'editprofile' %}" method="post" enctype="multipart/form-data" class="dedault-form">
 
         <h2>Update your details</h2>
         {% csrf_token %}
@@ -28,7 +28,7 @@
             </div>
         </div>
         {%endfor%}
-        <input type="submit" name="Update" id="default-button">
+        <input type="submit" name="Update" class="default-button--large">
     </form>
 
 

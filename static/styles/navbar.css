@@ -1,3 +1,4 @@
+@import url(uikit.css);
 
 
 #logo {
@@ -169,3 +170,12 @@
     margin-top: -20px;
     margin-left: 50px;
 }
+
+/* responsive */
+@media screen and (max-width: 600px) {
+    .nav-bar a:not(:first-child) {display: none;}
+    .nav-bar a.icon {
+      float: right;
+      display: block;
+    }
+  }

@@ -1,0 +1,114 @@
+{% extends 'main.html' %}
+
+
+{% block title %}Fixtures and Results- FunOlympics{% endblock title %}
+
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'styles/fixtures.css' %}">
+{% endblock styles %}
+
+
+{% block content %}
+
+<!-- This template is used to render out fixtures and results table
+The results template shows esults for countries' standings and players standings
+-->
+
+<div class="container">
+    
+    <!-- Render out fixtures page -->
+    {% if page == 'fixtures' %}
+    <div class="tab-buttons">
+        <a href="{% url 'fixtures' %}" class="active-tab">Fixtures</a>
+        <a href="{% url 'results' %}">Results</a>
+    </div>
+
+    <div class="featured-events">
+            
+            <div class="card-grid--3">
+                {% for fixture in fixtures %}
+                <div class="card--fixtures">
+                    {% if fixture.thumbnail.url is not None %}
+    
+                    <div class="thumbnail">
+                        <img src="{{fixture.thumbnail.url}}" alt="" style=" object-fit:cover; ">
+                    </div>
+    
+                    {% endif %}
+                    <p>{{fixture.fixture}}</p>
+                    <p>{{fixture.date}}</p>
+                </div>
+                {% endfor %}
+    
+            </div>
+    </div>
+
+    <!-- Render out results -->
+    <!-- Countries standings -->
+    {% else %}
+
+    <div class="tab-buttons">
+        <a href="{% url 'fixtures' %}">Fixtures</a>
+        <a href="{% url 'results' %}"  class="active-tab">Results</a>
+    </div>
+    <h2>Funolympics 2022 medal table</h2>
+    <div class="standings-container">
+        <table id="standings-table">
+            <tr>
+                <th>Country</th>
+                <th><i class="fa-solid fa-medal" style="color:gold ;"></i></th>
+                <th><i class="fa-solid fa-medal" style="color:silver;"></i></th>
+                <th><i class="fa-solid fa-medal" style="color:brown;"></i></th>
+                <th><i class="fa-solid fa-ranking-star" style="color: purple;"></i></th>
+            </tr>
+            {% for standing in standings %}
+            <tr>
+                <td>{{standing.country}}</td>
+                <td>{{standing.gold}}</td>
+                <td>{{standing.silver}}</td>
+                <td>{{standing.bronze}}</td>
+                <td>{{standing.total}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <section style="height: 20px;">
+        
+    </section>
+
+    <!-- Players standings -->
+    <div class="standings-container">
+        <h2>Players table</h2>
+        <table id="standings-table">
+            <tr>
+                <th>Player</th>
+                <th><i class="fa-solid fa-medal" style="color:gold ;"></i></th>
+                <th><i class="fa-solid fa-medal" style="color:silver;"></i></th>
+                <th><i class="fa-solid fa-medal" style="color:brown;"></i></th>
+                <th><i class="fa-solid fa-ranking-star" style="color: purple;"></i></th>
+            </tr>
+            {% for player in players %}
+            <tr>
+                <td>{{player.name}}</td>
+                <td>{{player.gold}}</td>
+                <td>{{player.silver}}</td>
+                <td>{{player.bronze}}</td>
+                <td>{{player.total}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    {% endif %}
+        
+   
+
+</div>
+{% endblock content %}
+
+{% block footer %}
+{% include 'footer.html' %}
+
+{% endblock footer %}

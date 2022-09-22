@@ -1,31 +1,36 @@
-@import url('./variables.css');
-@import url('./animation.css');
-@import url('../styles/modules/buttons.css');
-@import url('../styles/modules/app.css');
+@import url(uikit.css);
 
-.container{
+
+.container {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.inbox-container{
+
+.inbox-container {
     width: 80%;
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
 }
-.inbox-container span{
-    width: 25%;
+
+.inbox-container span {
+    width: fit-content;
     margin: 0;
     display: flex;
     justify-content: space-between;
     font-weight: bold;
 }
-.inbox-container a{
+.inbox-container span p:first-child {
+   margin-right: 15px;
+}
+
+.inbox-container a {
     text-decoration: none;
     color: black;
 }
-.message-card{
+
+.message-card {
     display: flex;
     width: 100%;
     position: relative;
@@ -34,7 +39,8 @@
     margin: 2px;
     cursor: pointer;
 }
-#new-tag{
+
+#new-tag {
     position: absolute;
     left: 5px;
     top: -8px;
@@ -44,14 +50,17 @@
     padding: 1px;
     border-radius: 3px;
 }
-#sender{
+
+#sender {
     width: 25%;
     margin-right: 20px;
 }
-#msg{
+
+#msg {
     width: 55%;
 }
-#time{
+
+#time {
     width: 15%;
     position: absolute;
     right: 0px;

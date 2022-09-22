@@ -1,7 +1,5 @@
-@import url('./variables.css');
-@import url('../styles/modules/animation.css');
-@import url('../styles/modules/buttons.css');
-@import url('../styles/modules/app.css');
+@import url(uikit.css);
+
 
 body h2 {
     display: block;
@@ -12,9 +10,9 @@ body h2 {
     width: 100%;
     display: flex;
     flex-direction: column;
-    overflow: auto;
     justify-content: center;
     align-items: center;
+    height: fit-content;
     margin-left: 10px;
 }
 
@@ -96,4 +94,3 @@ body h2 {
     margin-right: auto;
     display: block;
 }
-

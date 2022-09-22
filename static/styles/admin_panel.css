@@ -1,22 +1,10 @@
-@import url('../styles/modules/sidebar.css');
-@import url('../styles/modules/app.css');
+@import url(uikit.css);
 
-* {
-    box-sizing: border-box;
-}
 
-body {
-    margin: auto;
-    background-color: rgb(230, 230, 230);
-    font-size: 14px;
-    font-family: "Poppins", sans-serif;
-}
 
 .container {
     width: 100%;
     display: flex;
-
-    /* justify-content: space-around; */
 }
 
 
@@ -28,7 +16,6 @@ body {
 }
 
 .card-container {
-    /* margin-top: 50px; */
     width: 100%;
 }
 
@@ -40,7 +27,6 @@ body {
 
 .card {
     display: flex;
-    /* flex-direction: column; */
     position: relative;
     margin: 8px;
     border-radius: 8px;
@@ -89,22 +75,6 @@ body {
 .card-details i {
     color: purple;
     font-size: 40px;
-}
-
-#btn-small {
-    border: none;
-    background: var(--dark_cyan);
-    color: white;
-    font: inherit;
-    margin-top: 30px;
-    padding: 10px;
-    border-radius: 5px;
-    text-transform: uppercase;
-    width: 120px;
-}
-
-#btn-small:hover {
-    cursor: pointer;
 }
 
 .card-details a {

@@ -1,0 +1,53 @@
+{% extends 'main.html' %}
+
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'styles/message.css' %}">
+{% endblock  %}
+
+
+{% block content %}
+<div class="container">
+    <div class="message-box">
+        
+        <a href="{% url 'contact-inbox' %}"><i class="fa fa-arrow-left"></i></a>
+
+        <div class="title">
+            <h4>{{inbox.subject}}</h4>
+        </div>
+       
+        <div class="sender-details">
+            <p>{{inbox.sender}}</p>
+            <p>{{inbox.sender.email}}</p>
+            <p>{{inbox.created}}</p>
+        </div>
+
+        <!-- This division is to show contact body and contact message coming from contact form.  -->
+        <div class="message">
+            {{inbox.body}}
+            {{inbox.message}}
+        </div>
+
+        <!-- form to reply to contact messages -->
+
+        <div class="reply">
+            <form action="" class="default-form" method="POST">
+                {% csrf_token %}
+                {% for field in form %}
+                <div class="input-errors">
+                    
+                    <div class="input-fields">
+                        {{field}}
+                    </div>
+                </div>
+                {% endfor %}
+                <input type="submit" name="" value="Reply" class="default-button--m0">
+            </form>
+        </div>
+
+    </div>
+</div>
+{% endblock content %}
+    
+

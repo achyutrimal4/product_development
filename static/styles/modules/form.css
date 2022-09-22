@@ -1,6 +1,7 @@
 @import url('./variables.css');
 @import url('./animation.css');
-@import url('../styles/modules/buttons.css');
+@import url('../modules/buttons.css');
+@import url('../modules/app.css ');
 
 
 .default-form {
@@ -24,7 +25,7 @@
     padding-bottom: 10px;
 }
 
-.input-fields input {
+.input-fields-md input {
     border: 2px solid #f0f0f0;
     border-radius: 2px;
     font-family: inherit;
@@ -32,4 +33,52 @@
     font-size: 14px;
     padding: 10px;
     width: 300px;
+}
+
+.input-fields select {
+    border: 2px solid #f0f0f0;
+    border-radius: 2px;
+    font-family: inherit;
+    border: 1px solid rgb(158, 158, 158);
+    font-size: 14px;
+    padding: 10px;
+    width: 400px;
+}
+
+.description-input {
+    width: 400px;
+    height: 100px;
+    font: inherit;
+    resize: none;
+}
+
+.file-input {
+    cursor: pointer;
+    color: gray;
+    font: inherit;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: 0.5s;
+}
+
+.file-input button {
+    height: 40px;
+}
+
+
+
+.tag-input {
+    width: 200px;
+    font: inherit;
+}
+
+/* large input fields */
+.input-fields input {
+    border: 2px solid #f0f0f0;
+    border-radius: 2px;
+    font-family: inherit;
+    border: 1px solid rgb(158, 158, 158);
+    font-size: 14px;
+    padding: 10px;
+    width: 400px;
 }

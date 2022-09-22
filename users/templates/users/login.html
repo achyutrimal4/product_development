@@ -29,14 +29,20 @@
     </div>
 
     {% endfor %}
+
     {% if login_form.non_field_errors %}
+    <div class="alert-login">
+
+    
       <div class="alert alert--error">
         <p class="alert__message">{{login_form.non_field_errors}}</p>
         <button class="alert__close">x</button>
       </div>
+
+    </div>
       {% endif %}
 
-    <input type="submit" value="Login" class="default-button" /><br>
+    <input type="submit" value="Login" class="default-button--large" /><br>
     <div class="links">
 
       <a href=""><input type="checkbox" name="" id="" value="">Remember me </a>

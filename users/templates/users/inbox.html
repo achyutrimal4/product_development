@@ -14,11 +14,15 @@
 <div class="container">
     <div class="inbox-container">
         
+        {% if page == 'inbox' %}
+        <div class="tab-buttons" style="margin-top:20px ;">
+            <a href="{% url 'inbox' %}" class="active-tab">Password Reset Requests</a>
+            <a href="{% url 'contact-inbox' %}">Contact Inbox</a>
+        </div>
         <span>
             <p>Messages ({{inbox_count}})</p>
             <p>New Messages ({{unread_count}})</p>
         </span>
-
 
         {% for inbox in inbox %}
         <a href="{% url 'viewMessage' inbox.id %}">
@@ -32,6 +36,33 @@
             </div>
         </a>
         {% endfor %}
+
+        <!-- ================================================ -->
+        {% else %}
+        <div class="tab-buttons" style="margin-top:20px ;">
+            <a href="{% url 'inbox' %}" >Password Reset Requests</a>
+            <a href="{% url 'contact-inbox' %}" class="active-tab">Contact Inbox</a>
+        </div>
+        <span>
+            <p>Contact Messages ({{inbox_count}})</p>
+            <p>New Contact Messages ({{unread_count}})</p>
+        </span>
+        {% for inbox in inbox %}
+        <a href="{% url 'view-contact-mail' inbox.id %}">
+            <div class="message-card">
+                {% if not inbox.is_read %}
+                <p id="new-tag">New</p>
+                {% endif %}
+                <p id="sender">{{inbox.sender}}</p>
+                <p id="msg">{{inbox.subject}}</p>
+                <p id="msg">{{inbox.message|slice:":25"}}...</p>
+                <p id="time">{{inbox.created}}</p>
+            </div>
+        </a>
+        {% endfor %}
+        {% endif %}
+            
+       
     </div>
 </div>
 {% endblock content %}

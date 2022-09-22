@@ -84,7 +84,6 @@
         <p>By clicking the button below, a password reset request will be sent to the admin.</p>
         <p>After verification, you will receive a password reset link in your email inbox. Check that out. </p>
         {% csrf_token %}
-        <!-- {{form.as_p}} -->
         <input type="submit" value="Send Password Reset Request" class="submit-request" />
     </form>
 </div>

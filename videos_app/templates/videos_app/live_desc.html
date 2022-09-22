@@ -1,0 +1,100 @@
+{% extends 'main.html'%}
+
+{% block title %}{{video.title}}{% endblock title %}
+
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'styles/video_desc.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="left-container">
+        <div class="player">
+            <iframe src="{{video.url}}" frameborder="0" style="width: 95%; height:480px" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="video-details">
+            <div class="video-desc">
+                <p>{{video.title}}</p>
+                <div class="tags">
+                    {% for category in video.category.all %}
+                    <small>{{category}}</small>
+                    {% endfor %}
+                    {% for country in video.country.all %}
+                    <small>{{country}}</small>
+                    {% endfor %}
+                </div>
+                <div class="social-share">
+                    {% include 'social_share.html' %}
+                </div>
+
+
+                <div class="views-buttons">
+                    <p style="margin-right:20px ;">{{video_views}} views</p>
+                    <p>{{video.uploaded}}</p>
+                    <div class="like-buttons">
+                        <!-- Like form -->
+                        <form action="{% url 'like_video' video.id %}" method="POST">
+                            {% csrf_token %}
+                            {% if liked %}
+                                <button type="submit" name="video_id" value="{{video.id}}" class="btn-small">
+                                    <i class="fa-solid fa-thumbs-up" style="color: #3AB09E;"></i></button>
+                            {% else %}
+                                <button type="submit" name="video_id" value="{{video.id}}" class="btn-small">
+                                    <i class="fa-solid fa-thumbs-up"></i></button>
+                            {% endif %}
+                                <p>{{total_likes}} likes</p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <p>{{video.description}}</p>
+        </div>
+
+
+        <div class="comments-section">
+
+            <h3>{{total_comments}} Comments</h3><br>
+            <form action="{% url 'video_desc' video.id %}" method="post">
+                {% csrf_token %}
+                {% for field in form %}
+                <div class="input-fields">
+                    {{field}}
+                </div>
+                {% endfor %}
+                <input type="submit" value="Comment" id="comment-button">
+            </form>
+        </div>
+    </div>
+
+    <div class="right-container">
+        <h3>Recommendations</h3>
+        {% for video in videos %}
+        <div class="video-card">
+            <a href="{% url 'video_desc' video.id %}" style="text-decoration: none; width:100%;">
+                <div class="thumbnail">
+                    <video src="{{video.video.url}}" type="video/mp4" style="width: 200px; height: 100px;"></video>
+                </div>
+                <div class="card-details">
+                    <p><a href="{% url 'video_desc' video.id %}">{{video.title}}</a></p>
+                </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% for review in video.review_set.all %}
+<div class="comment-container">
+    <img src="{{review.comment_by.profile_image.url}}" style="width:30px; height:30px; border-radius:50%" alt="">
+    <div class="user-comment">
+        <p>{{review.comment_by.username}}</p>
+        <p>{{review.comment | linebreaksbr}}</p>
+    </div>
+    <p id="date">{{review.created}}</p>
+</div>
+{% endfor %}
+{% endblock content %}
+
+{% block footer %}
+{% include 'footer.html' %}
+{% endblock footer %}

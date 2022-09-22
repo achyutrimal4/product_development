@@ -1,6 +1,5 @@
-@import url('../styles/modules/animation.css');
-@import url('./variables.css');
-@import url('../styles/modules/app.css');
+@import url(uikit.css);
+
 
 body {
   align-items: center;
@@ -17,96 +16,4 @@ body {
   padding: 15px;
 }
 
-.tab-buttons{
-  display: flex;
-  width: 100%;
-  justify-content: center;
-}
-.tab-buttons a{
-  text-decoration: none;
-  color: black;
-  background-color: rgba(128, 0, 128, 0.168);
-  margin: -5px 5px 0 0;
-  padding: 5px;
-  border-radius: 5px;
-}
-.tab-buttons .active-tab{
-  background-color: var(--dark_cyan);
-  color: white;
-  cursor: none;
-}
-.tab-buttons .active-tab:disabled, a[disabled]{
-  background-color: var(--dark_cyan);
-  color: white;
-}
-.default-form {
-  padding: 20px 30px;
-  
-}
-.input-errors{
-  display:flex;
-}
-.input-errors label{
-  display: inline;
-  width: 200px;
-}
-.input-fields {
-  display:flex;
-  margin-right:20px ;
-  margin-bottom: 10px;
-  padding-bottom: 10px;  
-}
 
-.input-fields input {
-  border: 2px solid #f0f0f0;
-  border-radius: 2px;
-  font-family: inherit;
-  border: 1px solid rgb(158, 158, 158);
-  font-size: 14px;
-  padding: 10px;
-  width: 400px;
-}
-.input-fields select{
-  border: 2px solid #f0f0f0;
-  border-radius: 2px;
-  font-family: inherit;
-  border: 1px solid rgb(158, 158, 158);
-  font-size: 14px;
-  padding: 10px;
-  width: 400px;
-}
-.description-input{
-  width: 400px;
-  height: 100px;
-  font: inherit;
-}
-.file-input{
-  cursor: pointer;
-  color: gray;
-  font: inherit;
-  text-transform: uppercase;
-  font-weight: 500;
-  transition: 0.5s;
-}
-.file-input button{
-  height: 40px;
-}
-.tag-input{
-  width: 200px;
-  font: inherit;
-}
-#addvideo-button {
-  width: 400px;
-  height: 40px;
-  border: none;
-  outline: none;
-  border-radius: 5px;
-  cursor: pointer;
-  background-color: var(--dark_cyan);
-  color: #fff;
-  font: inherit;
-  text-transform: uppercase;
-  font-weight: 500;
-  transition: 0.5s;
-  margin-left: 200px; 
-}

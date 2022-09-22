@@ -1,4 +1,5 @@
 from multiprocessing import context
+from operator import is_
 from pickle import FALSE
 from pydoc import pager
 from django.shortcuts import render, redirect, get_object_or_404
@@ -12,10 +13,6 @@ from django.http import HttpResponseRedirect
 from django.db.models import Q
 from .utils import search_function, search_news
 from django.urls import reverse_lazy, reverse
-
-
-
-
 
 
 # Create your views here.
@@ -46,12 +43,11 @@ def home(request):
     if request.method == "GET":
         videos, search_query = search_function(request)
 
-    fixtures = Fixture.objects.all().order_by('-created')
+    fixtures = Fixture.objects.all().order_by('-created')[0:6]
     news = News.objects.all().order_by('-created')
     photos = Photo.objects.all()
-    standings = Standing.objects.all().order_by('-total')
-    players = Player.objects.all().order_by('-total')
-    first_player = Player.objects.all().order_by('-total').first
+    standings = Standing.objects.all().order_by('-total')[0:7]
+    players = Player.objects.all().order_by('-total')[0:5]
     context = {'videos': videos,
                'fixtures': fixtures,
                'news': news, 
@@ -268,8 +264,14 @@ def admin_panel(request):
     inbox = profile.messages.all()
     unread_count = inbox.filter(is_read=False).count()
     
+    contact_mails = profile.contact_mails.all()
+    unread_mails = contact_mails.filter(is_read=False).count()
+
+    
     context = {'video_count': video_count,
-               'news_count': news_count, 'users_count': users_count, 'photo_count': photo_count, 'unread_count': unread_count}
+               'news_count': news_count, 'users_count': users_count, 'photo_count': photo_count, 
+               'unread_count': unread_count,
+               'unread_mails':unread_mails,}
     return render(request, 'videos_app/admin_panel.html', context)
 
 
@@ -357,9 +359,64 @@ def live_games(request):
     context = {'live_videos': live_videos}
     return render(request, 'videos_app/live_games.html', context)
 
+# video description 
+@login_required(login_url='login')
+def live_desc(request, pk):
+    videos = LiveVideo.objects.all()
+        
+    videoObject = LiveVideo.objects.get(id=pk)
+    
+    # total_likes = videoObject.likes.count()    
+    # liked = False
+    # if videoObject.likes.filter(id=request.user.id).exists():
+    #     liked=True
+
+
+    # search_query
+    search_query = ''
+    # if request.GET.get('search_query'):
+    #     search_query = request.GET.get('search_query')
+
+    # videos = Video.objects.filter(Q(title__icontains=search_query) | Q(
+    #     description__icontains=search_query))
+
+    # form = ReviewForm()
+
+    # if request.user not in videoObject.video_views.all():
+    #     videoObject.video_views.add(request.user)
+
+    # if request.method == 'POST':
+    #     form = ReviewForm(request.POST)
+    #     if form.is_valid():
+    #         review = form.save(commit=False)
+    #         review.video = videoObject
+    #         review.comment_by = request.user.profile
+    #         review.save()
+    #         return HttpResponseRedirect(reverse('video_desc', args=[str(pk)]))
+
+    # views_count = videoObject.video_views.all().count()
+    # total_comments = videoObject.review_set.all().count()
+
+    context = {'video': videoObject,
+               'videos': videos,
+            #    'form': form,
+            #    'video_views': views_count,
+            #    'total_comments': total_comments,
+            #    'total_likes':total_likes,
+            #    'liked':liked
+               }
+    return render(request, 'videos_app/live_desc.html', context)
 
 # view fixtures and results
-def fixtures(request):    
+def fixtures(request): 
+    page='fixtures'   
     fixtures = Fixture.objects.all()
-    context = {'fixtures': fixtures}
-    return render(request, 'videos_app/fixtures.html', context)
+    context = {'fixtures': fixtures,'page':page}
+    return render(request, 'videos_app/fixtures_results.html', context)
+
+def results(request):
+    page='results'
+    standings = Standing.objects.all().order_by('-total')
+    players = Player.objects.all().order_by('-total')
+    context = {'standings': standings, 'page': page, 'players': players}
+    return render(request, 'videos_app/fixtures_results.html', context)
