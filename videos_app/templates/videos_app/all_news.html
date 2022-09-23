@@ -10,34 +10,42 @@
 
 
 {% block content%}
+
 <div class="container">
-
-<div class="news-container">
-    <div class="title">
-        <h2>Latest News</h2>
-        <a href="">Filter By</a>
-    </div>
-
-    <div class="news-card-container">
-        {% if search_query%}
-        <p style="color:#3AB09E">Search results for {{search_query}}</p>
-        {% endif %}
-        {% for news in news %}
-        <a href="{% url 'news_desc' news.id %}">
-            <div class="news-card">
-                <div class="news-thumbnail">
-                    <img src="{{news.image.url}}">
-                </div>
-                <div class="news-details">
-                    <p>{{news.title}}</p>
-                    <p>{{news.description}}</p>
-                </div>
-            </div>
-            
-        </a>
+    <div class="sidebar">
+       
+        <h4>Categories</h4>
+        <a href="{% url 'all_news' %}" class="baritem bar-button">All News</a>
+        {% for category in categories %}
+        <a href="{%  url 'all_news' %}?category={{category.name}}" class="baritem bar-button">{{category.name}}</a>
         {% endfor %}
+
     </div>
-</div>
+
+    <div class="news-container">
+        <h2>Latest news</h2>
+
+        <div class="news-card-container">
+
+            {% if search_query%}
+            <p style="color:#3AB09E">Search results for {{search_query}}</p>
+            {% endif %}
+            {% for news in news %}
+            <a href="{% url 'news_desc' news.id %}">
+                <div class="news-card">
+                    <div class="news-thumbnail">
+                        <img src="{{news.image.url}}">
+                    </div>
+                    <div class="news-details">
+                        <p>{{news.title}}</p>
+                        <p>{{news.description}}</p>
+                    </div>
+                </div>
+
+            </a>
+            {% endfor %}
+        </div>
+    </div>
 </div>
 
 {% endblock content %}

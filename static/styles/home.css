@@ -35,7 +35,7 @@ body h2 {
     transform: scale(0.98);
 }
 
-.live-thumbnail img {
+.live-thumbnail iframe {
     width: 100px;
     height: 75px;
 }
@@ -458,6 +458,42 @@ body h2 {
     width: 100%;
     height: inherit;
     /* padding: 20px; */
-    background-color: rgba(0, 0, 0, 0.95);
-  
+    background-color: rgba(0, 0, 0, 0.95); 
+}
+
+/* Responsive */
+
+@media screen and (max-width: 600px){
+    *{
+        font-size: 12px !important;
+    }
+    .live-banner{
+        max-width: 100%;
+    }
+    .live-thumbnail{
+        height: auto;
+        width: auto;
+    }
+    #live-link, .live-banner i{
+        display: none;
+    }
+    .container , .right-container, .card-container{
+        width: 100%;
+        margin:0;
+        padding: 0;
+    }
+    .left-container{
+        display: none;
+    }
+ 
+    .card-container{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    .card-grid{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
 }

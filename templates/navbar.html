@@ -14,21 +14,20 @@
 <body>
 
     {% if request.user.is_authenticated %}
-    <div class="nav-bar">
+    <div class="nav-bar" id="nav-bar">
         <ul>
-           
-            <img src="{% static 'media/images/olympic.png'%}" alt="" id="logo">
+            <li><a href="javascript:void(0);"><img src="{% static 'media/images/olympic.png'%}" alt="" id="logo" onclick="myFunction()"></a></li>
             <li><a href="{% url 'home' %}">Home</a></li>
             <li><a href="{% url 'all_news' %}">News</a></li>
             <li><a href="{% url 'gallery' %}">Gallery</a></li>
-            <li><a href="{% url 'all_videos' %}">Videos</a></li>                
+            <li><a href="{% url 'all_videos' %}">Videos</a></li>
             <li><a href="{% url 'fixtures' %}">Fixtures</a></li>
             <li><a href="{% url 'contact' %}">Contact</a></li>
+           
 
             {% if request.user.is_superuser %}
             <li> <a href="{% url 'admin_panel' %}" class="baritem bar-button">Admin Panel</a></li>
-            <li><i class="fa-solid fa-bell">{{request.user.profile.}}</i></li>
-            {% endif %}                  
+            {% endif %}
             <div class="dropdown">
                 <button class="dropbtn">
                     <img src="{{request.user.profile.profile_image.url}}" alt="" id="profile-img">
@@ -42,22 +41,17 @@
         </ul>
     </div>
 
-    {% if not request.path == '/users/my_profile/' %}       
-    
+    {% if not request.path == '/users/my_profile/' %}
+
     <div class="bottom-nav">
         <form action="" method="get">
             <div class="search-fields">
                 <input type="text" placeholder="Search..." name="search_query">
                 <button type="submit"><i class="fa fa-search"></i></button>
             </div>
-
-        </form>
-
-        <form action="#" id="filter">
-             
         </form>
     </div>
-    {% endif  %}
+    {% endif %}
     {% endif %}
 
     {% if not request.user.is_authenticated %}
@@ -72,5 +66,16 @@
     </div>
     {% endif %}
 </body>
+
+<script>
+    function myFunction() {
+        var x = document.getElementById("nav-bar");
+        if (x.className === "nav-bar") {
+            x.className += " responsive";
+        } else {
+            x.className = "nav-bar";
+        }
+    }
+</script>
 
 </html>

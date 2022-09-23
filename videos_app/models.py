@@ -1,3 +1,4 @@
+from unicodedata import category
 from django.db import models
 from users.models import User
 from users.models import Profile
@@ -87,6 +88,8 @@ class News (models.Model):
     imageBy = models.CharField(max_length=200, default="Funolympics Admin")
     author = models.CharField(max_length=200, default="Funolympics Admin", null=True, blank=True)
     photo_caption = models.CharField(max_length=255,null=True, blank=True)
+    category = models.ManyToManyField(
+        'Category', blank=True, verbose_name="News Category")
     created = models.DateTimeField(auto_now_add=True)
     id = models.UUIDField(default=uuid.uuid4, unique=True,
                           primary_key=True, editable=False)

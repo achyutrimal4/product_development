@@ -119,6 +119,19 @@ def inbox(request):
                'unread_count': unread_count, 'page': page}
     return render(request, 'users/inbox.html', context)
 
+# delete password reset request 
+@login_required(login_url='login')
+@user_passes_test(lambda u: u.is_superuser, login_url='home')
+def delete_reset_inbox(request, pk):
+    inbox = Inbox.objects.get(pk=pk)
+    if request.method == 'POST':
+        inbox.delete()
+        messages.success(request, 'Inbox deleted successfully')
+        return redirect('inbox')
+    
+    context = {'inbox': inbox}
+    return render(request, 'videos_app/delete_confirmation.html', context)
+
 # =================================================================
 # function to create reset requests for users and notify admin
 
@@ -180,7 +193,6 @@ def viewMessage(request, pk):
         msg = EmailMultiAlternatives(subject=subject, from_email=settings.EMAIL_HOST_USER,
                              to=[user_email], body=body)
 
-
         msg.attach_alternative(body, "text/html")
         msg.send()
 
@@ -192,6 +204,7 @@ def viewMessage(request, pk):
         #     fail_silently=False,
         # )
         user.set_password(new_pass)
+        user.is_pass_reset = True
         user.save()
         messages.success(request, 'New password successfully sent.')
         return redirect('inbox')
@@ -300,11 +313,14 @@ def viewContactMail(request, pk):
 
 @login_required(login_url='login')
 def change_password(request):
+    User = get_user_model()
+    username = request.user.username
+    user = User.objects.get(username=username)
+    
+    
     context = {}
     if request.method == 'POST':
-        User = get_user_model()
-        username = request.user.username
-        user = User.objects.get(username=username)
+      
 
         current_pass = request.POST['current-password']
         new_pass = request.POST['new-password']
@@ -325,10 +341,11 @@ def change_password(request):
                 request, 'New password cannot be the same as current password.')
 
         elif new_pass == confirm_pass:
-
+            user.is_pass_reset = False
             user.set_password(new_pass)
             user.save()
             messages.success(request, 'Password successflly changed.')
+            login(request, user, backend='django.contrib.auth.backends.ModelBackend')
             return redirect('home')
         else:
             messages.error(

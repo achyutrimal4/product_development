@@ -16,6 +16,10 @@ urlpatterns=[
     path('create-message/<str:pk>/', views.create_message, name='create-message'),
     # create-message/<str:pk>/ --> id of the account to which the message is being sent
     
+    # delete message
+    path('delete-inbox/<str:pk>/', views.delete_reset_inbox, name="delete-inbox"),
+
+    
     # view and respond to contact messages
     path('contact/', views.contact, name='contact'),
     path('contact-inbox/', views.contact_inbox, name='contact-inbox'),
@@ -23,4 +27,6 @@ urlpatterns=[
     
     # change password
     path('change-password/', views.change_password, name='change-password'),
+    
+
 ]

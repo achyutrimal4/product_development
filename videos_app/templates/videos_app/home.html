@@ -14,14 +14,13 @@
 
 <div class="live-banner">
     <div class="live-thumbnail">
-        <img src="{% static 'media/images/cycling.jpg' %}" alt="" style="object-fit: cover;">
+        <iframe src="{{live.url}}" frameborder="0" ></iframe>
         <p>Live now</p>
 
     </div>
     <div class="live-description">
-        <h3>ROAD RACE - MEN TRIAL 400 K.M</h3>
-        <p>September 7 2022, 13:30</p>
-        <p>Venue: Bayjing FunOlympics Park, Track 2</p>
+        <h3>{{live.title}}</h3>
+        <p>{{live.venue}}</p>
     </div>
     <a href="{% url 'live_games' %}" id="live-link">Live Games</a>
     <i class="fa-solid fa-tv"></i>

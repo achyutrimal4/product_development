@@ -3,6 +3,8 @@ from django.contrib import messages
 from django.shortcuts import redirect
 from gallery_app.forms import PhotoForm, AlbumForm
 from.models import Photo, Album
+from videos_app.utils import search_photos
+
 
 
 # gallery pages
@@ -18,7 +20,11 @@ def gallery(request):
     albums = Album.objects.all()
     # photos = Photo.objects.all()
     
-    context = {'photos': photos, 'albums': albums}
+     # search query
+    if request.method == "GET":
+        photos, search_query = search_photos(request)
+    
+    context = {'photos': photos, 'albums': albums, 'search_query': search_query}
     return render(request, 'gallery_app/gallery.html', context)
 
 

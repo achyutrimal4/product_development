@@ -5,56 +5,32 @@
     display: flex;
     border-radius: 5px;
     flex-direction: column;
-    /* width: 900px; */
     justify-content: center;
     align-items: center;
-    max-width: 100%;
+    width: 100%;
     padding: 15px;
 
 }
 
-.fixture-grid {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(300px, 1fr));
-    grid-gap: 10px;
-}
-
-.fixture-card {
-    padding: 10px;
-    background-color: white;
-}
-
-.fixture-card p:last-child {
-    color: grey;
-}
-
-/* ===================================== */
-
-
-
-.featured-events{
+.featured-events {
     width: 100%;
     height: fit-content;
-    /* margin-top: -15px; */
-}
-.featured-events{
-
-    width: 100%;
     display: flex;
-    justify-content:center;
+    justify-content: center;
     align-items: center;
-    margin: 20px 0;
-    height: 520px;
 }
+
 .card-grid--3 {
     display: grid;
-    grid-template-columns: repeat(3, minmax(200px, 1fr));
+    grid-template-columns: repeat(4, minmax(200px, 1fr));
+    /* background-color: red; */
     overflow: hidden;
-    width: 100%;
-    align-items:  center;
+    width: fit-content;
+    align-items: center;
     grid-gap: 10px;
-    margin-left: 20px;
+    /* margin-left: 20px; */
 }
+
 .card--fixtures {
     display: flex;
     flex-direction: column;
@@ -69,7 +45,8 @@
     overflow: hidden;
 }
 
-.thumbnail, .card-grid--3 .thumbnail {
+.thumbnail,
+.card-grid--3 .thumbnail {
     margin-left: auto;
     margin-right: auto;
     display: flex;
@@ -77,16 +54,19 @@
 
 }
 
-.thumbnail img, .card-grid--3 .thumbnail img {
+.thumbnail img,
+.card-grid--3 .thumbnail img {
     height: 150px;
     width: 300px;
     object-fit: cover;
     /* margin-top: 10px; */
 }
+
 /* ============================================== */
 /* results */
 
-.standings-container, .players{
+.standings-container,
+.players {
     display: flex;
     width: 100%;
     flex-direction: column;
@@ -121,4 +101,3 @@
     padding: 20px;
     text-align: left;
 }
-

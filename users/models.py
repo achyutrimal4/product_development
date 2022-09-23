@@ -41,9 +41,10 @@ class User (AbstractBaseUser):
     is_active   = models.BooleanField(default=True)
     is_staff    = models.BooleanField(default=False)
     is_superuser=  models.BooleanField(default=False)
-    phone_number = PhoneNumberField(null=True, verbose_name='Phone Number', blank=True, )
+    is_pass_reset = models.BooleanField(default=False)
+    phone_number = PhoneNumberField(null=True, verbose_name='Phone Number', blank=False, )
     full_name   =models.CharField(max_length=60, null=True)
-    country     =CountryField(blank=True, null=True, verbose_name="Counrty/Area of resdence", blank_label="Select Country")
+    country     =CountryField(blank=False, null=True, verbose_name="Counrty/Area of resdence", blank_label="Select Country")
     id          =models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
    
     # first_name = 

@@ -14,18 +14,20 @@
 <div class="container">
     <div class="inbox-container">
         
+        <!-- render out all the password reset requests -->
         {% if page == 'inbox' %}
-        <div class="tab-buttons" style="margin-top:20px ;">
-            <a href="{% url 'inbox' %}" class="active-tab">Password Reset Requests</a>
-            <a href="{% url 'contact-inbox' %}">Contact Inbox</a>
-        </div>
+            <div class="tab-buttons" style="margin-top:20px ;">
+                <a href="{% url 'inbox' %}" class="active-tab">Password Reset Requests</a>
+                <a href="{% url 'contact-inbox' %}">Contact Inbox</a>
+            </div>
+        
         <span>
             <p>Messages ({{inbox_count}})</p>
             <p>New Messages ({{unread_count}})</p>
         </span>
 
         {% for inbox in inbox %}
-        <a href="{% url 'viewMessage' inbox.id %}">
+        <a href="{% url 'viewMessage' inbox.id %}" id="card">
             <div class="message-card">
                 {% if not inbox.is_read %}
                 <p id="new-tag">New</p>
@@ -33,6 +35,8 @@
                 <p id="sender">{{inbox.sender}}</p>
                 <p id="msg">{{inbox.subject}}</p>
                 <p id="time">{{inbox.created}}</p>
+                <p ><a href=""id="delete"><i class="fa-solid fa-trash"></i></a></p>
+                
             </div>
         </a>
         {% endfor %}
@@ -48,7 +52,7 @@
             <p>New Contact Messages ({{unread_count}})</p>
         </span>
         {% for inbox in inbox %}
-        <a href="{% url 'view-contact-mail' inbox.id %}">
+        <a href="{% url 'view-contact-mail' inbox.id %}" id="card">
             <div class="message-card">
                 {% if not inbox.is_read %}
                 <p id="new-tag">New</p>

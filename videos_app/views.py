@@ -11,7 +11,7 @@ from .forms import FixtureForm, LiveVideoForm, PlayerForm, StandingForm, VideoFo
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.db.models import Q
-from .utils import search_function, search_news
+from .utils import search_fixtures, search_function, search_news, search_photos
 from django.urls import reverse_lazy, reverse
 
 
@@ -42,19 +42,29 @@ def home(request):
     videos = Video.objects.all().order_by('-uploaded').values()
     if request.method == "GET":
         videos, search_query = search_function(request)
+        
+    news = News.objects.all().order_by('-created')
+    if request.method == "GET":
+        news, search_query = search_news(request)
+        
+    photos = Photo.objects.all().order_by('-uploaded')
+    if request.method == "GET":
+        photos, search_query = search_photos(request)
+
 
     fixtures = Fixture.objects.all().order_by('-created')[0:6]
-    news = News.objects.all().order_by('-created')
-    photos = Photo.objects.all()
     standings = Standing.objects.all().order_by('-total')[0:7]
     players = Player.objects.all().order_by('-total')[0:5]
+    live = LiveVideo.objects.all().order_by('-uploaded').first()
     context = {'videos': videos,
                'fixtures': fixtures,
                'news': news, 
                'standings': standings, 
                'search_query': search_query, 
                'photos': photos, 
-               'players': players,}
+               'players': players,
+               'live':live,
+               }
     return render(request, 'videos_app/home.html', context)
 
 
@@ -334,8 +344,13 @@ def all_videos(request):
         videos = Video.objects.all()
     else:
         videos = Video.objects.filter(category__name = category)
+        
     
-    context = {'videos': videos, 'categories': categories, 'countries':countries}
+    # search query
+    if request.method == "GET":
+        videos, search_query = search_function(request)
+    
+    context = {'videos': videos,  'search_query': search_query, 'categories': categories, 'countries':countries}
     return render(request, 'videos_app/all_videos.html', context)
 
 
@@ -344,11 +359,18 @@ def all_videos(request):
 @login_required(login_url='login')
 def all_news(request):
     news = News.objects.all().order_by('-created').values()
-
+    categories = Category.objects.all()
+        
+    category = request.GET.get('category')
+    if category  is None:
+        news = News.objects.all()
+    else:
+        news = News.objects.filter(category__name = category)
+        
     if request.method == "GET":
         news, search_query = search_news(request)
 
-    context = {'news': news, 'search_query': search_query}
+    context = {'news': news, 'search_query': search_query, 'categories': categories,}
     return render(request, 'videos_app/all_news.html', context)
 
 
@@ -411,7 +433,12 @@ def live_desc(request, pk):
 def fixtures(request): 
     page='fixtures'   
     fixtures = Fixture.objects.all()
-    context = {'fixtures': fixtures,'page':page}
+    
+     # search query
+    if request.method == "GET":
+        fixtures, search_query = search_fixtures(request)
+        
+    context = {'fixtures': fixtures,'page':page, 'search_query': search_query}
     return render(request, 'videos_app/fixtures_results.html', context)
 
 def results(request):
