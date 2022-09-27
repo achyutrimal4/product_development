@@ -49,18 +49,22 @@ body h2 {
     align-items: center;
 }
 
-.title {
+.gallery-container .title{
     display: flex;
     width: 100%;
-    align-items: center;
-    /* position: relative; */
-
+    flex-direction: column;
 }
 
-.title h2 {
+.title h2{
     text-align: left;
     margin-left: 8px;
+
 }
+.gallery-container .title .dropdown-responsive{
+    display: none !important;
+    margin-left: 8px;
+}
+
 
 .card-container {
     /* margin-top: 50px; */
@@ -74,6 +78,7 @@ body h2 {
     grid-template-columns: repeat(3, minmax(300px, 1fr));
     grid-gap: 10px;
 }
+
 
 .card {
     display: flex;
@@ -122,5 +127,50 @@ body h2 {
     width: 280px;
     object-fit: cover;
     /* margin-top: 10px; */
+}
+
+@media screen and (max-width: 600px){
+    .sideber{
+        display: hidden;
+    }
+    .dropdown-responsive{
+        display: block;
+    }
+    .right-container{
+        width: 100%;
+    }
+    .card-grid{
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(180px, 1fr));
+        grid-gap: 10px;
+        padding: 0;
+        margin: 0;
+    }
+    .card{
+        width: 220px;
+        height: 180px;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        margin: 2px;
+        border-radius: 8px;
+        padding: 3px;
+        cursor: pointer;
+    }
+    .gallery-container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+        justify-content: center;
+        padding: 0;
+    }
+    .card .thumbnail{
+        overflow: hidden;
+    }
+    .card .thumbnail img{
+        object-fit: cover;
+    }
 }
 

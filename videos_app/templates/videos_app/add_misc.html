@@ -35,7 +35,7 @@
             </div>
         </div>
         {% endfor %}
-        <input type="submit" value="Add Fixture" id="addvideo-button" />
+        <input type="submit" value="Add Fixture" class="default-button--large" />
     </form>
 
 
@@ -66,8 +66,9 @@
             </div>
         </div>
         {% endfor %}
-        <input type="submit" value="Add Player" id="addvideo-button" />
+        <input type="submit" value="Add Player" class="default-button--large" />
     </form>
+    <!-- ====================================================== -->
     {% else %}
     <div class="tab-buttons">
         <a href="{% url 'add_fixtures' %}">Add Fixtures</a>
@@ -93,7 +94,7 @@
             </div>
         </div>
         {% endfor %}
-        <input type="submit" value="Add Standing" id="addvideo-button" />
+        <input type="submit" value="Add Standing" class="default-button--large />
     </form>
 
     {% endif %}

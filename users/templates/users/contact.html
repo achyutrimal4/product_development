@@ -5,7 +5,7 @@
 
 {% load static %}
 {% block styles %}
-<link rel="stylesheet" href="{% static 'styles/add_videos.css' %}">
+<link rel="stylesheet" href="{% static 'styles/contact.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -13,28 +13,50 @@
 
 
 <div class="container">
+    <div class="form-container">
+        <form class="default-form" method="POST" novalidate>
 
-    <form class="default-form" method="POST" novalidate>
-
-        <h2>Contact Us</h2>
-
-        {% csrf_token %}
-
-        {% for field in form %}
-
-        <div class="input-errors">
-
-            {{field.label_tag}}
-            <div class="input-fields">
-                {{field}}
+            <h1>Submit a message</h1>
+            
+            <h4>We request you to be as explicit as possible to help us deliver a relevant answer. </h4>
+    
+            {% csrf_token %}
+    
+            {% for field in form %}
+    
+            <div class="input-errors">
+    
+                {{field.label_tag}}
+                <div class="input-fields">
+                    {{field}}
+                </div>
             </div>
+    
+            {% endfor %}
+    
+           
+            <input type="submit" value="Send Message" class="default-button--large" /><br>
+        </form>
+    </div>
+    <div class="details-container">
+        <p> <i class="fa-solid fa-phone"></i>+977 3256412501</p>
+        <p><i class="fa-solid fa-envelope"></i>contact@funolympics.com</p>
+        <p> <i class="fa-solid fa-location"></i>Tinkune, Gairigaun</p>
+
+        <hr>
+        <p>Find us on social media</p>
+
+        <div class="social-links">
+            <i class="fa-brands fa-facebook" id="fb"></i>
+            <i class="fa-brands fa-instagram" id="insta"></i>
+            <i class="fa-brands fa-twitter" id="twitter"></i>
+            <i class="fa-brands fa-reddit" id="reddit"></i>
+            <i class="fa-brands fa-youtube" id="yt"></i>
         </div>
 
-        {% endfor %}
+    </div>
 
-       
-        <input type="submit" value="Send Message" class="default-button--large" /><br>
-    </form>
+   
 </div>
 
 {% endblock content %}

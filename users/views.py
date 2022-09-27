@@ -276,25 +276,29 @@ def viewContactMail(request, pk):
 
     form = ContactReplyForm()
     context = {}
-
+    User = get_user_model()
     if request.method == 'POST':
         form = ContactReplyForm(request.POST)
         if form.is_valid():
             message = form.save(commit=False)
             reply = request.POST['message']
-            receiver = request.POST['receiver']
-            subject = 'Thanks for contacting us. Regarding your query...'
-            send_mail(
-                subject,
-                reply,
-                settings.EMAIL_HOST_USER,
-                [receiver],
-                fail_silently=False,
-            )
-            message.save()
-            messages.success(request, 'Reply successfully sent.')
-            form = ContactReplyForm()
-            return redirect('contact_inbox')
+            receiver_mail = request.POST['receiver']
+            if User.objects.filter(email=receiver_mail).exists():
+           
+                subject = 'Thanks for contacting us. Regarding your query...'
+                send_mail(
+                    subject,
+                    reply,
+                    settings.EMAIL_HOST_USER,
+                    [receiver_mail],
+                    fail_silently=False,
+                )
+                message.save()
+                messages.success(request, 'Reply successfully sent.')
+                form = ContactReplyForm()
+                return redirect('contact-inbox')
+            else:
+                messages.error(request, 'Email not found.')
         else:
             messages.error(request, 'Reply could not be sent.')
             form = ContactReplyForm(request.POST)

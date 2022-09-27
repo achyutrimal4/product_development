@@ -21,6 +21,7 @@
     /* padding: 5px; */
 }
 .left-container img{
+    width:900px; height:500px;
     object-fit: cover;
 }
 .left-container span{
@@ -28,4 +29,21 @@
     width: 15%;
     display: flex;
     justify-content: space-around;
+}
+@media screen and (max-width: 600px){
+    .container, .left-container{
+        width: 100%;
+        padding: 10px;
+        margin: 0px;
+    }
+    .left-container img{
+        height: 300px;
+        width: 100%;
+        object-fit: contain;
+        padding: 0px;
+    }
+    .left-container span{
+        font-size: 16px;
+    }
+    
 }

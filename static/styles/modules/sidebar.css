@@ -9,6 +9,9 @@
     top: 0;
     top: 150px;
 }
+.sidebar i{
+    display: none;
+}
 
 .sidebar a {
     text-decoration: none;
@@ -41,4 +44,9 @@
 
 .bar-button:hover {
     background-color: rgb(210, 209, 209);
+}
+@media screen and (max-width: 600px){
+    .sidebar{
+        display: none;
+    }
 }

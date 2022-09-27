@@ -78,3 +78,7 @@ body {
     transition: 0.5s;
     margin-left: 200px;
 }
+
+@media screen and (max-width: 600px){
+        
+}

@@ -85,6 +85,7 @@ class Profile (models.Model):
 class ContactMail (models.Model):
     sender = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, blank=True)
     receiver = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, blank=True, related_name='contact_mails')
+    full_name = models.CharField(max_length=255, null=True, blank=False, verbose_name='Name')
     email = models.EmailField(max_length=200, null=True, blank=True)
     subject = models.CharField(max_length=200)
     message = models.TextField()

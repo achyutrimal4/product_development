@@ -10,12 +10,28 @@
 {% endblock %}
 
 {% block content %}
-<div class="notice">
-    <p>Login to see what's happening at funolympics 2022!</p>
+
+<div class="alert alert--error" id="warning" style="display:none;">
+    <p class="alert__message">Restricted! Login to view this content.</p>
+    <br>
+    <button class="alert__close" style="color: rgb(30, 198, 254);">Close</button>
+    <a href="{% url 'login'  %}">Login</a>
 </div>
 
-<div class="container">
+<div class="live-banner">
+    <div class="live-thumbnail">
+        <iframe src="{{live.url}}" frameborder="0" allow="autoplay" ></iframe>
+        <p>Live now</p>
 
+    </div>
+    <div class="live-description">
+        <h3>{{live.title}}</h3>
+        <p>{{live.venue}}</p>
+    </div>
+    <a onclick="message()" id="live-link">Live Games</a>
+    <i class="fa-solid fa-tv"></i>
+</div>
+<div class="container">
     <div class="left-container">
         <div class="fixture-container">
             <h2>Upcoming games</h2>
@@ -25,7 +41,7 @@
                 <p style="font-size:10px ;">{{fixture.date}}</p>
             </div>
             {% endfor %}
-            <a href="" onclick="message()">View fixtures and results → </a>
+            <a href="{% url 'fixtures' %}">View fixtures and results → </a>
         </div>
 
         <div class="standings-container">
@@ -49,34 +65,55 @@
                 {% endfor %}
             </table>
         </div>
+
+        <div class="players">
+            <h2>Top Players</h2>
+            <table id="top-players">
+                <table id="standings-table">
+                    <tr>
+                        <th>Player</th>
+                        <th><i class="fa-solid fa-medal" style="color:gold ;"></i></th>
+                        <th><i class="fa-solid fa-medal" style="color:silver;"></i></th>
+                        <th><i class="fa-solid fa-medal" style="color:brown;"></i></th>
+                        <th><i class="fa-solid fa-ranking-star" style="color: purple;"></i></th>
+                    </tr>
+                    {% for player in players %}
+                    <tr>
+                        <td>{{player.name}}</td>
+                        <td>{{player.gold}}</td>
+                        <td>{{player.silver}}</td>
+                        <td>{{player.bronze}}</td>
+                        <td>{{player.total}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </table>
+        </div>
     </div>
 
     <div class="right-container">
         <div class="video-container">
             <div class="title">
                 <h2>Latest Videos</h2>
-                <a href="{%url 'login'%}" id="live-link">Live Games</a>
-                <i class="fa-solid fa-tv"></i>
-                <a href="{%url 'login'%}">Load more videos →</a>
+
+                <a onclick="message()" style="cursor:pointer ;">Load more videos →</a>
             </div>
+            {% if search_query%}
+            <p style="margin-left:15px; color:#3AB09E">Search results for {{search_query}}</p>
+            {% endif %}
             <div class="card-container">
+
                 <div class="card-grid">
                     {% for video in videos %}
                     <div class="card">
-                        <a href="{% url 'video_desc' video.id %}" style="text-decoration: none; width:100%;">
+                        <a onclick="message()" style="text-decoration: none; width:100%;cursor:pointer ;">
                             <div class="thumbnail">
                                 <video src="{{video.video.url}}" type="video/mp4"
                                     style="width: 280px; height: 150px;"></video>
                             </div>
                             <div class="card-details">
-                                <p><a href="{% url 'video_desc' video.id %}">{{video.title}}</a></p>
-                                <p><i class="fa-solid fa-arrow-up"></i>{{video.vote_ratio}}%</p>
-                                {% if request.user.is_superuser %}
-                                <span style="position: absolute; right: 5%; bottom: 2.5%;">
-                                    <a href="{% url 'update_videos' video.id %}"><i class="fas fa-edit"></i></a>
-                                    <a href="{% url 'delete_videos' video.id %}"><i class="fa-solid fa-trash"></i></a>
-                                </span>
-                                {% endif %}
+                                <p><a onclick="message()" style="cursor:pointer ;">{{video.title}}</a></p>
+                                <p>{{video.uploaded|date}}</p>
                             </div>
                         </a>
                     </div>
@@ -89,15 +126,15 @@
         <div class="news-container">
             <div class="title">
                 <h2>Latest News</h2>
-                <a href="#">Load more news →</a>
+                <a href="{% url 'all_news' %}">Load more news →</a>
             </div>
 
             <div class="news-card-container">
                 {% for news in news %}
-                <a href="#">
+                <a href="{% url 'news_desc' news.id %}">
                     <div class="news-card">
                         <div class="news-thumbnail">
-                            <img src="{{news.image.url}}" style="width: 280px; height: 150px;">
+                            <img src="{{news.image.url}}">
                         </div>
                         <div class="news-details">
                             <p>{{news.title}}</p>
@@ -109,12 +146,80 @@
             </div>
         </div>
 
+        <div class="gallery">
+            <div class="title">
+                <h2>Funolympics 22' in photos</h2>
+                <a href="{% url 'gallery' %}">See more photos →</a>
+            </div>
+            <div class="gallery-container">
+                <div class="card-grid">
+                    {% for photo in photos %}
+                    <div class="card--photo">
+                        <a href="{% url 'view_photo' photo.id %}" style="text-decoration: none; width:100%;">
+                            <div class="thumbnail">
+                                <img src="{{photo.photo.url}}" alt="">
+                            </div>
+                            <div class="card-details">
+                                <p>{{photo.album.name}}</p>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
     </div>
+
+</div>
+
+<div class="featured-events">
+    <div class="backdrop">
+        <div class="title">
+            <h2>Games to Watch</h2>
+        </div>
+        <div class="card-grid--3">
+            {% for fixture in fixtures %}
+            <div class="card--fixtures">
+                {% if fixture.thumbnail.url is not None %}
+
+                <div class="thumbnail">
+                    <img src="{{fixture.thumbnail.url}}" alt="" style=" object-fit:cover; ">
+                </div>
+
+                {% endif %}
+                <p>{{fixture.fixture}}</p>
+                <p>{{fixture.date}}</p>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+
+<div class="featured-players">
+    <div class="title">
+        <h2>Featured Players</h2>
+    </div>
+    <div class="card-grid--five">        
+        {% for player in players %}
+        <div class="card--players">
+            <p>{{player.name}}</p>
+            <p>{{player.total}}</p>
+            <img src="{{player.image.url}}" alt="{{player.name}} with medals.">
+            <span>
+                <p><i class="fa-solid fa-medal" style="color:gold ;"></i>{{player.gold}}</p>
+                <p><i class="fa-solid fa-medal" style="color:rgb(153, 152, 152);"></i>{{player.silver}}</p>
+                <p><i class="fa-solid fa-medal" style="color:brown;"></i> {{player.bronze}}</p>
+            </span>
+        </div>
+        {% endfor %}
+
+    </div>
+
 </div>
 
 {% endblock content %}
 
 {% block footer %}
 {% include 'footer.html' %}
-
 {% endblock footer %}

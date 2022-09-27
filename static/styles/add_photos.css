@@ -8,10 +8,21 @@ body {
     flex-direction: column;
     align-items: center;
     /* justify-content: center; */
-    min-height: 100vh;
-    overflow: hidden;
+    overflow-x: scroll;
     top: 0;
     margin: 0 auto;
     font-family: "Poppins", sans-serif;
+}
+.container{
+    overflow: scroll !important;
+    width: 100%;
+}
+@media screen and (max-width: 600px){
+  .container{
+    overflow-x: scroll !important;
+  }
+  .default-button--large{
+    margin-left: 158px !important;
+  }
 }
 

@@ -44,7 +44,7 @@ class ProfileUpdateForm(forms.ModelForm):
 class ContactForm(forms.ModelForm):
     class Meta:
         model = ContactMail
-        fields = ('email', 'subject', 'message')
+        fields = ('email','full_name', 'subject', 'message')
         widgets = {
             'message': forms.Textarea(attrs={'class': 'description-input'}),
         }

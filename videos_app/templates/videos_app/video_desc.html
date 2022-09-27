@@ -39,13 +39,13 @@
                         <form action="{% url 'like_video' video.id %}" method="POST">
                             {% csrf_token %}
                             {% if liked %}
-                                <button type="submit" name="video_id" value="{{video.id}}" class="btn-small">
-                                    <i class="fa-solid fa-thumbs-up" style="color: #3AB09E;"></i></button>
+                            <button type="submit" name="video_id" value="{{video.id}}" class="btn-small">
+                                <i class="fa-solid fa-thumbs-up" style="color: #3AB09E;"></i></button>
                             {% else %}
-                                <button type="submit" name="video_id" value="{{video.id}}" class="btn-small">
-                                    <i class="fa-solid fa-thumbs-up"></i></button>
+                            <button type="submit" name="video_id" value="{{video.id}}" class="btn-small">
+                                <i class="fa-solid fa-thumbs-up"></i></button>
                             {% endif %}
-                                <p>{{total_likes}} likes</p>
+                            <p>{{total_likes}} likes</p>
                         </form>
                     </div>
                 </div>
@@ -66,6 +66,18 @@
                 {% endfor %}
                 <input type="submit" value="Comment" id="comment-button">
             </form>
+            
+            {% for review in video.review_set.all %}
+            <div class="comment-container">
+                <img src="{{review.comment_by.profile_image.url}}" style="width:30px; height:30px; border-radius:50%"
+                    alt="">
+                <div class="user-comment">
+                    <p>{{review.comment_by.username}}</p>
+                    <p>{{review.comment | linebreaksbr}}</p>
+                </div>
+                <p id="date">{{review.created}}</p>
+            </div>
+            {% endfor %}
         </div>
     </div>
 
@@ -84,16 +96,7 @@
         {% endfor %}
     </div>
 </div>
-{% for review in video.review_set.all %}
-<div class="comment-container">
-    <img src="{{review.comment_by.profile_image.url}}" style="width:30px; height:30px; border-radius:50%" alt="">
-    <div class="user-comment">
-        <p>{{review.comment_by.username}}</p>
-        <p>{{review.comment | linebreaksbr}}</p>
-    </div>
-    <p id="date">{{review.created}}</p>
-</div>
-{% endfor %}
+
 {% endblock content %}
 
 {% block footer %}

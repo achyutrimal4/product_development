@@ -20,6 +20,12 @@ body {
   align-items: center;
   justify-content: center;
 }
+.details table{
+  text-align: left;
+}
+.details table tr, th, td{
+  padding: 10px;
+}
 .container img{
   width:250px;
   height: 250px;
@@ -46,5 +52,30 @@ body {
 }
 .profile-actions a:hover{
   transform: scale(0.96);
+}
+
+@media screen and (max-width: 600px){
+  *{
+    font-size: 12px;
+  }
+  .details{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .details img{
+    height: 120px;
+    width: 100px;
+  }
+  .profile-actions{
+    width: 20%;
+  }
+  .profile-actions a{
+    width: 100%;
+  }
+  .details table{
+    text-align: left;
+    margin-left: 30%;
+  }
 }
 

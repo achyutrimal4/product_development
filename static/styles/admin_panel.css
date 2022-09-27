@@ -14,6 +14,11 @@
     display: flex;
     flex-direction: column;
 }
+.dashboard-container i{
+    /* display: none; */
+    font-size: large;
+    color: white;
+}
 
 .card-container {
     width: 100%;
@@ -40,7 +45,7 @@
 
 .material-symbols-outlined {
   font-variation-settings:
-  'FILL' 0,
+  'FILL' 1,
   'wght' 400,
   'GRAD' 0,
   'opsz' 48,
@@ -83,4 +88,29 @@
 }
 .card-details img{
     margin-left: 220px;
+}
+@media screen and (max-width: 600px){
+    .dashboard-container{
+        width: 100%;
+    }
+    
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(240px, 1fr));
+    grid-gap: 5px;
+}
+
+.card {
+    display: flex;
+    position: relative;
+    margin: 8px;
+    border-radius: 8px;
+    justify-content: center;
+    padding: 3px;
+    max-width: 240px;
+    height: 250px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    transition: transform .2s;
+}
+
 }

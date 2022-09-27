@@ -13,11 +13,12 @@ urlpatterns=[
    path('update-videos/<str:pk>/', views.update_videos, name="update_videos"),
    path('delete-videos/<str:pk>/', views.delete_videos, name="delete_videos"),
    path('all-videos/', views.all_videos, name="all_videos"),
-   path('like/<str:pk>/', views.like, name="like_video"),
    path('live-games/', views.live_games, name="live_games"),
    path('live-description/<str:pk>/', views.live_desc, name='live_desc'),
    path('add-live/',views.add_live, name='add_live'),
-   
+   # like highlight and live videos
+   path('like/<str:pk>/', views.like, name="like_video"),
+   path('like-live/<str:pk>/', views.like_live, name="like_live"),
    
    path('add-country/', views.add_country, name='add_country'),
    path('add-category/', views.add_category, name='add_category'),

@@ -4,6 +4,7 @@
 #logo {
     width: 60px;
     height: 30px;
+    padding: 0;
     margin: 10px 50px 0px 10px;
 }
 
@@ -34,12 +35,16 @@
     display: inline-block;
     text-align: center;
 }
+.nav-bar ul #hide, #hide1{
+    display: none !important;
+}
 
 .nav-bar li a {
     float: left;
     color: white;
     text-align: center;
-    padding: 15px;
+    padding: 8px 15px;
+    height: 100%;
     text-decoration: none;
 }
 
@@ -129,6 +134,31 @@
 @media screen and (max-width: 600px) {
     .nav-bar.responsive {
         position: relative;
+        
+    }
+    .nav-bar ul #hide  {
+        display: block !important;
+        position: absolute;
+        right: 0;
+        
+    }
+    .nav-bar ul #hide1{
+        display: block !important;
+        position: absolute;
+        right: 50px;
+    }
+
+    .nav-bar ul .dropdown {
+        display: none;
+    }
+    .nav-bar ul .dropdown-responsive{
+        display: block;
+    }
+    .nav-bar ul .dropdown-responsive img{
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        border-radius: 50%;
     }
 
     .nav-bar .dropdown {
@@ -138,14 +168,21 @@
 
     .nav-bar.responsive img#logo {
         position: absolute;
-        right: 0;
+        left: 0;
         top: 0;
+    }
+
+    .nav-bar.responsive ul {
+        display: flex;
+        flex-direction: column;
+        z-index: 5000;
     }
 
     .nav-bar.responsive li {
         float: none;
         display: block;
         text-align: left;
+
     }
 
     .bottom-nav .search-fields {
@@ -156,17 +193,8 @@
 
     .bottom-nav,
     form,
-    .segit arch-fields {
+    .search-fields {
         max-width: 100%;
     }
-    .dropdown-content {
-        display: none;
-        position: absolute;
-        background-color: #f9f9f9;
-        min-width: 160px;
-        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    }
-    .dropdown:hover .dropdown-content {
-        display: block;
-    }
+
 }

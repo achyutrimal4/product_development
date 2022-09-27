@@ -109,7 +109,7 @@ form a {
 }
 
 .comments-section {
-    margin-top: 10px;
+    margin-top: 20px 0px;
     box-shadow: 0px -4px 6px -6px #888;
     display:flex;
     flex-direction: column;
@@ -164,7 +164,7 @@ form a {
     width: 98%;
     box-shadow: 0 2.5px 2px -2px gray;
     padding: 5px;
-     transition: transform .3s;
+    transition: transform .3s;
 }
 
 .video-card a {
@@ -191,7 +191,7 @@ form a {
     box-sizing: border-box;
     justify-content: flex-start;
     align-items: center;
-    width: 72%;
+    width: 100%;
     height: auto;
     padding:.5em 1.5em;   
     position: relative;
@@ -227,4 +227,25 @@ form a {
     right: 5%;
     top: 30%;
     transform: translateY(-50%);
+}
+
+
+@media screen and (max-width: 600px){
+    
+    .container{
+        display: flex;
+        flex-direction: column;
+    }
+    .left-container{
+        width: 100%;
+    }
+    .comments-section #comment-button{
+        width: 100px;
+        right: 10px;
+    }
+    .right-container{
+        width: 100%;
+    }
+    
+    
 }

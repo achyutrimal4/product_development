@@ -21,6 +21,7 @@ def createProfile(sender, instance, created, **kwargs):
             email = user.email,
             name = user.full_name,
             country = user.country,
+            phone_number = user.phone_number
         )
         
 
@@ -32,6 +33,7 @@ def updateUser(sender, instance, created, **kwargs):
         user.full_name = profile.name
         user.username = profile.username
         user.country = profile.country
+        user.phone_number = profile.phone_number
         user.save()
         
 

@@ -14,45 +14,47 @@
 
     <div class="details">
         <img src="{{user_profile.profile_image.url}}" alt=""><br>
-        
-        <div class="labels">
-            <p>Email</p>
-            <p>Username</p>
-            <p>Phone number</p>
-            <p>Country</p>
-            <p>Last Login</p>           
-        </div>
 
-        <div class="info">
-            <p>{{user_profile.email}}</p>
-            <p>{{user_profile.username}}</p>
-            <p>+97798605651651</p>
-            <p>{{user_profile.country}}</p>
-            <p>{{user_profile.user.last_login}}</p>
-           
-        </div>
+        <table style="width:100%">
+            <tr>
+              <th>Email</th>
+              <td>{{user_profile.email}}</td>
+            </tr>
+            <tr>
+              <th>Username</th>
+              <td>{{user_profile.username}}</td>
+            </tr>
+            <tr>
+              <th>Phone number</th>
+              <td>{{user_profile.phone_number}}</td>
+            </tr>
+            <tr>
+              <th>Country</th>
+              <td>{{user_profile.country}}</td>
+            </tr>
+            <tr>
+              <th>Last Login</th>
+              <td>{{user_profile.user.last_login}}</td>
+            </tr>
+        </table>      
 
         <div class="profile-actions">
-            <a href="{% url 'editprofile'%}"> <i class="fa fa-edit"></i>    Edit Details</a>
+            <a href="{% url 'editprofile'%}"> <i class="fa fa-edit"></i> Edit Details</a>
             <br>
-           
 
             {% if not request.user.is_superuser %}
 
-                {% if request.user.is_pass_reset %}
-                <em  style="color:red; font-size:12px">You can change your password only ONCE using the link below. If any problems occur, you must request for password change again.</em>
-                <a href="{% url 'change-password' %}"> <i class="fa-solid fa-key"></i> Change Password</a> 
+            {% if request.user.is_pass_reset %}
+            <em style="color:red; font-size:12px">You can change your password only ONCE using the link below. If any
+                problems occur, you must request for password change again.</em>
+            <a href="{% url 'change-password' %}"> <i class="fa-solid fa-key"></i> Change Password</a>
 
-                {% endif %}
-            <a href="{% url 'create-message' admin.id %}"> <i class="fa-solid fa-rotate-left"></i>     Request Password Reset</a> 
-            <a href="#"  style="color:red;"> <i class="fa-solid fa-trash"></i>    Deactivate account</a>
-                
             {% endif %}
+            <a href="{% url 'create-message' admin.id %}"> <i class="fa-solid fa-rotate-left"></i> Request Password
+                Reset</a>
+            <a href="#" style="color:red;"> <i class="fa-solid fa-trash"></i> Deactivate account</a>
 
-            
-            
-                
-                
+            {% endif %}
         </div>
     </div>
 </div>

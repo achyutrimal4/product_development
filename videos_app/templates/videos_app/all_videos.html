@@ -14,9 +14,9 @@
 <div class="container">
 
     <div class="sidebar">
-       
+
         <h4>Categories</h4>
-        <a href="{% url 'live_games' %}" class="baritem bar-button"><i class="fa-solid fa-circle" style="color:red;"></i> Live videos</a>
+        <a href="{% url 'live_games' %}" class="baritem bar-button" style="color:red;"> Live videos</a>
         <a href="{% url 'all_videos' %}" class="baritem bar-button">All Videos</a>
         {% for category in categories %}
         <a href="{%  url 'all_videos' %}?category={{category.name}}" class="baritem bar-button">{{category.name}}</a>
@@ -25,6 +25,19 @@
     </div>
 
     <div class="video-container">
+        <div class="dropdown-responsive">
+            <button class="dropbtn-res">Filter</button>
+            <div class="dropdown-content-res">
+                <a href="{% url 'live_games' %}" class="baritem bar-button"><i class="fa-solid fa-circle"
+                        style="color:red;"></i> Live videos</a>
+                <a href="{% url 'all_videos' %}" class="baritem bar-button">All Videos</a>
+                {% for category in categories %}
+                <a href="{%  url 'all_videos' %}?category={{category.name}}"
+                    class="baritem bar-button">{{category.name}}</a>
+                {% endfor %}
+
+            </div>
+        </div>
         <div class="card-container">
             <div class="card-grid">
                 {% for video in videos %}
@@ -35,8 +48,8 @@
                                 style="width: 280px; height: 150px;"></video>
                         </div>
                         <div class="card-details">
-                            <p><a href="{% url 'video_desc' video.id %}">{{video.title}}</a></p>
-                            <p><i class="fa-solid fa-arrow-up"></i>{{video.vote_ratio}}%</p>
+                            <p><a href="{% url 'video_desc' video.id %}">{{video.title|slice:55}}</a></p>
+                            <p>{{video.uploaded|date}}</p>
                             {% if request.user.is_superuser %}
                             <span style="position: absolute; right: 5%; bottom: 2.5%;">
                                 <a href="{% url 'update_videos' video.id %}"><i class="fas fa-edit"></i></a>

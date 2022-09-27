@@ -23,6 +23,10 @@
             <li><a href="{% url 'all_videos' %}">Videos</a></li>
             <li><a href="{% url 'fixtures' %}">Fixtures</a></li>
             <li><a href="{% url 'contact' %}">Contact</a></li>
+
+                
+            <li id="hide1"><a href="{% url 'myprofile'  %}">My Profile</a></li>
+            <li id="hide"><a href="{% url 'logout' %}">Logout</a></li>
            
 
             {% if request.user.is_superuser %}
@@ -38,6 +42,7 @@
                     <a href="{% url 'logout' %}">Logout</a>
                 </div>
             </div>
+            
         </ul>
     </div>
 
@@ -59,7 +64,8 @@
         <ul>
             <li><img src="{% static 'media/images/olympic.png'%}" alt="" id="logo"></li>
             <li><a href="{% url 'landing_page' %}">Home</a></li>
-            <li><a href="#">News</a></li>
+            <li><a href="{% url 'fixtures' %}">Fixtures</a></li>
+            <li><a href="{% url 'all_news' %}">News</a></li>
             <li><a href="{% url 'contact'  %}">Contact</a></li>
             <a href="{% url 'login' %}"> <input type="submit" name="" id="btn-signin" value="Login/Signup"></a>
         </ul>
@@ -70,8 +76,10 @@
 <script>
     function myFunction() {
         var x = document.getElementById("nav-bar");
+        var hide = document.getElementById("hide");
         if (x.className === "nav-bar") {
             x.className += " responsive";
+            
         } else {
             x.className = "nav-bar";
         }

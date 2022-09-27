@@ -15,5 +15,10 @@ body {
   max-width: 100%;
   padding: 15px;
 }
+@media screen and (max-width: 600px){
+  .default-button--large{
+    margin-left: 128px !important;
+  }
+}
 
 

@@ -13,7 +13,6 @@
 
 <div class="container">
     <div class="sidebar">
-       
         <h4>Categories</h4>
         <a href="{% url 'all_news' %}" class="baritem bar-button">All News</a>
         {% for category in categories %}
@@ -23,10 +22,21 @@
     </div>
 
     <div class="news-container">
-        <h2>Latest news</h2>
+        <div class="header">
+            <h2>Latest news</h2>
+            <div class="dropdown-responsive">
+                <button class="dropbtn-res">Filter</button>
+                <div class="dropdown-content-res">
+                    <a href="{% url 'all_news' %}" class="baritem bar-button">All News</a>
+                    {% for category in categories %}
+                    <a href="{%  url 'all_news' %}?category={{category.name}}"
+                        class="baritem bar-button">{{category.name}}</a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
 
         <div class="news-card-container">
-
             {% if search_query%}
             <p style="color:#3AB09E">Search results for {{search_query}}</p>
             {% endif %}

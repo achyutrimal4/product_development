@@ -20,6 +20,9 @@ body h2 {
     align-items: center;
     height: fit-content;
 }
+.container .video-container .dropdown-responsive{
+    display: none;
+}
 
 .title h2 {
     text-align: left;
@@ -45,6 +48,7 @@ body h2 {
     display: flex;
     align-content: center;
     width: 100%;
+    height: fit-content;
     overflow: hidden;
     overflow-y: auto;
 }
@@ -93,6 +97,31 @@ body h2 {
     margin-left: auto;
     margin-right: auto;
     display: block;
+}
+
+@media screen and (max-width: 600px){
+    .sidebar{
+        display: none;
+    }
+    .container .video-container .dropdown-responsive{
+        display: flex;
+        width: 100%;
+        margin: 15px !important;
+        align-items: flex-start;
+    }
+    .video-container{
+        width:100%;
+    }
+    .card-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(270px, 1fr));
+        grid-gap: 10px;
+    }
+    .card{
+        max-width: 200px !important;
+        height: 210px;
+    }
+    
 }
 
 

@@ -14,30 +14,43 @@
 
 
 <div class="container">
-        <div class="sidebar">
-            <div class="albums">
-                <h2>Featured Albums</h2>
+    <div class="sidebar">
+        <div class="albums">
+            <h2>Featured Albums</h2>
 
-                <a href="{% url 'gallery' %}" class="baritem bar-button">All</a>
+            <a href="{% url 'gallery' %}" class="baritem bar-button">All</a>
 
-                {% for album in albums %}
-                <a href="{%  url 'gallery' %}?album={{album.name}}" class="baritem bar-button">{{album.name}}</a>
+            {% for album in albums %}
+            <a href="{%  url 'gallery' %}?album={{album.name}}" class="baritem bar-button">{{album.name}}</a>
 
-                {% endfor %}
+            {% endfor %}
 
-
-                {% if request.user.is_superuser %}
-                <a href="{% url 'add_photos' %}"><input type="submit" id="default-button--md" value="Add Photo"></a>
-                {% endif %}
-            </div>
+            {% if request.user.is_superuser %}
+            <a href="{% url 'add_photos' %}"><input type="submit" id="default-button--md" value="Add Photo"></a>
+            {% endif %}
+        </div>
+       
     </div>
 
-  
+
     <div class="right-container">
+       
         <div class="gallery-container">
             <div class="title">
                 <h2>Featured Photos</h2>
+                <div class="dropdown-responsive">
+                    <button class="dropbtn-res">Filter</button>
+                    <div class="dropdown-content-res">
+                        <a href="{% url 'gallery' %}" class="baritem bar-button">All</a>
+        
+                        {% for album in albums %}
+                        <a href="{%  url 'gallery' %}?album={{album.name}}" class="baritem bar-button">{{album.name}}</a>
+        
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
+           
             {% if search_query%}
             <p style="margin-left:15px; color:#3AB09E">Search results for {{search_query}}</p>
             {% endif %}
