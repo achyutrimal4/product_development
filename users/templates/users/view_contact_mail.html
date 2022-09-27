@@ -4,22 +4,26 @@
 
 {% block styles %}
 <link rel="stylesheet" href="{% static 'styles/message.css' %}">
-{% endblock  %}
+{% endblock %}
 
 
 {% block content %}
 <div class="container">
     <div class="message-box">
-        
+
         <a href="{% url 'contact-inbox' %}"><i class="fa fa-arrow-left"></i></a>
 
         <div class="title">
             <h4>{{inbox.subject}}</h4>
         </div>
-       
+
         <div class="sender-details">
-            <p>{{inbox.sender}}</p>
-            <p>{{inbox.sender.email}}</p>
+
+            <p>{{inbox.full_name}}</p>
+
+
+            <p>{{inbox.email}}</p>
+
             <p>{{inbox.created}}</p>
         </div>
 
@@ -36,18 +40,17 @@
                 {% csrf_token %}
                 {% for field in form %}
                 <div class="input-errors">
-                    
+
                     <div class="input-fields">
                         {{field}}
                     </div>
                 </div>
                 {% endfor %}
-                <input type="submit" name="" value="Reply" class="default-button--large" style="margin-left:0px !important ;">
+                <input type="submit" name="" value="Reply" class="default-button--large"
+                    style="margin-left:0px !important ;">
             </form>
         </div>
 
     </div>
 </div>
 {% endblock content %}
-    
-

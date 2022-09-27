@@ -4,7 +4,7 @@ footer, footer .backdrop {
     left: 0;
     bottom: 0;
     width: 100%;
-    margin: 0px;
+    margin-top: 0px;
     display: flex;
     flex-direction: column;
     align-items: center;

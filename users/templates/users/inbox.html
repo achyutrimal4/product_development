@@ -57,7 +57,7 @@
                 {% if not inbox.is_read %}
                 <p id="new-tag">New</p>
                 {% endif %}
-                <p id="sender">{{inbox.sender}}</p>
+                <p id="sender">{{inbox.full_name}}</p>
                 <p id="msg">{{inbox.subject}}</p>
                 <p id="msg" class="desc">{{inbox.message|slice:":25"}}...</p>
                 <p id="time">{{inbox.created}}</p>

@@ -119,7 +119,9 @@ def inbox(request):
                'unread_count': unread_count, 'page': page}
     return render(request, 'users/inbox.html', context)
 
-# delete password reset request 
+# delete password reset request
+
+
 @login_required(login_url='login')
 @user_passes_test(lambda u: u.is_superuser, login_url='home')
 def delete_reset_inbox(request, pk):
@@ -128,7 +130,7 @@ def delete_reset_inbox(request, pk):
         inbox.delete()
         messages.success(request, 'Inbox deleted successfully')
         return redirect('inbox')
-    
+
     context = {'inbox': inbox}
     return render(request, 'videos_app/delete_confirmation.html', context)
 
@@ -191,7 +193,7 @@ def viewMessage(request, pk):
         # body = f'Your password has been successfully reset. Your new password is {new_pass} You can use this password to login. Click this link to set new password. '
 
         msg = EmailMultiAlternatives(subject=subject, from_email=settings.EMAIL_HOST_USER,
-                             to=[user_email], body=body)
+                                     to=[user_email], body=body)
 
         msg.attach_alternative(body, "text/html")
         msg.send()
@@ -273,7 +275,6 @@ def contact_inbox(request):
 @login_required(login_url='login')
 @user_passes_test(lambda u: u.is_superuser, login_url='home')
 def viewContactMail(request, pk):
-
     form = ContactReplyForm()
     context = {}
     User = get_user_model()
@@ -283,22 +284,20 @@ def viewContactMail(request, pk):
             message = form.save(commit=False)
             reply = request.POST['message']
             receiver_mail = request.POST['receiver']
-            if User.objects.filter(email=receiver_mail).exists():
-           
-                subject = 'Thanks for contacting us. Regarding your query...'
-                send_mail(
-                    subject,
-                    reply,
-                    settings.EMAIL_HOST_USER,
-                    [receiver_mail],
-                    fail_silently=False,
-                )
-                message.save()
-                messages.success(request, 'Reply successfully sent.')
-                form = ContactReplyForm()
-                return redirect('contact-inbox')
-            else:
-                messages.error(request, 'Email not found.')
+
+            subject = 'Thanks for contacting us. Regarding your query...'
+            send_mail(
+                subject,
+                reply,
+                settings.EMAIL_HOST_USER,
+                [receiver_mail],
+                fail_silently=False,
+            )
+            message.save()
+            messages.success(request, 'Reply successfully sent.')
+            form = ContactReplyForm()
+            return redirect('contact-inbox')
+
         else:
             messages.error(request, 'Reply could not be sent.')
             form = ContactReplyForm(request.POST)
@@ -320,11 +319,9 @@ def change_password(request):
     User = get_user_model()
     username = request.user.username
     user = User.objects.get(username=username)
-    
-    
+
     context = {}
     if request.method == 'POST':
-      
 
         current_pass = request.POST['current-password']
         new_pass = request.POST['new-password']
@@ -356,4 +353,3 @@ def change_password(request):
                 request, 'Could not change password. Try Again.')
 
     return render(request, 'users/change_password.html', context)
-
