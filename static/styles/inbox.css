@@ -75,4 +75,11 @@
     text-align: right;
     right:0;
 }
-
+@media screen and (max-width: 600px){
+    .inbox-container{
+        width: 100%;
+    }
+    .desc{
+        display: none;
+    }
+}

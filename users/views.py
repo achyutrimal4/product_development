@@ -356,3 +356,4 @@ def change_password(request):
                 request, 'Could not change password. Try Again.')
 
     return render(request, 'users/change_password.html', context)
+

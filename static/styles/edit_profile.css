@@ -80,5 +80,10 @@ body {
 }
 
 @media screen and (max-width: 600px){
-        
+        .container{
+            width: 100%;
+        }
+        .default-button--large{
+            margin-left: 150px !important;
+        }       
 }

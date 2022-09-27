@@ -9,7 +9,7 @@
 }
 
 /* Navigation bar*/
-.nav-bar {
+.nav-bar, .nav-bar--no_auth {
     width: 100%;
     background-color: purple;
     position: sticky;
@@ -19,7 +19,7 @@
 
 }
 
-.nav-bar ul {
+.nav-bar ul, .nav-bar--no_auth ul {
     display: inline-flex;
     align-items: center;
     text-align: center;
@@ -31,7 +31,7 @@
     overflow: hidden;
 }
 
-.nav-bar li {
+.nav-bar li , .nav-bar--no_auth li{
     display: inline-block;
     text-align: center;
 }
@@ -39,7 +39,7 @@
     display: none !important;
 }
 
-.nav-bar li a {
+.nav-bar li a, .nav-bar--no_auth li a {
     float: left;
     color: white;
     text-align: center;
@@ -99,7 +99,7 @@
     padding: 0 20px;
 }
 
-.nav-bar #btn-signin {
+.nav-bar--no_auth #btn-signin {
     width: 130px;
     height: 40px;
     border: none;
@@ -196,5 +196,33 @@
     .search-fields {
         max-width: 100%;
     }
+
+    /* Nav bar for unauthenticated users */
+    .nav-bar--no_auth{
+        width: 100%;
+    }
+    .nav-bar--no_auth li a {
+        float: left;
+        color: white;
+        text-align: center;
+        padding: 3px 10px;
+        height: 100%;
+        text-decoration: none;
+    }
+    #btn-signin{
+        margin-left: 0px !important;
+    }
+    .nav-bar--no_auth ul {
+        display: inline-flex;
+        align-items: center;
+        text-align: center;
+        list-style: none;
+        gap: 1rem;
+        margin: 0;
+        top: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+    
 
 }

@@ -60,7 +60,7 @@
     {% endif %}
 
     {% if not request.user.is_authenticated %}
-    <div class="nav-bar">
+    <div class="nav-bar--no_auth">
         <ul>
             <li><img src="{% static 'media/images/olympic.png'%}" alt="" id="logo"></li>
             <li><a href="{% url 'landing_page' %}">Home</a></li>

@@ -57,14 +57,11 @@ body {
 
 .links a:first-child {
   position: absolute;
-  left: 0%;
-}
-
-.links a:last-child {
-  position: absolute;
-  right: 3%;
+  right: 5%;
   text-decoration: underline;
 }
+
+
 .alert-login{
   z-index: 20 !important;
   position: absolute !important;
@@ -79,4 +76,14 @@ body {
 .alert-login li{
   list-style-type: none;
 
+}
+
+@media screen and (max-width: 600px){
+  body{
+    background: none !important;
+
+  }
+  .default-button--large{
+    margin-left: 88px !important;
+  }
 }

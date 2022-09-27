@@ -265,7 +265,7 @@ def admin_panel(request):
     news_count = News.objects.all().count()
     users_count = User.objects.all().count()
     photo_count = Photo.objects.all().count()
-
+    
     # for password reset request
     profile = request.user.profile
     inbox = profile.messages.all()
@@ -458,3 +458,11 @@ def results(request):
     players = Player.objects.all().order_by('-total')
     context = {'standings': standings, 'page': page, 'players': players}
     return render(request, 'videos_app/fixtures_results.html', context)
+
+
+# =============================================================
+# Analytics
+# ===============================
+
+
+

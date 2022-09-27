@@ -59,7 +59,7 @@
                 {% endif %}
                 <p id="sender">{{inbox.sender}}</p>
                 <p id="msg">{{inbox.subject}}</p>
-                <p id="msg">{{inbox.message|slice:":25"}}...</p>
+                <p id="msg" class="desc">{{inbox.message|slice:":25"}}...</p>
                 <p id="time">{{inbox.created}}</p>
             </div>
         </a>

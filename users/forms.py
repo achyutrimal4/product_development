@@ -39,6 +39,9 @@ class ProfileUpdateForm(forms.ModelForm):
         model = Profile
         fields = ('username', 'name', 'country',
                   'profile_image', 'phone_number')
+        # widgets = {
+        #     'profile_image': forms.FileInput(attrs={'class': 'description-input'}),
+        # }
 
 
 class ContactForm(forms.ModelForm):
