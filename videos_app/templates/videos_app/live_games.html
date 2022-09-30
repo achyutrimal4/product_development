@@ -1,5 +1,7 @@
+
 {% extends 'main.html'%}
 
+{% load embed_video_tags %}
 
 {% block title %}Watch Live - FunOlympics{% endblock title %}
 
@@ -31,8 +33,9 @@
                 <div class="card">
                     <a href="" style="text-decoration: none; width:100%;">
                         <iframe src="{{live_video.url}}" frameborder="0" autoplay allowfullscreen></iframe>
+
                         <div class="card-details">
-                            <p><a href="{% url 'live_desc' live_video.id %}">{{live_video.title}}</a></p>
+                            <p><i class="fa-solid fa-circle" style=color:red></i> <a href="{% url 'live_desc' live_video.id %}">{{live_video.title}}</a></p>
                         </div>
                     </a>
                 </div>

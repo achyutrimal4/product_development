@@ -50,6 +50,9 @@ INSTALLED_APPS = [
     # utils
     'django_social_share',    
     "phonenumber_field",
+    
+    # embed video
+    'embed_video'
 ]
 
 MIDDLEWARE = [

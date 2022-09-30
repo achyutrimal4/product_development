@@ -5,7 +5,7 @@ from users.models import User, Profile, ContactMail, Inbox
 
 
 class UserAdministrator(UserAdmin):
-    list_display= ('id', 'email', 'username', 'date_joined', 'is_active','last_login', 'is_admin', 'is_staff' )
+    list_display= ('id', 'email', 'username', 'date_joined', 'is_active', 'is_admin', 'is_deactivated','last_login' )
     search_fields=('email', 'username')
     readonly_fields=('date_joined', 'last_login', 'is_active', 'id')
     

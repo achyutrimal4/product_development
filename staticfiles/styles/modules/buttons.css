@@ -1,0 +1,112 @@
+.default-button, .default-button--m0 {
+    width: 300px;
+    height: 40px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: var(--dark_cyan);
+    color: #fff;
+    font: inherit;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: 0.5s;
+    margin-left: 200px;
+}
+
+/* default button with margin 0 */
+.default-button--m0 {
+   margin:0;
+}
+
+.default-button--large {
+    width: 400px;
+    height: 40px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: var(--dark_cyan);
+    color: #fff;
+    font: inherit;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: 0.5s;
+    margin-left: 200px;
+}
+#default-button--md{
+    width: 200px;
+    height: 40px;
+    margin-top: 10px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: var(--dark_cyan);
+    color: #fff;
+    font: inherit;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: 0.5s;
+}
+
+
+.default-button--sm{
+    width: 100px;
+    height: 40px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: var(--dark_cyan);
+    color: #fff;
+    font: inherit;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: 0.5s;
+    margin-left: 200px;
+}
+.card-btn {
+    border: none;
+    background: var(--dark_cyan);
+    color: white;
+    font: inherit;
+    margin-top: 30px;
+    padding: 10px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    width: 120px;
+}
+.card-btn:hover {
+    cursor: pointer;
+}
+
+
+/* Tab Buttons  */
+.tab-buttons {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.tab-buttons a {
+    text-decoration: none;
+    color: black;
+    background-color: rgba(128, 0, 128, 0.168);
+    margin: -5px 5px 0 0;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.tab-buttons .active-tab {
+    background-color: var(--dark_cyan);
+    color: white;
+    cursor: none;
+}
+
+.tab-buttons .active-tab:disabled,
+a[disabled] {
+    background-color: var(--dark_cyan);
+    color: white;
+}

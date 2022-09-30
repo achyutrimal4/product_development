@@ -1,0 +1,56 @@
+@import url(uikit.css);
+
+
+
+.container{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+.message-box{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    background-color: white;
+    padding: 20px;
+    margin-top: 10px;
+}
+.message-box a{
+    height: 30px;
+    width: 30px;
+    line-height: 30px;
+    border-radius: 50%;
+    text-align: center;
+    background-color: var(--dark_cyan);
+    color: white;
+}
+.sender-details{
+    display: flex;
+    flex-direction: column;
+    color: var(--dark_cyan);
+}
+.sender-details p{
+    margin: 0;
+    padding: 0;
+}
+.message{
+    height: fit-content;
+    margin-top: 20px;
+}
+/* google font */
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
+}
+
+.reply{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+

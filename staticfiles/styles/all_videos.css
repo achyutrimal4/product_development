@@ -1,0 +1,127 @@
+@import url(uikit.css);
+
+
+body h2 {
+    display: block;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    padding: 10px;
+}
+.video-container {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+}
+.container .video-container .dropdown-responsive{
+    display: none;
+}
+
+.title h2 {
+    text-align: left;
+    margin-left: 8px;
+}
+
+.title a {
+    position:absolute;
+    right: 20px;
+    text-decoration: none;
+    background-color: rgba(128, 0, 128, 0.286);
+    color: black;
+    padding: 10px 15px;
+    border-radius: 8px;
+}
+
+.title a:hover {
+    color: purple;
+    text-decoration: underline;
+}
+
+.card-container {
+    display: flex;
+    align-content: center;
+    width: 100%;
+    height: fit-content;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(250px, 1fr));
+    grid-gap: 20px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    /* margin: 8px; */
+    border-radius: 8px;
+    padding: 3px;
+    max-width: 310px;
+    height: 250px;
+    transition: transform .2s;
+}
+
+.card:hover {
+    transform: scale(0.98);
+}
+
+.card-details {
+    font-size: 12px;
+    font: weight 400px;
+    /* float: left; */
+    margin-left: 5px;
+    text-overflow: ellipsis;
+}
+
+.card-details a {
+    text-decoration: none;
+    color: black;
+}
+
+#ratio {
+    display: block;
+    margin-top: 10px;
+}
+
+.thumbnail {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+@media screen and (max-width: 600px){
+    .sidebar{
+        display: none;
+    }
+    .container .video-container .dropdown-responsive{
+        display: flex;
+        width: 100%;
+        margin: 15px !important;
+        align-items: flex-start;
+    }
+    .video-container{
+        width:100%;
+    }
+    .card-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(270px, 1fr));
+        grid-gap: 10px;
+    }
+    .card{
+        max-width: 200px !important;
+        height: 210px;
+    }
+    
+}
+
+

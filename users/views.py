@@ -58,11 +58,23 @@ def login_view(request):
             user = authenticate(request, email=email, password=password)
             if user:
                 if user.is_active:
-                    login(request, user)
-                    if user.is_superuser:
-                        return redirect('admin_panel')
+                    if not user.is_deactivated:
+                        login(request, user)
+                        if user.is_superuser:
+                            return redirect('admin_panel')
+                        else:
+
+                            return redirect('home')
                     else:
-                        return redirect('home')
+                        user.is_deactivated =False
+                        user.save()
+                        messages.success(request,'Your account has been activated')
+                        login(request, user)
+                        if user.is_superuser:
+                            return redirect('admin_panel')
+                        else:
+
+                            return redirect('home')
                 else:
                     messages.error(
                         request, 'Please verify your email address to login.')
@@ -79,7 +91,31 @@ def logout_view(request):
     messages.success(request, 'User was successfully logged out.')
     return redirect('landing_page')
 
+# ======================================================================
+# deactivate account
+@login_required(login_url='login')
+def deactivate_account(request, pk):
+    User = get_user_model()
+    user = User.objects.get(pk=pk)
+    user.is_deactivated = True
+    user.save()
+    logout(request)
+    messages.success(request, 'Account deactivated successfully.')
+    return redirect('landing_page')
 
+# ======================================================================
+# delete account
+@login_required(login_url='login')
+def delete_account(request):
+    user_profile = request.user.profile
+    user_profile.delete()
+    logout(request)
+    messages.success(request, 'Account deleted successfully.')
+    return redirect('landing_page')
+
+
+# =================================================================
+# view users profile
 @login_required(login_url='login')
 def profile_view(request):
     user_profile = request.user.profile

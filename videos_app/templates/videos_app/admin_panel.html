@@ -36,10 +36,10 @@
                 <a href="{% url 'admin:index' %}" class="baritem bar-button">Admin Site</a>
                 <a href="{% url 'admin_panel' %}" class="baritem bar-button">Dashboard</a>
                 <a href="{% url 'inbox' %}" class="baritem bar-button" style="display:flex ;">Passowrd Reset Requests
-                  
+
                 </a>
                 <a href="{% url 'contact-inbox' %}" class="baritem bar-button" style="display:flex ;">Contact Mails
-                 
+
                 </a>
                 <a href="" class="baritem bar-button">User Site</a>
 
@@ -83,17 +83,18 @@
                                 Photo</button></a>
                     </div>
                 </div>
+
             </div>
         </div>
-
-
-        <h3>Analytics</h3>
-        <div class="card-grid">
-            <div class="card">
-                <div class="card-details">
-                    <img src="{% static 'media/images/chart.png'%}" alt="">
-                </div>
-            </div>
+        <h3>Add contents</h3>
+        <div class="tab-buttons" style="width:100% ; margin-top: 30px;">
+            <a href="{% url 'add_live' %}">Add Live Videos</a>
+            <a href="{% url 'add_videos' %}">Add Videos</a>
+            <a href="{% url 'add_country' %}">Add Participating Countries</a>
+            <a href="{% url 'add_category' %}">Add Sports Category</a>
+            <a href="{% url 'add_fixtures' %}">Add Fixtures</a>
+            <a href="{% url 'add_players' %}">Add Players</a>
+            <a href="{% url 'add_standings' %}">Add Latest Standing</a>
         </div>
     </div>
 </div>

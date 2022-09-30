@@ -15,12 +15,9 @@
 <div class="container">
     <div class="message-box">
 
-        {% if page == "view-msg" %}
         <a href="{% url 'inbox' %}"><i class="fa fa-arrow-left"></i></a>
-        {% else %}
 
-        <a href="{% url 'contact-inbox' %}"><i class="fa fa-arrow-left"></i></a>
-        {% endif %}
+       
 
         <!-- Title and sender details attribute is same for both types of message, hence single rendering -->
         <div class="title">

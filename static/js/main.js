@@ -18,3 +18,16 @@ function message() {
     warning.style.display = "none";
   }, 7000);
 }
+
+function deactivate() {
+  warning.style.display = "block";
+  setTimeout(function () {
+    warning.style.display = "none";
+  }, 20000);
+}
+function delete_account() {
+  delete_warning.style.display = "block";
+  setTimeout(function () {
+    delete_warning.style.display = "none";
+  }, 20000);
+}

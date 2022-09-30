@@ -37,5 +37,7 @@ urlpatterns=[
    path('add-players/', views.add_players, name='add_players'),
    path('add-standings/', views.add_standing, name='add_standings'),
    
+   # 
+   
 ]
  

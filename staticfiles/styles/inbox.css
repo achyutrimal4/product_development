@@ -1,0 +1,85 @@
+@import url(uikit.css);
+
+
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.inbox-container {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+}
+
+.inbox-container span {
+    width: fit-content;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+}
+.inbox-container span p:first-child {
+   margin-right: 15px;
+}
+
+.inbox-container #card {
+    width: 100%;
+    text-decoration: none;
+    display: flex;
+    color: black;
+}
+
+.message-card {
+    display: flex;
+    width: 100%;
+    position: relative;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.229);
+    padding: 5px;
+    margin: 2px;
+    cursor: pointer;
+}
+
+#new-tag {
+    position: absolute;
+    left: 5px;
+    top: -8px;
+    font-size: 10px;
+    color: white;
+    background-color: green;
+    padding: 1px;
+    border-radius: 3px;
+}
+
+#sender {
+    width: 20%;
+    margin-right: 20px;
+}
+
+#msg {
+    width: 50%;
+}
+
+#time {
+    width: 15%;
+    /* position: absolute;
+    right: 0px; */
+    font-size: 12px;
+}
+#delete{
+    width: auto;
+    color: red;
+    position: absolute;
+    text-align: right;
+    right:0;
+}
+@media screen and (max-width: 600px){
+    .inbox-container{
+        width: 100%;
+    }
+    .desc{
+        display: none;
+    }
+}

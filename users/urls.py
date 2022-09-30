@@ -28,5 +28,8 @@ urlpatterns=[
     # change password
     path('change-password/', views.change_password, name='change-password'),
     
+    # deactivate and delete account
+    path('deactivate/<str:pk>/', views.deactivate_account, name='deactivate-account') ,  
+    path('delete/', views.delete_account, name='delete-account'),
 
 ]

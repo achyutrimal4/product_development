@@ -1,0 +1,128 @@
+@import url(uikit.css);
+
+
+
+.container {
+    width: 100%;
+    display: flex;
+}
+
+
+.dashboard-container {
+    width: 75%;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.dashboard-container i {
+    /* display: none; */
+    font-size: large;
+    color: white;
+}
+
+.dashboard-container .dropdown-responsive {
+    display: none !important;
+}
+
+.card-container {
+    width: 100%;
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(240px, 1fr));
+    grid-gap: 5px;
+}
+
+.card {
+    display: flex;
+    position: relative;
+    margin: 8px;
+    border-radius: 8px;
+    justify-content: center;
+    padding: 3px;
+    max-width: 240px;
+    height: 250px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    transition: transform .2s;
+}
+
+.material-symbols-outlined {
+    font-variation-settings:
+        'FILL' 1,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 48,
+
+}
+
+.card-details span {
+    font-size: 50px;
+    margin: -5px 0 0 15px;
+    color: purple;
+
+}
+
+.card:hover {
+    transform: scale(0.98);
+}
+
+.card-details {
+    font: weight 400px;
+    /* float: left; */
+    margin-left: 5px;
+    text-overflow: ellipsis;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+.card-details p {
+    color: grey;
+}
+
+.card-details i {
+    color: purple;
+    font-size: 40px;
+}
+
+.card-details a {
+    text-decoration: none;
+    color: black;
+}
+
+.card-details img {
+    margin-left: 220px;
+}
+
+@media screen and (max-width: 600px) {
+    .dashboard-container {
+        width: 100%;
+    }
+
+    .dashboard-container .dropdown-responsive {
+        display: block !important;
+    }
+
+    .card-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(240px, 1fr));
+        grid-gap: 5px;
+    }
+
+    .card {
+        display: flex;
+        position: relative;
+        margin: 8px;
+        border-radius: 8px;
+        justify-content: center;
+        padding: 3px;
+        max-width: 240px;
+        height: 250px;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+        transition: transform .2s;
+    }
+
+}

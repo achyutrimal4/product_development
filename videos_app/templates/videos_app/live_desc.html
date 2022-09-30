@@ -13,12 +13,11 @@
     <div class="left-container">
         <div class="player">
             <iframe src="{{video.url}}" frameborder="0" style="width: 95%; height:480px"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen></iframe>
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <div class="video-details">
             <div class="video-desc">
-                <p>{{video.title}}</p>
+                <p> {{video.title}}</p>
                 <div class="tags">
                     {% for category in video.category.all %}
                     <small>{{category}}</small>

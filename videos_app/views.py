@@ -11,7 +11,7 @@ from .forms import FixtureForm, LiveVideoForm, PlayerForm, StandingForm, VideoFo
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.db.models import Q
-from .utils import search_fixtures, search_function, search_news, search_photos
+from .utils import search_fixtures, search_function, search_live, search_news, search_photos
 from django.urls import reverse_lazy, reverse
 
 
@@ -384,7 +384,11 @@ def all_news(request):
 @login_required(login_url='login')
 def live_games(request):
     live_videos = LiveVideo.objects.all()
-    context = {'live_videos': live_videos}
+    
+    if request.method == "GET":
+        live_videos, search_query = search_live(request)
+        
+    context = {'live_videos': live_videos, 'search_query': search_query,}
     return render(request, 'videos_app/live_games.html', context)
 
 # video description

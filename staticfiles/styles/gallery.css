@@ -1,0 +1,176 @@
+@import url(uikit.css);
+
+
+body h2 {
+    display: block;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    padding: 10px;
+    overflow: hidden;
+    overflow-y: auto;
+
+}
+
+.albums {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 150px;
+    overflow-y: auto;
+    height: fit-content;
+}
+
+.albums a {
+    text-decoration: none;
+    color: black;
+}
+
+
+.right-container {
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    /* justify-content: center;
+    align-items: center; */
+}
+
+.gallery-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+}
+
+.gallery-container .title{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+
+.title h2{
+    text-align: left;
+    margin-left: 8px;
+
+}
+.gallery-container .title .dropdown-responsive{
+    display: none !important;
+    margin-left: 8px;
+}
+
+
+.card-container {
+    /* margin-top: 50px; */
+    display: flex;
+    /* flex-direction: row; */
+    align-content: center;
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(300px, 1fr));
+    grid-gap: 10px;
+}
+
+
+.card {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin: 8px;
+    border-radius: 8px;
+    padding: 3px;
+    max-width: 320px;
+    height: 180px;
+    cursor: pointer;
+    box-shadow: 0 1.7px 2px -2px gray;
+    transition: transform .2s;
+}
+
+.card:hover {
+    transform: scale(0.98);
+}
+
+.card-details {
+    font-size: 12px;
+    font: weight 400px;
+    /* float: left; */
+    margin-left: 5px;
+    text-overflow: ellipsis;
+    display: flex;
+    justify-content: center;
+}
+
+.card-details a {
+    text-decoration: none;
+    color: black;
+}
+
+
+.thumbnail {
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+
+}
+
+.thumbnail img {
+    height: 150px;
+    width: 280px;
+    object-fit: cover;
+    /* margin-top: 10px; */
+}
+
+@media screen and (max-width: 600px){
+    .sideber{
+        display: hidden;
+    }
+    .dropdown-responsive{
+        display: block;
+    }
+    .right-container{
+        width: 100%;
+    }
+    .card-grid{
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(180px, 1fr));
+        grid-gap: 10px;
+        padding: 0;
+        margin: 0;
+    }
+    .card{
+        width: 220px;
+        height: 180px;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        margin: 2px;
+        border-radius: 8px;
+        padding: 3px;
+        cursor: pointer;
+    }
+    .gallery-container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+        justify-content: center;
+        padding: 0;
+    }
+    .card .thumbnail{
+        overflow: hidden;
+    }
+    .card .thumbnail img{
+        object-fit: cover;
+    }
+}
+

@@ -9,53 +9,69 @@
 {% endblock %}
 
 {% block content %}
+
+<div class="alert alert--error" id="warning" style="display:none;">
+  <p class="alert__message">Are you sure you want to deactivate your account?</p>
+  <p>You can login using your registered email id to activate your account.</p>
+  <button class="alert__close" style="color: rgb(30, 198, 254); font-size: 1rem !important; font:inherit !important">Close</button>
+  <a href="{% url 'deactivate-account' user_profile.user.id  %}" style="color: red; text-decoration:none; position:absolute; right:15px">Confirm</a>
+</div>
+
+<div class="alert alert--error" id="delete_warning" style="display:none;">
+  <p class="alert__message">Are you sure you want to delete your account?</p>
+  <p>Your account will be permanently deleted and this action cannot be reversed.</p>
+  <button class="alert__close" style="color: rgb(30, 198, 254); font-size: 1rem !important; font:inherit !important">Close</button>
+  <a href="{% url 'delete-account' %}" style="color: red; text-decoration:none; position:absolute; right:15px">Confirm</a>
+</div>
+
+
 <div class="container">
-    <h2>Hello, {{user_profile.username}}</h2>
+  <h2>Hello, {{user_profile.username}}</h2>
 
-    <div class="details">
-        <img src="{{user_profile.profile_image.url}}" alt=""><br>
+  <div class="details">
+    <img src="{{user_profile.profile_image.url}}" alt=""><br>
 
-        <table style="width:100%">
-            <tr>
-              <th>Email</th>
-              <td>{{user_profile.email}}</td>
-            </tr>
-            <tr>
-              <th>Username</th>
-              <td>{{user_profile.username}}</td>
-            </tr>
-            <tr>
-              <th>Phone number</th>
-              <td>{{user_profile.phone_number}}</td>
-            </tr>
-            <tr>
-              <th>Country</th>
-              <td>{{user_profile.country}}</td>
-            </tr>
-            <tr>
-              <th>Last Login</th>
-              <td>{{user_profile.user.last_login}}</td>
-            </tr>
-        </table>      
+    <table style="width:100%">
+      <tr>
+        <th>Email</th>
+        <td>{{user_profile.email}}</td>
+      </tr>
+      <tr>
+        <th>Username</th>
+        <td>{{user_profile.username}}</td>
+      </tr>
+      <tr>
+        <th>Phone number</th>
+        <td>{{user_profile.phone_number}}</td>
+      </tr>
+      <tr>
+        <th>Country</th>
+        <td>{{user_profile.country}}</td>
+      </tr>
+      <tr>
+        <th>Last Login</th>
+        <td>{{user_profile.user.last_login}}</td>
+      </tr>
+    </table>
 
-        <div class="profile-actions">
-            <a href="{% url 'editprofile'%}"> <i class="fa fa-edit"></i> Edit Details</a>
-            <br>
+    <div class="profile-actions">
+      <a href="{% url 'editprofile'%}"> <i class="fa fa-edit"></i> Edit Details</a>
 
-            {% if not request.user.is_superuser %}
+      {% if not request.user.is_superuser %}
 
-            {% if request.user.is_pass_reset %}
-            <em style="color:red; font-size:12px">You can change your password only ONCE using the link below. If any
-                problems occur, you must request for password change again.</em>
-            <a href="{% url 'change-password' %}"> <i class="fa-solid fa-key"></i> Change Password</a>
+      {% if request.user.is_pass_reset %}
+      <em style="color:red; font-size:12px">You can change your password only ONCE using the link below. If any
+        problems occur, you must request for password change again.</em>
+      <a href="{% url 'change-password' %}"> <i class="fa-solid fa-key"></i> Change Password</a>
 
-            {% endif %}
-            <a href="{% url 'create-message' admin.id %}"> <i class="fa-solid fa-rotate-left"></i> Request Password
-                Reset</a>
-            <a href="#" style="color:red;"> <i class="fa-solid fa-trash"></i> Deactivate account</a>
+      {% endif %}
+      <a href="{% url 'create-message' admin.id %}"> <i class="fa-solid fa-rotate-left"></i> Request Password
+        Reset</a>
+      <a onclick="deactivate()" style="color:rgb(255, 136, 0);"> <i class="fa-solid fa-user-slash"></i> Deactivate account</a>
+      <a onclick="delete_account()" style="color:red;"> <i class="fa-solid fa-user-xmark"></i> Delete account</a>
 
-            {% endif %}
-        </div>
+      {% endif %}
     </div>
+  </div>
 </div>
 {% endblock content %}

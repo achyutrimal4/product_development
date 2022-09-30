@@ -6,6 +6,7 @@ from users.models import Profile
 import uuid
 import datetime
 from django_countries.fields import CountryField
+from embed_video.fields import EmbedVideoField
 
 from django.conf import settings
 
@@ -37,7 +38,7 @@ class Video (models.Model):
 class LiveVideo(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField(null=True, blank=True)
-    url = models.TextField(verbose_name="Live URL")
+    url = EmbedVideoField(verbose_name="Live URL")
     upload_by = models.ForeignKey(
         Profile, null=True, blank=True, on_delete=models.SET_NULL)
     category = models.ManyToManyField(
@@ -69,6 +70,9 @@ class Review(models.Model):
 
     def __str__(self):
         return self.comment
+    
+    class Meta:
+        ordering = ['-created']
 
 
 class LiveComments(models.Model):
@@ -82,6 +86,9 @@ class LiveComments(models.Model):
 
     def __str__(self):
         return self.comment
+    
+    class Meta:
+        ordering = ['-created']
 
 
 class Category (models.Model):
