@@ -115,8 +115,8 @@ class Country (models.Model):
 
 class News (models.Model):
     title = models.CharField(max_length=255)
-    description = models.TextField(null=True, blank=True)
-    image = models.ImageField(null=True, blank=True, upload_to='images/news/')
+    description = models.TextField(null=True, blank=False)
+    image = models.ImageField(null=True, blank=False, upload_to='images/news/')
     imageBy = models.CharField(max_length=200, default="Funolympics Admin")
     author = models.CharField(
         max_length=200, default="Funolympics Admin", null=True, blank=True)

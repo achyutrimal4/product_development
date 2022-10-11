@@ -134,7 +134,7 @@ def add_category(request):
         if form.is_valid():
             form.save()
             messages.success(request, 'Sports category successfully added.')
-            return redirect("add_videos")
+            # return redirect("add_videos")
     context = {'categoryform': form, 'page': page}
     return render(request, 'videos_app/add_videos.html', context)
 

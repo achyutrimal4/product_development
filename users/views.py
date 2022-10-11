@@ -123,8 +123,8 @@ def profile_view(request):
     admin = User.objects.order_by('-is_admin').first()
     context = {'user_profile': user_profile, 'admin': admin}
     return render(request, 'users/users_profile.html', context)
-
-
+# =============================================================
+# edit profile
 @login_required(login_url='login')
 def edit_profile(request):
     profile = request.user.profile

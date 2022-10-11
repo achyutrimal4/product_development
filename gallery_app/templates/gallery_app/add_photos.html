@@ -22,7 +22,7 @@
     <a href="{% url 'add_album' %}" class="active-tab">Add Album</a>
   </div>
 
-  <form action="" method="post" novalidate class="default-form">
+  <form action="" method="post" novalidate >
     {% csrf_token %} {% for field in albumform %}
 
     <div class="input-errors">
@@ -38,7 +38,7 @@
     </div>
 
     {% endfor %}
-    <input type="submit" value="Add Album" class="default-button--sm" />
+    <input type="submit" value="Add Album" class="default-button--large" />
   </form>
 
   {% else %}

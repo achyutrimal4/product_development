@@ -9,7 +9,7 @@ import uuid
 
 class Photo (models.Model):
     description = models.TextField(null=True, blank=True)
-    photo = models.ImageField(upload_to='images/gallery/', blank=FALSE)
+    photo = models.ImageField(upload_to='images/gallery/', blank=False)
     album = models.ForeignKey(
         'Album', verbose_name="Album", on_delete=models.SET_NULL, null=True)
     uploaded = models.DateTimeField(auto_now_add=True)
