@@ -480,8 +480,9 @@ p {
 
 .card--players img {
     object-fit: cover;
-    height: 250px;
-    width: 200px;
+    overflow: hidden;
+    height: 250px !important;
+    width: 200px !important;
 
 }
 

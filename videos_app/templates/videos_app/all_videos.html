@@ -48,14 +48,14 @@
                                 style="width: 280px; height: 150px;"></video>
                         </div>
                         <div class="card-details">
-                            <p><a href="{% url 'video_desc' video.id %}">{{video.title|slice:55}}</a></p>
+                            <p><a href="{% url 'video_desc' video.id %}">{{video.title|slice:40}}</a></p>
                             <p>{{video.uploaded|date}}</p>
-                            {% if request.user.is_superuser %}
+                            <!-- {% if request.user.is_superuser %}
                             <span style="position: absolute; right: 5%; bottom: 2.5%;">
                                 <a href="{% url 'update_videos' video.id %}"><i class="fas fa-edit"></i></a>
                                 <a href="{% url 'delete_videos' video.id %}"><i class="fa-solid fa-trash"></i></a>
                             </span>
-                            {% endif %}
+                            {% endif %} -->
                         </div>
                     </a>
                 </div>

@@ -29,10 +29,10 @@ def landing_page(request):
     players = Player.objects.all().order_by('-total')[0:5]
     live = LiveVideo.objects.all().order_by('-uploaded').first()
 
-    videos = Video.objects.all()
-    fixtures = Fixture.objects.all()
-    news = News.objects.all()
-    standings = Standing.objects.all().order_by('-total').values()
+    fixtures = Fixture.objects.all().order_by('-created')[0:6]
+    standings = Standing.objects.all().order_by('-total')[0:7]
+    videos = Video.objects.all().order_by('-uploaded')
+    news = News.objects.all().order_by('-created')
     context = {'videos': videos,
                'fixtures': fixtures,
                'news': news,
